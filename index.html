@@ -1,0 +1,2612 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorfie Fit × Connected Gym Experience &amp; Smart Member Access</title>
+
+    <!-- Favicon: Bespoke Dorfie Fit Bolt Emblem -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23121214'/%3E%3Cpath d='M35 12L22 34h10l-3 18 16-24H33l2-16z' fill='%23FF5E00'/%3E%3C/svg%3E">
+    <meta name="theme-color" content="#121214">
+    <meta name="description"
+        content="Dorfie Fit - Modern connected gym platform connecting biometric access turnstiles, member mobile passes, workout tracking, and club management with Dorfie the Capybara mascot.">
+
+    <!-- CRITICAL: Synchronous inline script to immediately lock theme BEFORE DOM rendering -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('dorfie-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+
+    <!-- Google Fonts: Bebas Neue, Plus Jakarta Sans, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'charcoal': '#121214',
+                        'charcoal-card': '#18181C',
+                        'charcoal-muted': '#27272E',
+                        'charcoal-deep': '#0A0A0C',
+                        'accent-orange': '#FF5E00',
+                        'accent-orange-hover': '#FF7315',
+                        'accent-orange-glow': 'rgba(255, 94, 0, 0.45)',
+                        'sand-bg': '#E6E3DC',
+                        'sand-card': '#ECE9E2',
+                        'sand-deep': '#DDD9D0',
+                        'chalk': '#FAF8F5'
+                    },
+                    fontFamily: {
+                        'bebas': ['"Bebas Neue"', 'sans-serif'],
+                        'sans': ['"Plus Jakarta Sans"', 'sans-serif'],
+                        'mono': ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lenis Smooth Scroll CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <!-- GSAP 3 & Plugins CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- SplitType CDN for Kinetic Typography -->
+    <script src="https://unpkg.com/split-type"></script>
+
+    <!-- Dorfie Fit Unified Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="selection:bg-accent-orange selection:text-white relative">
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-follower" aria-hidden="true">
+        <span id="cursor-label">VIEW</span>
+    </div>
+
+    <div class="grain-overlay"></div>
+
+    <!-- Ambient Blobs Canvas -->
+    <div id="ambient-canvas-layer" aria-hidden="true">
+        <div id="ambient-orb-1"
+            class="ambient-orb orb-morph-1 top-[-8%] left-[-6%] w-[54vw] h-[54vw] max-w-[780px] max-h-[780px]"
+            style="background: radial-gradient(circle, rgba(255, 94, 0, 0.88) 0%, rgba(255, 145, 60, 0.5) 45%, rgba(255, 210, 160, 0) 70%); filter: blur(85px); opacity: 0.25;">
+        </div>
+        <div id="ambient-orb-2"
+            class="ambient-orb orb-morph-2 top-[30%] right-[-10%] w-[58vw] h-[58vw] max-w-[850px] max-h-[850px]"
+            style="background: radial-gradient(circle, rgba(187, 166, 234, 0.95) 0%, rgba(205, 185, 250, 0.6) 42%, rgba(230, 220, 255, 0) 72%); filter: blur(95px); opacity: 0.28;">
+        </div>
+        <div id="ambient-orb-3"
+            class="ambient-orb orb-morph-1 top-[60%] left-[-5%] w-[50vw] h-[50vw] max-w-[720px] max-h-[720px]"
+            style="background: radial-gradient(circle, rgba(255, 160, 80, 0.85) 0%, rgba(240, 215, 170, 0.5) 40%, rgba(230, 227, 220, 0) 68%); filter: blur(85px); opacity: 0.22;">
+        </div>
+        <div id="ambient-orb-4"
+            class="ambient-orb orb-morph-2 bottom-[-10%] right-[-5%] w-[56vw] h-[56vw] max-w-[800px] max-h-[800px]"
+            style="background: radial-gradient(circle, rgba(255, 94, 0, 0.85) 0%, rgba(220, 150, 200, 0.45) 45%, rgba(230, 227, 220, 0) 70%); filter: blur(90px); opacity: 0.24;">
+        </div>
+    </div>
+
+    <!-- PRELOADER -->
+    <aside id="preloader-overlay"
+        class="fixed inset-0 z-[999] flex flex-col justify-between p-6 sm:p-10 md:p-12 bg-charcoal text-white overflow-hidden pointer-events-auto select-none">
+        <div
+            class="flex flex-wrap justify-between items-center gap-2 text-[10px] sm:text-xs font-mono tracking-widest text-white/50 uppercase">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
+                <span class="text-white font-bold tracking-wider">DORFIE LIQUID-GLASS ARCHITECTURE</span>
+            </div>
+            <span class="loader-phase font-semibold">STAGE 01 / INITIALIZING</span>
+        </div>
+
+        <div class="my-auto flex flex-col items-center justify-center text-center relative py-8 sm:py-12">
+            <div
+                class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 relative flex items-center justify-center">
+                <svg class="loader-logo-svg w-full h-full" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="44" stroke="#27272E" stroke-width="4" />
+                    <circle id="loader-circle-progress" cx="50" cy="50" r="44" stroke="#FF5E00" stroke-width="4.5"
+                        stroke-linecap="round" stroke-dasharray="276" stroke-dashoffset="276"
+                        transform="rotate(-90 50 50)" />
+                    <path class="loader-bolt" d="M54 22L36 50H48L44 78L64 46H50L54 22Z" fill="#FF5E00" opacity="0"
+                        transform="scale(0.85) translate(8, 8)" />
+                </svg>
+            </div>
+
+            <div class="overflow-hidden mb-2 max-w-full">
+                <div id="loader-wordmark"
+                    class="font-bebas text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-wider text-white leading-none">
+                    DORFIE<span class="text-accent-orange">FIT</span>
+                </div>
+            </div>
+
+            <div class="overflow-hidden max-w-full px-2">
+                <p id="loader-tagline"
+                    class="font-mono text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/60">
+                    Biometrics • Mobile Passes • Smart Gym Community
+                </p>
+            </div>
+
+            <div class="w-40 sm:w-64 h-[3px] bg-charcoal-muted rounded-full overflow-hidden mt-6 sm:mt-8">
+                <div id="loader-line-fill" class="h-full bg-gradient-to-r from-accent-orange to-amber-400 w-0"></div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap justify-between items-end gap-2 border-t border-white/10 pt-4">
+            <div>
+                <p class="text-[9px] sm:text-[10px] font-mono text-white/40 uppercase">PLATFORM</p>
+                <p class="text-[11px] sm:text-xs font-mono font-bold text-white/90 uppercase">DORFIE SMART GYM PLATFORM
+                </p>
+            </div>
+            <div class="flex items-baseline gap-1">
+                <span id="loader-counter"
+                    class="font-bebas text-4xl sm:text-5xl md:text-6xl text-white leading-none">00</span>
+                <span class="font-mono text-xs font-bold text-accent-orange">%</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Shutter SVG -->
+    <svg class="fixed top-0 left-0 w-screen h-screen pointer-events-none z-[998]" viewBox="0 0 100 100"
+        preserveAspectRatio="none">
+        <path id="shutter-path" vector-effect="non-scaling-stroke" fill="#121214"
+            d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
+    </svg>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" data-magnetic
+        class="whatsapp-float flex items-center gap-2 sm:gap-3 px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-full bg-[#25D366] text-white font-extrabold text-xs uppercase tracking-wider shadow-2xl border border-white/40 backdrop-blur-md">
+        <span class="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white animate-ping"></span>
+        <i class="fa-brands fa-whatsapp text-base sm:text-lg"></i>
+        <span class="hidden sm:inline">Get in Touch</span>
+    </a>
+
+    <!-- Hardware-Accelerated Liquid Glass Scroll Progress Bar -->
+    <div id="scroll-progress-track" class="fixed top-0 left-0 right-0 h-[3px] z-[90] pointer-events-none">
+        <div id="scroll-progress-bar"
+            class="h-full bg-gradient-to-r from-accent-orange via-amber-400 to-[#FF8C38] shadow-[0_0_12px_rgba(255,94,0,0.8)] origin-left scale-x-0 w-full">
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header id="main-header"
+        class="fixed top-2 sm:top-4 md:top-5 left-0 right-0 z-40 px-2.5 sm:px-6 md:px-8 max-w-[1400px] mx-auto transition-all duration-300">
+        <div id="main-header-panel"
+            class="liquid-glass-pill px-3.5 sm:px-6 md:px-8 py-2 sm:py-3.5 flex items-center justify-between shadow-xl transition-all duration-300 gap-2 sm:gap-4">
+            <!-- Brand Logo: Full Size Prominent Display -->
+            <a href="#home" onclick="appRouter.navigate('home')"
+                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); appRouter.navigate('home');}"
+                aria-label="Dorfie Fit Home" data-magnetic
+                class="flex items-center justify-center group py-0.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-orange rounded-xl min-h-[44px] min-w-[44px]">
+                <img src="TEXT LOGO.png" alt="Dorfie Fit"
+                    class="h-8 sm:h-10 md:h-12 w-auto max-w-[120px] sm:max-w-none object-contain object-center select-none transition-transform duration-300 group-hover:scale-105 drop-shadow-sm mx-auto" />
+            </a>
+
+            <!-- Minimal Navigation Links -->
+            <nav
+                class="hidden lg:flex items-center gap-2 text-[14px] sm:text-[15px] font-semibold text-charcoal/85 dark:text-chalk/85">
+                <a href="#about" onclick="appRouter.navigateLandingSection('about', event)" data-target="about"
+                    data-magnetic
+                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">About</a>
+                <a href="#features" onclick="appRouter.navigateLandingSection('features', event)" data-target="features"
+                    data-magnetic
+                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Features</a>
+                <a href="#pricing" onclick="appRouter.navigateLandingSection('pricing', event)" data-target="pricing"
+                    data-magnetic
+                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Pricing</a>
+                <a href="#why-dorfie" onclick="appRouter.navigateLandingSection('why-dorfie', event)"
+                    data-target="why-dorfie" data-magnetic
+                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Why
+                    Dorfie</a>
+                <a href="#software-apps" onclick="appRouter.navigateLandingSection('software-apps', event)"
+                    data-target="software-apps" data-magnetic
+                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Apps
+                    &amp; QR</a>
+            </nav>
+
+            <!-- Actions: Theme Toggle + Auth -->
+            <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+                <button id="theme-toggle-btn" onclick="toggleColorMode()" data-magnetic
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full liquid-glass-pill flex items-center justify-center text-charcoal dark:text-chalk hover:text-accent-orange border border-white/40 shrink-0">
+                    <i id="theme-toggle-icon" class="fa-solid fa-moon text-xs sm:text-base"></i>
+                </button>
+
+                <div id="nav-auth-container" class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+                    <button onclick="appRouter.openAuth('login')"
+                        class="liquid-glass-btn-orange px-3.5 sm:px-6 py-1.5 sm:py-2.5 rounded-full text-[11px] sm:text-xs md:text-sm font-black uppercase tracking-wider shadow-md whitespace-nowrap shrink-0">
+                        Log In
+                    </button>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button onclick="toggleMobileNav()"
+                    class="lg:hidden w-8 h-8 sm:w-10 sm:h-10 rounded-full liquid-glass-pill flex items-center justify-center text-charcoal dark:text-chalk shrink-0">
+                    <i class="fa-solid fa-bars text-xs sm:text-base"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-nav-drawer"
+            class="lg:hidden mt-2 p-4 sm:p-5 liquid-glass-panel hidden flex-col gap-2.5 sm:gap-3 shadow-2xl">
+            <a href="#about" onclick="toggleMobileNav(); appRouter.navigateLandingSection('about', event)"
+                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">About</a>
+            <a href="#features" onclick="toggleMobileNav(); appRouter.navigateLandingSection('features', event)"
+                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Features</a>
+            <a href="#pricing" onclick="toggleMobileNav(); appRouter.navigateLandingSection('pricing', event)"
+                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Pricing</a>
+            <a href="#why-dorfie" onclick="toggleMobileNav(); appRouter.navigateLandingSection('why-dorfie', event)"
+                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Why
+                Dorfie</a>
+            <a href="#software-apps"
+                onclick="toggleMobileNav(); appRouter.navigateLandingSection('software-apps', event)"
+                class="py-2 text-sm font-semibold text-accent-orange">Apps &amp; QR</a>
+            <div id="mobile-drawer-auth"
+                class="pt-3 border-t border-charcoal/10 dark:border-white/10 flex flex-col gap-2">
+                <button onclick="toggleMobileNav(); appRouter.openAuth('login')"
+                    class="liquid-glass-btn-orange py-2.5 px-5 rounded-full text-xs font-bold text-center">Log
+                    In</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Floating Capybara Scroll Companion -->
+    <div id="capy-scroll-companion"
+        class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 select-none flex flex-col items-start cursor-pointer"
+        onclick="capyCompanion.onMascotClick()">
+        <!-- Speech Bubble -->
+        <div id="capy-speech-bubble"
+            class="opacity-0 translate-y-2 pointer-events-none transition-all duration-300 mb-1.5 sm:mb-2 px-3 py-1.5 rounded-2xl liquid-glass-panel text-[10px] sm:text-[11px] font-bold text-charcoal dark:text-chalk shadow-xl border border-accent-orange/40 max-w-[170px] sm:max-w-[200px] leading-snug">
+            Capybaras never rush. Smooth sets only.
+        </div>
+
+        <!-- Mascot Avatar -->
+        <div id="capy-avatar-wrap"
+            class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full overflow-hidden p-1 shadow-2xl border-2 border-accent-orange/70 capy-anim-idle transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-transparent">
+            <img id="capy-mascot-img" src="Chilling_Looking_At_Sky.png?v=2" alt="Dorfie Mascot Capybara"
+                class="w-full h-full object-contain object-center rounded-full select-none transition-transform duration-300" />
+        </div>
+    </div>
+
+    <!-- Hardware-Accelerated Kinetic Scroll Ribbon Background -->
+    <div id="kinetic-ribbon-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        <svg id="kinetic-ribbon-svg" class="w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none">
+            <defs>
+                <!-- Diffuse Atmospheric Ambient Glow -->
+                <filter id="ribbon-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="32" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+                <linearGradient id="ribbon-grad-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF5E00" stop-opacity="0.20" />
+                    <stop offset="50%" stop-color="#FF8C38" stop-opacity="0.16" />
+                    <stop offset="100%" stop-color="#FFAA00" stop-opacity="0.08" />
+                </linearGradient>
+                <linearGradient id="ribbon-grad-core" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF5E00" stop-opacity="0.85" />
+                    <stop offset="32%" stop-color="#FF7A1A" stop-opacity="0.95" />
+                    <stop offset="68%" stop-color="#FFAA00" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#FF5E00" stop-opacity="0.8" />
+                </linearGradient>
+                <linearGradient id="ribbon-grad-telemetry" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF5E00" stop-opacity="0.55" />
+                    <stop offset="100%" stop-color="#FFAA00" stop-opacity="0.35" />
+                </linearGradient>
+            </defs>
+            <!-- Layer 1: Ambient Gaussian Aura -->
+            <path id="ribbon-path-aura" d="" fill="none" stroke="url(#ribbon-grad-glow)" stroke-width="52"
+                stroke-linecap="round" filter="url(#ribbon-glow)" />
+            <!-- Layer 2: Core Kinetic Silk Path -->
+            <path id="ribbon-path-core" d="" fill="none" stroke="url(#ribbon-grad-core)" stroke-width="2.5"
+                stroke-linecap="round" />
+            <!-- Layer 3: Telemetry Dashes Parallel Stream -->
+            <path id="ribbon-path-telemetry" d="" fill="none" stroke="url(#ribbon-grad-telemetry)" stroke-width="1.2"
+                stroke-linecap="round" stroke-dasharray="6, 14" />
+        </svg>
+    </div>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main id="main-view-container" class="relative z-10 w-full">
+
+        <!-- ==========================================================================
+             VIEW 1: HOME / LANDING PAGE
+             ========================================================================== -->
+        <div id="view-home" class="view-panel block">
+
+            <!-- Hero Section -->
+            <section id="hero"
+                class="min-h-[100svh] pt-24 sm:pt-32 md:pt-40 pb-6 sm:pb-10 px-4 sm:px-8 lg:px-10 max-w-7xl mx-auto flex flex-col justify-between">
+                <div class="my-auto w-full py-4 sm:py-6">
+                    <div
+                        class="inline-flex flex-wrap items-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 liquid-glass-pill text-[10px] sm:text-xs font-mono uppercase tracking-wider mb-5 sm:mb-8 text-charcoal dark:text-chalk max-w-full leading-normal">
+                        <span class="w-2.5 h-2.5 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                        <span>CONNECTED GYM ECOSYSTEM</span>
+                        <span class="text-charcoal/30 dark:text-white/30 hidden xs:inline">|</span>
+                        <span class="text-accent-orange font-bold">SMART FITNESS PLATFORM</span>
+                    </div>
+
+                    <h1
+                        class="split-kinetic-text hero-heading font-bebas text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] text-charcoal dark:text-chalk leading-[0.94] tracking-tight uppercase mb-6 sm:mb-10 select-none">
+                        <span class="block">CONNECTED <span class="text-accent-orange">ECOSYSTEM</span></span>
+                        <span class="block">FOR MODERN <span
+                                class="font-serif italic font-normal tracking-normal text-charcoal/80 dark:text-chalk/80">ATHLETES</span></span>
+                        <span class="block">&amp; FITNESS HUBS.</span>
+                    </h1>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-end w-full">
+                        <p
+                            class="md:col-span-7 text-charcoal/80 dark:text-chalk/80 text-base sm:text-xl md:text-2xl font-medium leading-relaxed max-w-2xl">
+                            Unifying physical access hardware, biometric turnstiles, and member mobile passes. Built for
+                            modern gym owners, independent personal trainers, and fitness enthusiasts.
+                        </p>
+
+                        <div class="md:col-span-5 flex flex-wrap gap-3 sm:gap-4 md:justify-end items-center w-full">
+                            <a href="#software-apps" data-magnetic
+                                class="liquid-glass-btn-orange w-full sm:w-auto px-7 sm:px-9 py-4 rounded-full font-black text-xs sm:text-sm uppercase tracking-widest flex items-center justify-center gap-2 whitespace-nowrap shadow-lg">
+                                <i class="fa-solid fa-qrcode text-base"></i> Download Apps
+                            </a>
+                            <a href="#about" data-magnetic
+                                class="liquid-glass-pill w-full sm:w-auto px-7 sm:px-8 py-4 font-black text-xs sm:text-sm uppercase tracking-widest text-charcoal dark:text-chalk hover:text-accent-orange text-center whitespace-nowrap shadow-sm">
+                                Explore Platform
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Live Gym Status Ticker -->
+                <div
+                    class="liquid-glass-pill py-2 sm:py-3.5 px-3 sm:px-6 rounded-full border border-charcoal/10 dark:border-white/10 shadow-xl overflow-hidden relative backdrop-blur-md mt-5 sm:mt-8">
+                    <div class="marquee-inner-wrap flex items-center whitespace-nowrap">
+                        <div
+                            class="marquee-content-chunk flex items-center gap-4 sm:gap-8 font-bebas text-sm sm:text-2xl md:text-3xl tracking-wider text-charcoal dark:text-chalk px-2 sm:px-4">
+                            <span class="inline-flex items-center gap-2.5 text-accent-orange"><i
+                                    class="fa-solid fa-bolt"></i> 100% UNIFIED DATA FLOW</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span>BIOMETRIC FACE CLEARANCE</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span class="font-serif italic text-accent-orange">Sub-Second Hardware Sync</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span>LIVE GYM OCCUPANCY</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span
+                                class="inline-flex items-center gap-2 text-green-500 font-mono text-xs sm:text-xl font-bold"><i
+                                    class="fa-solid fa-stopwatch"></i> &lt; 0.18s LATENCY</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span>SEAMLESS MEMBERSHIP BILLING</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span>SMART ACCESS GATES</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span class="text-accent-orange font-mono text-xs sm:text-xl font-bold">24/7 AUTOMATED
+                                ENTRY</span>
+                        </div>
+                        <div class="marquee-content-chunk flex items-center gap-6 sm:gap-8 font-bebas text-sm sm:text-2xl md:text-3xl tracking-wider text-charcoal dark:text-chalk px-4"
+                            aria-hidden="true">
+                            <span class="inline-flex items-center gap-2.5 text-accent-orange"><i
+                                    class="fa-solid fa-bolt"></i> 100% UNIFIED DATA FLOW</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span>BIOMETRIC FACE CLEARANCE</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span class="font-serif italic text-accent-orange">Sub-Second Hardware Sync</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span>LIVE GYM OCCUPANCY</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span
+                                class="inline-flex items-center gap-2 text-green-500 font-mono text-xs sm:text-xl font-bold"><i
+                                    class="fa-solid fa-stopwatch"></i> &lt; 0.18s LATENCY</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span>SEAMLESS MEMBERSHIP BILLING</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span>SMART ACCESS GATES</span>
+                            <span class="text-charcoal/20 dark:text-white/20">•</span>
+                            <span class="text-accent-orange font-mono text-xs sm:text-xl font-bold">24/7 AUTOMATED
+                                ENTRY</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Us -->
+            <section id="about"
+                class="min-h-0 lg:min-h-screen w-full py-10 sm:py-16 md:py-24 px-3.5 sm:px-8 lg:px-12 flex items-center justify-center relative z-10 perspective-stage">
+                <div
+                    class="liquid-glass-panel w-full max-w-[1580px] p-4 sm:p-8 md:p-12 lg:p-16 relative overflow-hidden flex flex-col justify-between shadow-2xl">
+                    <div class="card-glare"></div>
+
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-stretch w-full relative z-10 mb-6 sm:mb-8">
+
+                        <!-- Left Column: Story & Specs (Centered & Balanced Layout) -->
+                        <div
+                            class="lg:col-span-12 max-w-4xl mx-auto w-full flex flex-col justify-between card-layer-lift">
+                            <div>
+                                <div class="inline-flex flex-wrap items-center gap-1.5 sm:gap-2.5 px-3 sm:px-3.5 py-1 sm:py-1.5 liquid-glass-pill text-[9px] sm:text-xs font-mono uppercase tracking-widest mb-4 sm:mb-6 w-fit text-charcoal dark:text-chalk max-w-full leading-normal"
+                                    data-magnetic>
+                                    <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping shrink-0"></span>
+                                    <span>ABOUT US</span>
+                                    <span class="text-charcoal/30 dark:text-white/30 hidden xs:inline">|</span>
+                                    <span class="text-accent-orange font-bold">DORFIE LABS ARCHITECTURE</span>
+                                </div>
+
+                                <h2
+                                    class="split-kinetic-text section-heading-clamp font-bebas text-4xl sm:text-6xl md:text-7xl lg:text-[4.4rem] text-charcoal dark:text-chalk leading-[0.96] uppercase tracking-wide mb-4 sm:mb-6">
+                                    <span class="block">REIMAGINING THE</span>
+                                    <span class="block text-accent-orange">CONNECTED FITNESS</span>
+                                    <span class="block">ECOSYSTEM.</span>
+                                </h2>
+
+                                <p
+                                    class="text-charcoal/80 dark:text-chalk/80 text-sm sm:text-base font-medium leading-relaxed max-w-2xl mb-5 sm:mb-6">
+                                    Traditional fitness platforms isolate members, independent trainers, and club owners
+                                    into fragmented data silos. Dorfie Fit connects physical speed gate turnstiles
+                                    directly to live cloud schedules and member mobile passes—granting sub-second
+                                    biometric clearance with zero intermediary commissions.
+                                </p>
+
+                                <!-- Mascot Pace Indicator -->
+                                <div
+                                    class="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-3 sm:px-3.5 py-1.5 rounded-full liquid-glass-pill mb-6 sm:mb-8 border border-accent-orange/30 max-w-full">
+                                    <img src="Running_Marathon.png" alt="Capy Marathon"
+                                        class="w-5 h-5 sm:w-6 sm:h-6 object-contain shrink-0">
+                                    <span
+                                        class="text-[11px] sm:text-xs font-mono font-bold text-accent-orange uppercase tracking-wider">Sub-second
+                                        turnstile sync with Capy pace</span>
+                                </div>
+
+                                <!-- 2x2 Feature Micro-Cards in 3D Perspective -->
+                                <div
+                                    class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 max-w-2xl mb-6 sm:mb-8 perspective-stage w-full">
+                                    <div data-tilt data-tilt-max="18"
+                                        class="crystal-glass-card p-3.5 sm:p-4 flex items-center gap-3 sm:gap-3.5 cursor-pointer">
+                                        <div class="card-glare"></div>
+                                        <span
+                                            class="w-8 h-8 rounded-xl bg-accent-orange/15 text-accent-orange flex items-center justify-center text-sm shrink-0 card-layer-lift-deep">
+                                            <i class="fa-solid fa-microchip"></i>
+                                        </span>
+                                        <div class="card-layer-lift min-w-0 flex-1">
+                                            <p
+                                                class="font-mono text-[9px] sm:text-[10px] font-bold text-accent-orange uppercase tracking-wider truncate">
+                                                BIOMETRIC SMART GATE</p>
+                                            <p class="text-xs font-bold text-charcoal dark:text-chalk">Fast Biometric
+                                                Entry
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div data-tilt data-tilt-max="18"
+                                        class="crystal-glass-card p-3.5 sm:p-4 flex items-center gap-3 sm:gap-3.5 cursor-pointer">
+                                        <div class="card-glare"></div>
+                                        <span
+                                            class="w-8 h-8 rounded-xl bg-green-500/15 text-green-500 flex items-center justify-center text-sm shrink-0 card-layer-lift-deep">
+                                            <i class="fa-solid fa-wifi"></i>
+                                        </span>
+                                        <div class="card-layer-lift min-w-0 flex-1">
+                                            <p
+                                                class="font-mono text-[9px] sm:text-[10px] font-bold text-green-500 uppercase tracking-wider truncate">
+                                                OFFLINE RELIABILITY</p>
+                                            <p class="text-xs font-bold text-charcoal dark:text-chalk">Always-On Local
+                                                Access</p>
+                                        </div>
+                                    </div>
+
+                                    <div data-tilt data-tilt-max="18"
+                                        class="crystal-glass-card p-3.5 sm:p-4 flex items-center gap-3 sm:gap-3.5 cursor-pointer">
+                                        <div class="card-glare"></div>
+                                        <span
+                                            class="w-8 h-8 rounded-xl bg-blue-500/15 text-blue-500 flex items-center justify-center text-sm shrink-0 card-layer-lift-deep">
+                                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                                        </span>
+                                        <div class="card-layer-lift min-w-0 flex-1">
+                                            <p
+                                                class="font-mono text-[9px] sm:text-[10px] font-bold text-blue-500 uppercase tracking-wider truncate">
+                                                DIRECT PAYMENTS</p>
+                                            <p class="text-xs font-bold text-charcoal dark:text-chalk">Zero Hidden Fees
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div data-tilt data-tilt-max="18"
+                                        class="crystal-glass-card p-3.5 sm:p-4 flex items-center gap-3 sm:gap-3.5 cursor-pointer">
+                                        <div class="card-glare"></div>
+                                        <span
+                                            class="w-8 h-8 rounded-xl bg-purple-500/15 text-purple-500 flex items-center justify-center text-sm shrink-0 card-layer-lift-deep">
+                                            <i class="fa-solid fa-chart-line"></i>
+                                        </span>
+                                        <div class="card-layer-lift min-w-0 flex-1">
+                                            <p
+                                                class="font-mono text-[9px] sm:text-[10px] font-bold text-purple-500 uppercase tracking-wider truncate">
+                                                LIVE OCCUPANCY</p>
+                                            <p class="text-xs font-bold text-charcoal dark:text-chalk">Crowd Radar &amp;
+                                                Check-ins</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3 Stat Indicators with Smooth Numbers (Responsive Grid) -->
+                            <div
+                                class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-5 sm:pt-6 border-t border-charcoal/10 dark:border-white/10 max-w-2xl perspective-stage w-full">
+                                <div data-tilt data-tilt-max="14"
+                                    class="liquid-glass-well p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer">
+                                    <div class="card-layer-lift">
+                                        <span
+                                            class="font-mono text-[10px] uppercase font-bold text-accent-orange block mb-1">RELIABILITY</span>
+                                        <p class="font-bebas text-3xl sm:text-4xl text-charcoal dark:text-chalk leading-none tabular-nums whitespace-nowrap"
+                                            data-counter="99.9" data-counter-suffix="%" data-counter-decimals="1">
+                                            99.9%</p>
+                                        <p class="text-[9px] font-mono text-charcoal/60 dark:text-chalk/60 mt-1">System
+                                            Uptime</p>
+                                    </div>
+                                </div>
+
+                                <div data-tilt data-tilt-max="14"
+                                    class="liquid-glass-well p-3.5 sm:p-4 flex flex-col justify-between border-accent-orange/30 cursor-pointer">
+                                    <div class="card-layer-lift">
+                                        <span
+                                            class="font-mono text-[10px] uppercase font-bold text-accent-orange block mb-1">AUTH
+                                            SPEED</span>
+                                        <p class="font-bebas text-3xl sm:text-4xl text-accent-orange leading-none tabular-nums whitespace-nowrap"
+                                            data-counter="0.18" data-counter-prefix="< " data-counter-suffix="s"
+                                            data-counter-decimals="2">&lt; 0.18s</p>
+                                        <p class="text-[9px] font-mono text-accent-orange mt-1">Sub-Second Pass</p>
+                                    </div>
+                                </div>
+
+                                <div data-tilt data-tilt-max="14"
+                                    class="liquid-glass-well p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer">
+                                    <div class="card-layer-lift">
+                                        <span
+                                            class="font-mono text-[10px] uppercase font-bold text-accent-orange block mb-1">DATA
+                                            FLOW</span>
+                                        <p class="font-bebas text-3xl sm:text-4xl text-charcoal dark:text-chalk leading-none tabular-nums whitespace-nowrap"
+                                            data-counter="1.2" data-counter-suffix="M+" data-counter-decimals="1">1.2M+
+                                        </p>
+                                        <p class="text-[9px] font-mono text-charcoal/60 dark:text-chalk/60 mt-1">Monthly
+                                            Sets</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Section 2: Features (3D Interactive Cards Grid) -->
+            <section id="features"
+                class="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                <div
+                    class="liquid-glass-panel p-5 sm:p-10 lg:p-16 relative w-full flex flex-col justify-between shadow-2xl">
+                    <div class="card-glare"></div>
+
+                    <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-14">
+                        <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 liquid-glass-pill text-[9px] sm:text-xs font-mono uppercase tracking-widest mb-4 text-accent-orange font-bold max-w-full"
+                            data-magnetic>
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent-orange animate-pulse"></span>
+                            <span>PLATFORM CAPABILITIES</span>
+                            <span class="text-charcoal/30 dark:text-white/30">|</span>
+                            <span>MODULAR ROLES</span>
+                        </div>
+                        <h2
+                            class="split-kinetic-text font-bebas text-5xl sm:text-7xl lg:text-8xl text-charcoal dark:text-chalk tracking-wide uppercase leading-[0.95]">
+                            OUR FEATURES
+                        </h2>
+                        <p
+                            class="text-xs sm:text-base text-charcoal/75 dark:text-chalk/75 font-semibold max-w-2xl mx-auto mt-4 leading-relaxed">
+                            Precision engineering tailored across every touchpoint: biometric turnstiles for athletes,
+                            client roster management for coaches, and POS automation for studio operators.
+                        </p>
+
+                        <!-- Role Switcher -->
+                        <div class="mt-8 flex justify-center w-full px-2 overflow-x-auto no-scrollbar py-1"
+                            style="scrollbar-width: none; -ms-overflow-style: none;">
+                            <div id="role-tab-container"
+                                class="inline-flex p-1 sm:p-1.5 liquid-glass-pill gap-1 sm:gap-1.5 shadow-sm items-center relative select-none rounded-full overflow-hidden shrink-0">
+                                <!-- Sliding Glider Background Pill for silky fluid animation -->
+                                <div id="role-tab-glider"
+                                    class="absolute rounded-full bg-accent-orange shadow-md pointer-events-none z-0">
+                                </div>
+
+                                <button onclick="switchTab('member', this)" data-magnetic
+                                    class="feature-tab-btn active px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10">
+                                    <i class="fa-solid fa-user text-[11px] sm:text-xs"></i>
+                                    <span>Members</span>
+                                </button>
+                                <button onclick="switchTab('trainer', this)" data-magnetic
+                                    class="feature-tab-btn px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10">
+                                    <i class="fa-solid fa-dumbbell text-[11px] sm:text-xs"></i>
+                                    <span>Trainers</span>
+                                </button>
+                                <button onclick="switchTab('owner', this)" data-magnetic
+                                    class="feature-tab-btn px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10">
+                                    <i class="fa-solid fa-building text-[11px] sm:text-xs"></i>
+                                    <span>Studio Owners</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cinematic Expandable Stack Slider Showcase -->
+                    <div class="relative w-full mb-8" role="region" aria-roledescription="carousel"
+                        aria-label="Our Features">
+                        <div class="features-stack-stage features-stack-container" id="features-stack-stage">
+                            <div class="slide" id="features-slide-track">
+                                <!-- Slide Item 1 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Gymming.png" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Live Updates</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">01 / 06</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    DORFIE CONNECTED ECOSYSTEM</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Real-Time Gym Footfall</div>
+                                        <div class="des">Check live crowd density and peak equipment utilization at
+                                            partner gyms before heading out.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Explore Feature</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Gymming.png" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">01
+                                                / 06</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Real-Time Footfall</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Slide Item 2 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Running_Marathon.png" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Geo-Discovery</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">02 / 06</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    DORFIE CONNECTED ECOSYSTEM</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Hyper-Local Discovery</div>
+                                        <div class="des">Discover cross-training boxes, Pilates sanctuaries, and studios
+                                            near your location with verified reviews.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Explore Feature</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Running_Marathon.png" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">02
+                                                / 06</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Hyper-Local Discovery</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Slide Item 3 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Chilling_Looking_At_Sky.png" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Free Cloud Storage</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">03 / 06</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    DORFIE CONNECTED ECOSYSTEM</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Lifetime Metric Logging</div>
+                                        <div class="des">Log progressive overload, milestone personal records, and
+                                            caloric trends—completely free forever.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Explore Feature</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Chilling_Looking_At_Sky.png" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">03
+                                                / 06</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Metric Logging</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Slide Item 4 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Coffee.png" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Direct Booking</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">04 / 06</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    DORFIE CONNECTED ECOSYSTEM</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Instant Slot Booking</div>
+                                        <div class="des">Reserve spinning bikes, reformer beds, or HIIT classes in two
+                                            taps with live slot synchronization.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Explore Feature</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Coffee.png" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">04
+                                                / 06</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Instant Booking</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Slide Item 5 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Accounts.png" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Verified Creds</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">05 / 06</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    DORFIE CONNECTED ECOSYSTEM</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Vetted Personal Coaches</div>
+                                        <div class="des">Find certified trainers by specialty with transparent rate
+                                            cards and secure in-app sessions.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Explore Feature</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Accounts.png" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">05
+                                                / 06</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Personal Coaches</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Slide Item 6 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Pharmacy.png" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Leaderboards</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">06 / 06</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    DORFIE CONNECTED ECOSYSTEM</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Community Milestones</div>
+                                        <div class="des">Compete on friendly gym leaderboards, claim badges, and share
+                                            achievements with fellow athletes.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Explore Feature</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Pharmacy.png" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">06
+                                                / 06</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Community Milestones</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stack Control Buttons -->
+                            <div class="stack-buttons">
+                                <button type="button" class="prev" id="features-stack-prev"
+                                    aria-label="Previous feature slide">◁</button>
+                                <button type="button" class="next" id="features-stack-next"
+                                    aria-label="Next feature slide">▷</button>
+                                <div id="features-stack-counter" class="features-stack-counter-pill">01 / 06</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Pricing Section (3D Interactive Tier Cards) -->
+            <section id="pricing"
+                class="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                <div class="text-center max-w-4xl mx-auto mb-14 sm:mb-16">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 liquid-glass-pill text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-4 text-accent-orange font-bold"
+                        data-magnetic>
+                        <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
+                        <span>TRANSPARENT VALUE ENGINE</span>
+                        <span class="text-charcoal/30 dark:text-white/30">|</span>
+                        <span>ZERO HIDDEN FEES</span>
+                    </div>
+                    <h2
+                        class="split-kinetic-text font-bebas text-5xl sm:text-7xl lg:text-8xl text-charcoal dark:text-chalk leading-[0.95] uppercase tracking-wide">
+                        SUBSCRIPTION PLANS &amp; ACCESS
+                    </h2>
+                    <p
+                        class="text-xs sm:text-base text-charcoal/75 dark:text-chalk/75 font-semibold max-w-2xl mx-auto mt-4 leading-relaxed">
+                        Transparent, zero-commission infrastructure designed for individual athletes, independent
+                        coaches, and turnstile fitness studios.
+                    </p>
+
+                    <!-- Monthly / Annual Toggle -->
+                    <div
+                        class="mt-8 inline-flex items-center gap-3 sm:gap-4 liquid-glass-pill px-4 sm:px-5 py-2 sm:py-2.5 shadow-sm max-w-full flex-wrap justify-center">
+                        <span id="label-monthly"
+                            class="text-xs font-mono font-bold uppercase tracking-wider text-charcoal dark:text-chalk">
+                            Monthly
+                        </span>
+                        <button type="button" onclick="toggleBilling()" aria-label="Toggle annual pricing"
+                            class="w-12 h-6 rounded-full bg-charcoal/20 dark:bg-white/20 p-1 flex items-center transition-colors focus:outline-none relative shrink-0">
+                            <span id="pricing-toggle-knob"
+                                class="w-4 h-4 rounded-full bg-accent-orange shadow-md transition-transform duration-300"></span>
+                        </button>
+                        <div class="flex items-center gap-2">
+                            <span id="label-annual"
+                                class="text-xs font-mono font-bold uppercase tracking-wider text-charcoal/60 dark:text-chalk/60">
+                                Annual
+                            </span>
+                            <span
+                                class="text-[9px] font-mono font-extrabold px-2.5 py-0.5 rounded-full bg-accent-orange text-white uppercase tracking-wider shadow">
+                                Save 20%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Plans Grid with Glowing Edge Highlights and 3D Tilt -->
+                <div
+                    class="cards-grid perspective-stage grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch w-full mb-10">
+
+                    <!-- CARD 1: Lifestyle Pass (Free / Orange Dorfie Hue) -->
+                    <div class="card-wrapper" data-delay="0">
+                        <div class="card orange">
+                            <div class="card-highlight-bar"></div>
+
+                            <!-- Card Icon with Flicker & Drop-Shadow -->
+                            <div class="flex items-center justify-between w-full mb-3">
+                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                                </svg>
+                                <span
+                                    class="font-mono text-[10px] font-bold text-accent-orange bg-accent-orange/15 px-2.5 py-0.5 rounded-full border border-accent-orange/30">TIER
+                                    01</span>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="card-tags">
+                                <span class="card-tag">ATHLETES</span>
+                                <span class="card-tag">FREE PASS</span>
+                            </div>
+
+                            <h3 class="card-title font-bebas text-3xl sm:text-4xl tracking-wide">Lifestyle Pass</h3>
+                            <p class="card-description">
+                                Unlimited lifetime workout logging, personal record tracking, and verified gym discovery
+                                nationwide.
+                            </p>
+
+                            <div class="card-price-row flex items-baseline gap-1.5 pb-4 mb-4 border-b border-white/10">
+                                <span
+                                    class="font-bebas text-4xl sm:text-5xl text-charcoal dark:text-chalk leading-none">₹0</span>
+                                <span
+                                    class="text-xs font-mono font-bold text-charcoal/60 dark:text-chalk/60 uppercase">/
+                                    forever free</span>
+                            </div>
+
+                            <ul class="card-features">
+                                <li class="card-feature">Lifetime PR tracking &amp; progressive overload metrics</li>
+                                <li class="card-feature">Hyper-local verified gym &amp; studio discovery</li>
+                                <li class="card-feature">Real-time gym occupancy &amp; footfall radar</li>
+                                <li class="card-feature">Apple Wallet &amp; NFC smartphone check-in</li>
+                            </ul>
+
+                            <div class="card-btn-wrapper mt-auto">
+                                <button onclick="appRouter.startPlanCheckout('Lifestyle Pass', 0, 'free')"
+                                    class="card-btn">
+                                    <span>Get Started Free</span>
+                                    <span>→</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2: Coach Pro Suite (Orange Dorfie Hue / Featured) -->
+                    <div class="card-wrapper" data-delay="0.15">
+                        <div class="card orange">
+                            <div class="card-highlight-bar"></div>
+
+                            <!-- Most Popular Tag -->
+                            <div class="popular-ribbon">
+                                <span><i class="fa-solid fa-fire text-amber-300"></i> MOST POPULAR</span>
+                            </div>
+
+                            <!-- Card Icon -->
+                            <div class="flex items-center justify-between w-full mb-3">
+                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                                </svg>
+                                <span
+                                    class="font-mono text-[10px] font-bold text-accent-orange bg-accent-orange/15 px-2.5 py-0.5 rounded-full border border-accent-orange/30">TIER
+                                    02</span>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="card-tags">
+                                <span class="card-tag">INDEPENDENT COACHES</span>
+                                <span class="card-tag">PRO CRM</span>
+                            </div>
+
+                            <h3 class="card-title font-bebas text-3xl sm:text-4xl tracking-wide text-accent-orange">
+                                Coach Pro Suite</h3>
+                            <p class="card-description">
+                                Complete athlete CRM, automated slot scheduling, client video check-ins, and direct
+                                billing.
+                            </p>
+
+                            <div class="card-price-row flex items-baseline gap-1.5 pb-4 mb-4 border-b border-white/10">
+                                <span id="price-trainer"
+                                    class="font-bebas text-4xl sm:text-5xl text-accent-orange leading-none">₹1,499</span>
+                                <span
+                                    class="text-xs font-mono font-bold text-charcoal/60 dark:text-chalk/60 uppercase">/
+                                    month</span>
+                            </div>
+
+                            <ul class="card-features">
+                                <li class="card-feature">Unlimited active athlete roster CRM</li>
+                                <li class="card-feature">Smart 1-on-1 calendar sync &amp; automatic reminders</li>
+                                <li class="card-feature">Periodized workout blueprint builder with video exercises</li>
+                                <li class="card-feature">Automated recurring subscription invoicing &amp; WhatsApp
+                                    receipts</li>
+                            </ul>
+
+                            <div class="card-btn-wrapper mt-auto">
+                                <button
+                                    onclick="appRouter.startPlanCheckout('Coach Pro Suite', isAnnualPricing ? 1199 : 1499, isAnnualPricing ? 'annual' : 'monthly')"
+                                    class="card-btn">
+                                    <span>Start 14-Day Free Trial</span>
+                                    <span>→</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3: Studio OS (Orange Dorfie Enterprise Hue) -->
+                    <div class="card-wrapper" data-delay="0.3">
+                        <div class="card orange">
+                            <div class="card-highlight-bar"></div>
+
+                            <!-- Card Icon -->
+                            <div class="flex items-center justify-between w-full mb-3">
+                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M21 10.5h-1.5V9h-3v1.5H15v3h1.5V15h3v-1.5H21v-3zm-3-6h-1.5V3h-3v1.5H12v3h1.5V9h3V7.5H18v-3zm-9 12H7.5V15h-3v1.5H3v3h1.5V21h3v-1.5H9v-3z" />
+                                </svg>
+                                <span
+                                    class="font-mono text-[10px] font-bold text-accent-orange bg-accent-orange/15 px-2.5 py-0.5 rounded-full border border-accent-orange/30">TIER
+                                    03</span>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="card-tags">
+                                <span class="card-tag">GYMS &amp; CLUBS</span>
+                                <span class="card-tag">GATE HARDWARE</span>
+                            </div>
+
+                            <h3 class="card-title font-bebas text-3xl sm:text-4xl tracking-wide">Studio OS</h3>
+                            <p class="card-description">
+                                Complete turnstile hardware integration, front-desk POS kiosk, and live attendance
+                                tracking.
+                            </p>
+
+                            <div class="card-price-row flex items-baseline gap-1.5 pb-4 mb-4 border-b border-white/10">
+                                <span id="price-owner"
+                                    class="font-bebas text-4xl sm:text-5xl text-charcoal dark:text-chalk leading-none">₹3,999</span>
+                                <span
+                                    class="text-xs font-mono font-bold text-charcoal/60 dark:text-chalk/60 uppercase">/
+                                    month</span>
+                            </div>
+
+                            <ul class="card-features">
+                                <li class="card-feature">Biometric turnstile speed gates &amp; facial recognition</li>
+                                <li class="card-feature">Front-desk POS terminal &amp; COM-port gate relay control</li>
+                                <li class="card-feature">Zero-commission direct recurring billing &amp; tax accounting
+                                </li>
+                                <li class="card-feature">Offline-ready local sync so turnstile gates work without
+                                    internet</li>
+                            </ul>
+
+                            <div class="card-btn-wrapper mt-auto">
+                                <button
+                                    onclick="appRouter.startPlanCheckout('Studio OS', isAnnualPricing ? 3199 : 3999, isAnnualPricing ? 'annual' : 'monthly')"
+                                    class="card-btn">
+                                    <span>Request Studio Demo</span>
+                                    <span>→</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Assurance Strip -->
+                <div
+                    class="p-5 sm:p-6 liquid-glass-panel flex flex-col md:flex-row items-center justify-between gap-5 w-full">
+                    <div class="flex items-center gap-3.5 sm:gap-4">
+                        <div
+                            class="w-10 h-10 rounded-xl bg-accent-orange/20 text-accent-orange flex items-center justify-center text-lg shrink-0 border border-accent-orange/30">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <p
+                                class="font-mono text-xs font-extrabold uppercase tracking-wider text-charcoal dark:text-chalk">
+                                TRANSPARENT PRICING • DEDICATED GYM HARDWARE SUPPORT
+                            </p>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 font-medium leading-relaxed">
+                                No per-transaction penalties. 100% of membership revenue flows directly to your gym
+                                merchant account.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-center md:justify-end gap-2.5 sm:gap-3 shrink-0">
+                        <span
+                            class="px-3.5 py-1.5 liquid-glass-pill font-mono text-[10px] font-bold text-charcoal dark:text-chalk uppercase">
+                            <i class="fa-solid fa-lock text-accent-orange mr-1"></i> Secure Encryption
+                        </span>
+                        <span
+                            class="px-3.5 py-1.5 liquid-glass-pill font-mono text-[10px] font-bold text-charcoal dark:text-chalk uppercase">
+                            <i class="fa-solid fa-bolt text-accent-orange mr-1"></i> Sub-Second Entry
+                        </span>
+                        <span
+                            class="px-3.5 py-1.5 liquid-glass-pill font-mono text-[10px] font-bold text-charcoal dark:text-chalk uppercase">
+                            <i class="fa-solid fa-arrows-rotate text-accent-orange mr-1"></i> Cancel Anytime
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Why Dorfie Fit (3D Interactive Panels) -->
+            <section id="why-dorfie"
+                class="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                <div
+                    class="liquid-glass-panel p-5 sm:p-10 lg:p-16 relative w-full flex flex-col justify-between shadow-2xl">
+                    <div class="card-glare"></div>
+                    <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-16">
+                        <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 liquid-glass-pill text-[9px] sm:text-xs font-mono uppercase tracking-widest mb-4 text-accent-orange font-bold max-w-full"
+                            data-magnetic>
+                            <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
+                            <span>ECOSYSTEM ADVANTAGES</span>
+                            <span class="text-charcoal/30 dark:text-white/30">|</span>
+                            <span>ARCHITECTURAL EDGE</span>
+                        </div>
+                        <h2
+                            class="split-kinetic-text font-bebas text-5xl sm:text-7xl lg:text-8xl text-charcoal dark:text-chalk leading-[0.95] uppercase tracking-wide">
+                            WHY DORFIE FIT <span class="text-accent-orange">STANDS ALONE</span>
+                        </h2>
+                        <p
+                            class="text-xs sm:text-base text-charcoal/75 dark:text-chalk/75 font-semibold max-w-2xl mx-auto mt-4 leading-relaxed">
+                            Eliminating fragmented fitness apps, middleman commission cuts, and slow physical access
+                            gates with unified biometric edge intelligence.
+                        </p>
+                    </div>
+
+                    <!-- Cinematic Expandable Stack Slider: Why Dorfie Fit Stands Alone -->
+                    <div class="relative w-full mb-8" role="region" aria-roledescription="carousel"
+                        aria-label="Why Dorfie Fit Stands Alone">
+                        <div class="features-stack-stage features-stack-container" id="why-dorfie-stack-stage">
+                            <div class="slide" id="why-dorfie-slide-track">
+                                <!-- Advantage Item 1 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Gymming.png?v=2" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Ecosystem Hub</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">01 / 04</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    100% DATA SYNC</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">One App, Total Control</div>
+                                        <div class="des">Booking, turnstile speed gates, progressive overload sets, and
+                                            trainer communication synchronized in one interface.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Explore Ecosystem</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Gymming.png?v=2" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">01
+                                                / 04</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">One App Control</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Advantage Item 2 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Accounts.png?v=2" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Direct Settlement</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">02 / 04</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    ZERO HIDDEN DEDUCTIONS</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Free to Start & Direct</div>
+                                        <div class="des">Lifetime workout metric logging for members. Zero listing
+                                            commissions and direct-to-bank instant payouts.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>View Payout Flow</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Accounts.png?v=2" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">02
+                                                / 04</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Free & Direct</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Advantage Item 3 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Pharmacy.png?v=2" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Hyper-Local Radar</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">03 / 04</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    SUB-500M GEO RADIUS</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Smart Geo-Discovery</div>
+                                        <div class="des">Live crowd density radars, women-only training schedules,
+                                            equipment brand filters, and verified athlete reviews.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Explore Radar</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Pharmacy.png?v=2" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">03
+                                                / 04</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Smart Discovery</h4>
+                                    </div>
+                                </div>
+
+                                <!-- Advantage Item 4 -->
+                                <div class="item"
+                                    style="background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1200&auto=format&fit=crop');">
+                                    <div class="content">
+                                        <div class="flex items-center gap-3.5 mb-3">
+                                            <div
+                                                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                                                <img src="Coffee.png?v=2" alt="Dorfie Mascot"
+                                                    class="w-full h-full object-contain object-center filter drop-shadow select-none">
+                                            </div>
+                                            <div class="min-w-0">
+                                                <div
+                                                    class="feature-tag font-mono text-[11px] font-bold text-accent-orange uppercase tracking-wider flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
+                                                    <span class="tag-text">Hardware Gate</span>
+                                                    <span class="text-white/40">•</span>
+                                                    <span class="id-text">04 / 04</span>
+                                                </div>
+                                                <div
+                                                    class="font-mono text-[10px] text-white/50 tracking-wider uppercase mt-0.5 truncate">
+                                                    INSTANT PASS SCAN</div>
+                                            </div>
+                                        </div>
+                                        <div class="name">Instant Gate Access</div>
+                                        <div class="des">Biometric optical facial recognition and COM-port speed gate
+                                            controllers deploy in under 2 hours with offline replication.</div>
+                                        <a class="seeMore" href="#pricing"
+                                            onclick="appRouter.navigateLandingSection('pricing', event)">
+                                            <button type="button"><span>Hardware Specs</span> <i
+                                                    class="fa-solid fa-arrow-right"></i></button>
+                                        </a>
+                                    </div>
+                                    <div class="item-preview-badge">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
+                                                <img src="Coffee.png?v=2" alt="Mascot"
+                                                    class="w-full h-full object-contain object-center">
+                                            </div>
+                                            <span
+                                                class="font-mono text-[10px] font-bold text-accent-orange tracking-widest uppercase">04
+                                                / 04</span>
+                                        </div>
+                                        <h4 class="text-xs font-bold text-white truncate">Instant Gate Access</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stack Control Buttons -->
+                            <div class="stack-buttons">
+                                <button type="button" class="prev" id="why-dorfie-stack-prev"
+                                    aria-label="Previous advantage slide">◁</button>
+                                <button type="button" class="next" id="why-dorfie-stack-next"
+                                    aria-label="Next advantage slide">▷</button>
+                                <div id="why-dorfie-stack-counter" class="features-stack-counter-pill">01 / 04</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Apps & QR Promotion (3D Interactive App Cards) -->
+            <section id="software-apps"
+                class="py-20 sm:py-28 px-4 sm:px-8 max-w-[1580px] mx-auto relative z-10 perspective-stage">
+                <div class="liquid-glass-panel p-5 sm:p-10 lg:p-16 relative shadow-2xl">
+                    <div class="card-glare"></div>
+                    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+                        <div class="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 liquid-glass-pill text-[9px] sm:text-[11px] font-mono uppercase tracking-widest mb-4 text-charcoal dark:text-chalk max-w-full"
+                            data-magnetic>
+                            <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
+                            <span>CROSS-PLATFORM DEPLOYMENT</span>
+                            <span class="text-charcoal/30 dark:text-white/30">|</span>
+                            <span class="text-accent-orange font-bold">ALL OS ECOSYSTEM</span>
+                        </div>
+
+                        <h2
+                            class="split-kinetic-text font-bebas text-5xl sm:text-7xl lg:text-8xl text-charcoal dark:text-chalk leading-none tracking-tight uppercase">
+                            FITNESS IN YOUR POCKET &amp; <span class="text-accent-orange">ON DESKTOPS</span>
+                        </h2>
+
+                        <p
+                            class="text-xs sm:text-base text-charcoal/70 dark:text-chalk/70 font-semibold max-w-2xl mx-auto mt-4 leading-relaxed">
+                            Native member companion apps on iOS and Android. High-performance front-desk kiosk and
+                            turnstile gate operating suites for Windows and macOS.
+                        </p>
+                    </div>
+
+                    <!-- Flagship App Showcase: Dual-Column Experience -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-stretch mb-12">
+                        <!-- Left Column: Flagship Mobile & Desktop Downloads -->
+                        <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                            <!-- Mobile Suite Hero Card -->
+                            <div data-tilt data-tilt-max="10"
+                                class="liquid-glass-panel p-5 sm:p-7 md:p-8 rounded-3xl relative overflow-hidden group border border-accent-orange/30 shadow-2xl">
+                                <div class="card-glare"></div>
+                                <div
+                                    class="card-layer-lift flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                                    <div class="flex items-center gap-3.5 sm:gap-4">
+                                        <div
+                                            class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-charcoal dark:bg-white/10 p-2 flex items-center justify-center border border-accent-orange/40 shadow-inner shrink-0">
+                                            <img src="Gymming.png" alt="Dorfie Fit Mobile"
+                                                class="w-full h-full object-contain">
+                                        </div>
+                                        <div>
+                                            <div class="flex flex-wrap items-center gap-2">
+                                                <h3
+                                                    class="font-bebas text-2xl sm:text-3xl md:text-4xl text-charcoal dark:text-chalk tracking-wide leading-none">
+                                                    DORFIE FIT MOBILE</h3>
+                                                <span
+                                                    class="px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-500 font-mono text-[10px] font-bold">v4.8.2
+                                                    LIVE</span>
+                                            </div>
+                                            <p class="text-xs text-charcoal/70 dark:text-chalk/70 font-semibold mt-1">
+                                                iOS
+                                                Companion &amp; Android NFC Pass</p>
+                                        </div>
+                                    </div>
+                                    <!-- Verified Store Rating Badge -->
+                                    <div class="liquid-glass-pill px-3.5 py-1.5 flex items-center gap-2 shrink-0">
+                                        <div class="flex text-amber-400 text-xs">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <span
+                                            class="text-xs font-mono font-black text-charcoal dark:text-chalk">4.9</span>
+                                        <span
+                                            class="text-[10px] font-mono text-charcoal/50 dark:text-chalk/50">(12.4k)</span>
+                                    </div>
+                                </div>
+
+                                <p
+                                    class="text-xs sm:text-sm text-charcoal/80 dark:text-chalk/80 font-medium leading-relaxed mb-6 card-layer-lift">
+                                    Sub-second Apple Wallet turnstile pass, Google Fast Pair NFC tap, live gym crowd
+                                    radar,
+                                    and real-time workout tracking across connected partner clubs.
+                                </p>
+
+                                <!-- Direct Store Badges -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 card-layer-lift-deep">
+                                    <a href="https://apps.apple.com/in/app/dorfie-fit/id6755678066" target="_blank"
+                                        data-magnetic
+                                        class="liquid-glass-pill py-3 px-4 sm:px-5 text-left flex items-center gap-3.5 group/btn hover:border-accent-orange transition-all duration-300">
+                                        <i
+                                            class="fa-brands fa-apple text-3xl text-charcoal dark:text-chalk group-hover/btn:text-accent-orange transition-colors"></i>
+                                        <div class="min-w-0">
+                                            <span
+                                                class="text-[9px] font-mono uppercase tracking-wider text-charcoal/60 dark:text-chalk/60 block">Download
+                                                on the</span>
+                                            <span
+                                                class="text-sm font-bold text-charcoal dark:text-chalk tracking-tight truncate block">App
+                                                Store</span>
+                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-up-right-from-square ml-auto text-xs text-charcoal/40 dark:text-chalk/40 group-hover/btn:text-accent-orange transition-colors shrink-0"></i>
+                                    </a>
+
+                                    <a href="https://play.google.com/store/apps/details?id=com.dorfie.fitness"
+                                        target="_blank" data-magnetic
+                                        class="liquid-glass-pill py-3 px-4 sm:px-5 text-left flex items-center gap-3.5 group/btn hover:border-emerald-500 transition-all duration-300">
+                                        <i class="fa-brands fa-google-play text-2xl text-emerald-500"></i>
+                                        <div class="min-w-0">
+                                            <span
+                                                class="text-[9px] font-mono uppercase tracking-wider text-charcoal/60 dark:text-chalk/60 block">Get
+                                                it on</span>
+                                            <span
+                                                class="text-sm font-bold text-charcoal dark:text-chalk tracking-tight truncate block">Google
+                                                Play</span>
+                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-up-right-from-square ml-auto text-xs text-charcoal/40 dark:text-chalk/40 group-hover/btn:text-emerald-500 transition-colors shrink-0"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Desktop & Kiosk Operating System Station Card -->
+                            <div data-tilt data-tilt-max="10"
+                                class="liquid-glass-panel p-5 sm:p-7 rounded-3xl relative overflow-hidden group border border-white/20 shadow-xl">
+                                <div class="card-glare"></div>
+                                <div class="card-layer-lift flex flex-wrap items-center justify-between gap-3 mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-10 h-10 rounded-xl bg-accent-orange/15 text-accent-orange flex items-center justify-center text-lg shrink-0">
+                                            <i class="fa-solid fa-desktop"></i>
+                                        </div>
+                                        <div>
+                                            <h4
+                                                class="font-bebas text-xl sm:text-2xl text-charcoal dark:text-chalk tracking-wide leading-none">
+                                                DESKTOP KIOSK &amp; GATE TERMINAL</h4>
+                                            <span
+                                                class="text-[10px] font-mono text-accent-orange font-bold uppercase">Front-Desk
+                                                &amp; Speed Turnstile Controller</span>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="px-2.5 py-1 liquid-glass-pill font-mono text-[10px] font-extrabold text-charcoal dark:text-chalk uppercase shrink-0">v4.8
+                                        REL</span>
+                                </div>
+
+                                <p
+                                    class="text-xs text-charcoal/75 dark:text-chalk/75 font-semibold leading-relaxed mb-5 card-layer-lift">
+                                    Hardware controller software supporting COM-port turnstile relays, USB biometric
+                                    facial
+                                    scanners, and AirPlay gym TV leaderboard casting.
+                                </p>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 card-layer-lift-deep">
+                                    <button onclick="openDownloadNotice('Windows PC Kiosk v4.8 (x64 .exe)')"
+                                        data-magnetic
+                                        class="liquid-glass-pill py-2.5 px-4 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:text-[#0284C7] transition-colors">
+                                        <i class="fa-brands fa-windows text-base"></i> Windows (.exe)
+                                    </button>
+                                    <button onclick="openDownloadNotice('macOS Universal Station v4.8 (.dmg)')"
+                                        data-magnetic
+                                        class="liquid-glass-pill py-2.5 px-4 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 hover:text-[#8B5CF6] transition-colors">
+                                        <i class="fa-brands fa-apple text-base"></i> macOS (.dmg)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Interactive Instant QR Scan Card with Mascot Helper -->
+                        <div class="lg:col-span-5 flex flex-col justify-between">
+                            <div data-tilt data-tilt-max="12"
+                                class="liquid-glass-panel p-6 sm:p-8 md:p-10 rounded-3xl relative overflow-hidden flex flex-col items-center text-center justify-between h-full border border-accent-orange/40 shadow-2xl">
+                                <div class="card-glare"></div>
+
+                                <!-- Floating Capy helper top tag -->
+                                <div
+                                    class="card-layer-lift inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass-pill mb-5 border border-accent-orange/30">
+                                    <img src="Chilling_Looking_At_Sky.png" alt="Capy QR" class="w-5 h-5 object-contain">
+                                    <span
+                                        class="text-[11px] font-mono font-bold text-accent-orange uppercase tracking-wider">Instant
+                                        Phone Install</span>
+                                </div>
+
+                                <!-- High-Precision QR Box -->
+                                <div class="card-layer-lift-deep relative p-3.5 sm:p-5 rounded-3xl bg-white shadow-2xl border-4 border-charcoal/10 dark:border-white/10 my-2 group cursor-pointer max-w-full"
+                                    onclick="navigator.clipboard && navigator.clipboard.writeText('https://apps.apple.com/in/app/dorfie-fit/id6755678066'); alert('Link copied to clipboard! Open on your mobile device.')">
+                                    <div
+                                        class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl bg-white flex items-center justify-center relative overflow-hidden max-w-full">
+                                        <!-- Real generated SVG QR Matrix for Dorfie Fit -->
+                                        <svg viewBox="0 0 100 100" class="w-full h-full p-2">
+                                            <!-- Corner Squares -->
+                                            <rect x="5" y="5" width="28" height="28" rx="6" fill="#121214" />
+                                            <rect x="9" y="9" width="20" height="20" rx="4" fill="#FFFFFF" />
+                                            <rect x="13" y="13" width="12" height="12" rx="2" fill="#FF5E00" />
+
+                                            <rect x="67" y="5" width="28" height="28" rx="6" fill="#121214" />
+                                            <rect x="71" y="9" width="20" height="20" rx="4" fill="#FFFFFF" />
+                                            <rect x="75" y="13" width="12" height="12" rx="2" fill="#FF5E00" />
+
+                                            <rect x="5" y="67" width="28" height="28" rx="6" fill="#121214" />
+                                            <rect x="9" y="71" width="20" height="20" rx="4" fill="#FFFFFF" />
+                                            <rect x="13" y="75" width="12" height="12" rx="2" fill="#FF5E00" />
+
+                                            <!-- Data Matrix Grid Blocks -->
+                                            <rect x="38" y="10" width="8" height="8" rx="1.5" fill="#121214" />
+                                            <rect x="50" y="10" width="8" height="8" rx="1.5" fill="#121214" />
+                                            <rect x="42" y="22" width="16" height="8" rx="1.5" fill="#FF5E00" />
+                                            <rect x="10" y="38" width="8" height="16" rx="1.5" fill="#121214" />
+                                            <rect x="22" y="42" width="12" height="8" rx="1.5" fill="#121214" />
+                                            <rect x="38" y="38" width="24" height="24" rx="4" fill="#121214" />
+                                            <circle cx="50" cy="50" r="7" fill="#FF5E00" />
+                                            <rect x="68" y="38" width="10" height="8" rx="1.5" fill="#121214" />
+                                            <rect x="82" y="42" width="8" height="12" rx="1.5" fill="#FF5E00" />
+                                            <rect x="68" y="52" width="22" height="8" rx="1.5" fill="#121214" />
+                                            <rect x="38" y="68" width="12" height="8" rx="1.5" fill="#121214" />
+                                            <rect x="54" y="68" width="8" height="16" rx="1.5" fill="#FF5E00" />
+                                            <rect x="42" y="80" width="8" height="10" rx="1.5" fill="#121214" />
+                                            <rect x="68" y="80" width="22" height="10" rx="1.5" fill="#121214" />
+                                        </svg>
+                                    </div>
+                                    <!-- Scan Ring Animated Indicator -->
+                                    <div
+                                        class="absolute inset-x-4 top-1/2 -translate-y-1/2 h-0.5 bg-accent-orange/80 shadow-[0_0_12px_#FF5E00] animate-pulse">
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 sm:mt-5 card-layer-lift text-center">
+                                    <h4
+                                        class="font-bebas text-xl sm:text-2xl text-charcoal dark:text-chalk tracking-wide leading-none mb-1">
+                                        SCAN WITH PHONE CAMERA</h4>
+                                    <p class="text-xs text-charcoal/70 dark:text-chalk/70 font-semibold max-w-xs">
+                                        Auto-routes to App Store on iOS or Google Play on Android.</p>
+                                </div>
+
+                                <div
+                                    class="mt-4 pt-4 border-t border-charcoal/10 dark:border-white/10 w-full flex items-center justify-center gap-2 card-layer-lift">
+                                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                    <span
+                                        class="text-[10px] font-mono text-charcoal/60 dark:text-chalk/60 font-bold uppercase">Official
+                                        Verified App Store Links</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unified Architecture Blueprint & Interface Showcase -->
+                    <div class="mt-12 pt-10 border-t border-charcoal/10 dark:border-white/10">
+                        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+                            <div>
+                                <span
+                                    class="font-mono text-[10px] font-extrabold uppercase text-accent-orange tracking-widest block mb-1">
+                                    05 / VISUAL BLUEPRINT
+                                </span>
+                                <h3
+                                    class="font-bebas text-3xl sm:text-5xl text-charcoal dark:text-chalk tracking-wide leading-none">
+                                    PRODUCTION ECOSYSTEM IN ACTION
+                                </h3>
+                            </div>
+                            <p class="text-xs text-charcoal/70 dark:text-chalk/70 font-semibold max-w-md">
+                                Live smart access connecting biometric turnstiles with real-time coach &amp; athlete
+                                interfaces across clubs nationwide.
+                            </p>
+                        </div>
+
+                        <div class="perspective-stage grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
+                            <div data-tilt data-tilt-max="10"
+                                class="liquid-glass-panel p-3.5 sm:p-5 group cursor-pointer overflow-hidden rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl">
+                                <div class="card-glare"></div>
+                                <div class="card-layer-lift overflow-hidden rounded-2xl relative bg-charcoal-deep">
+                                    <img src="Orange and Black Illustrated Fitness Presentation.png"
+                                        alt="Dorfie Fitness Ecosystem Presentation Blueprint"
+                                        class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                        loading="lazy" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-charcoal-deep/90 via-transparent to-transparent opacity-75">
+                                    </div>
+                                    <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                                        <span
+                                            class="px-3 py-1 rounded-full liquid-glass-pill text-[10px] font-mono font-bold text-white uppercase tracking-wider backdrop-blur-md">
+                                            Architecture Blueprint
+                                        </span>
+                                        <span
+                                            class="text-accent-orange text-xs font-mono font-bold flex items-center gap-1.5">
+                                            <i class="fa-solid fa-cube"></i> Interactive
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div data-tilt data-tilt-max="10"
+                                class="liquid-glass-panel p-3.5 sm:p-5 group cursor-pointer overflow-hidden rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl">
+                                <div class="card-glare"></div>
+                                <div class="card-layer-lift overflow-hidden rounded-2xl relative bg-charcoal-deep">
+                                    <img src="Orange and Black Illustrated Fitness Presentation (1).png"
+                                        alt="Dorfie Connected Fitness Interface Specification"
+                                        class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                        loading="lazy" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-charcoal-deep/90 via-transparent to-transparent opacity-75">
+                                    </div>
+                                    <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                                        <span
+                                            class="px-3 py-1 rounded-full liquid-glass-pill text-[10px] font-mono font-bold text-white uppercase tracking-wider backdrop-blur-md">
+                                            Interface Specification
+                                        </span>
+                                        <span
+                                            class="text-accent-orange text-xs font-mono font-bold flex items-center gap-1.5">
+                                            <i class="fa-solid fa-cube"></i> Interactive
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Luxury Footer -->
+            <footer
+                class="pt-16 pb-12 px-4 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                <div
+                    class="liquid-glass-panel p-6 sm:p-10 lg:p-14 relative w-full flex flex-col justify-between shadow-2xl">
+                    <div class="card-glare"></div>
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 pb-10 sm:pb-12 border-b border-charcoal/10 dark:border-white/10">
+                        <div class="lg:col-span-5 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <img src="TEXT LOGO.png" alt="Dorfie Fit"
+                                        class="h-8 sm:h-11 w-auto max-w-[140px] sm:max-w-none object-contain filter dark:brightness-110 drop-shadow-sm" />
+                                </div>
+                                <p
+                                    class="text-xs sm:text-sm text-charcoal/75 dark:text-chalk/75 font-medium leading-relaxed max-w-md mb-6">
+                                    The unified platform for modern fitness hubs, coaches, and athletes.
+                                    Integrating fast biometric turnstiles, workout tracking, and seamless club
+                                    management.
+                                </p>
+                                <div
+                                    class="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-2 liquid-glass-pill text-[10px] sm:text-[11px] font-mono font-bold text-charcoal dark:text-chalk max-w-full">
+                                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shrink-0"></span>
+                                    <span class="truncate">SMART BIOMETRIC ACCESS • 24/7 LIVE SYSTEM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 text-xs font-semibold">
+                            <div>
+                                <span
+                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">ECOSYSTEM</span>
+                                <ul class="space-y-2.5 text-charcoal/75 dark:text-chalk/75">
+                                    <li><a href="#about" class="hover:text-accent-orange transition-colors">Biometric
+                                            Turnstiles</a></li>
+                                    <li><a href="#features" class="hover:text-accent-orange transition-colors">Occupancy
+                                            Radar</a></li>
+                                    <li><a href="#software-apps" class="hover:text-accent-orange transition-colors">iOS
+                                            &amp; WatchOS Pass</a></li>
+                                    <li><a href="#software-apps"
+                                            class="hover:text-accent-orange transition-colors">Android
+                                            NFC Tap</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span
+                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">SOLUTIONS</span>
+                                <ul class="space-y-2.5 text-charcoal/75 dark:text-chalk/75">
+                                    <li><a href="#pricing" class="hover:text-accent-orange transition-colors">Athlete
+                                            Lifestyle Pass</a></li>
+                                    <li><a href="#pricing" class="hover:text-accent-orange transition-colors">Coach Pro
+                                            Suite</a></li>
+                                    <li><a href="#pricing" class="hover:text-accent-orange transition-colors">Studio
+                                            Turnstile OS</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <span
+                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">DORFIE
+                                    LABS</span>
+                                <ul class="space-y-2.5 text-charcoal/75 dark:text-chalk/75">
+                                    <li><a href="https://wa.me/919999999999" target="_blank"
+                                            class="hover:text-accent-orange transition-colors">Priority Support</a></li>
+                                    <li><a href="javascript:void(0)"
+                                            class="hover:text-accent-orange transition-colors">Hardware SDK &amp;
+                                            API</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="pt-6 sm:pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] sm:text-[11px] font-mono text-charcoal/60 dark:text-chalk/60 text-center md:text-left">
+                        <p>© 2026 Dorfie Fit. Engineered by <span class="font-bold text-accent-orange">Dorfie
+                                Labs</span>.</p>
+                        <div class="flex items-center justify-center gap-2.5 sm:gap-3 flex-wrap">
+                            <span class="flex items-center gap-1.5"><i
+                                    class="fa-solid fa-lock text-green-500 text-[10px]"></i> End-to-End Encrypted</span>
+                            <span>•</span>
+                            <span>Transparent Gym Pricing</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ==========================================================================
+             VIEW 2: DEDICATED SIGN IN / SIGN UP PAGE (PRISTINE, NO LEAKED CODE)
+             ========================================================================== -->
+        <!-- ==========================================================================
+             VIEW 2: DEDICATED SIGN IN PAGE (HIGH-CONCEPT LIQUID GLASS SPLIT DESIGN)
+             ========================================================================== -->
+        <section id="view-auth"
+            class="min-h-screen pt-24 pb-16 px-4 sm:px-6 flex items-center justify-center relative z-10 hidden opacity-0 perspective-stage">
+            <div class="w-full max-w-5xl mx-auto">
+
+                <button onclick="appRouter.navigate('home')"
+                    class="mb-4 inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-accent-orange transition-colors">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Website
+                </button>
+
+                <div data-tilt data-tilt-max="5"
+                    class="liquid-glass-panel p-4 sm:p-6 lg:p-7 relative overflow-hidden shadow-2xl cursor-default border border-charcoal/10 dark:border-white/10">
+                    <div class="card-glare"></div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative z-10">
+
+                        <!-- LEFT COLUMN: Molten Liquid Glass Artwork & Vision Showcase -->
+                        <div
+                            class="lg:col-span-5 relative rounded-[22px] sm:rounded-[26px] overflow-hidden min-h-[380px] sm:min-h-[480px] lg:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 select-none border border-white/15 shadow-xl group">
+                            <!-- Liquid Glass 3D Background Artwork -->
+                            <img src="dorfie_liquid_art.jpg" alt="Liquid Glass Orange Vision"
+                                class="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none" />
+
+                            <!-- Deep Atmospheric Gradient Overlays -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/30 pointer-events-none">
+                            </div>
+                            <div
+                                class="absolute -bottom-8 -right-8 w-44 h-44 rounded-full bg-accent-orange/25 blur-3xl pointer-events-none">
+                            </div>
+
+                            <!-- Top Brand Badge -->
+                            <div class="relative z-10 flex items-center justify-between w-full">
+                                <div
+                                    class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/15 shadow-md">
+                                    <span
+                                        class="w-6 h-6 rounded-full bg-accent-orange/20 border border-accent-orange/40 flex items-center justify-center text-accent-orange text-xs">
+                                        <i class="fa-solid fa-bolt"></i>
+                                    </span>
+                                    <span class="font-bebas tracking-wider text-sm sm:text-base text-white">DORFIE<span
+                                            class="text-accent-orange">FIT</span></span>
+                                </div>
+                                </span>
+                            </div>
+
+                            <!-- Bottom Vision Headline & Carousel Indicators (Matches Concept) -->
+                            <div class="relative z-10 mt-auto pt-8">
+                                <div class="flex items-center gap-1.5 mb-3">
+                                    <div
+                                        class="w-9 h-1 rounded-full bg-accent-orange shadow-[0_0_10px_rgba(255,94,0,0.8)]">
+                                    </div>
+                                    <div class="w-4 h-1 rounded-full bg-white/35"></div>
+                                    <div class="w-4 h-1 rounded-full bg-white/35"></div>
+                                </div>
+                                <h3
+                                    class="font-bebas text-3xl sm:text-4xl lg:text-5xl text-white tracking-wide leading-[0.95] drop-shadow-md">
+                                    CREATE YOUR VISION
+                                </h3>
+                                <p
+                                    class="text-xs sm:text-sm text-white/80 font-medium leading-relaxed max-w-sm mt-2.5 drop-shadow">
+                                    AI-assisted biometric workspace to craft, track, and elevate your fitness journey.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT COLUMN: High-Concept Liquid Glass Login Form (NO SIGNUP SECTION) -->
+                        <div class="lg:col-span-7 flex flex-col justify-center px-2 sm:px-6 lg:px-8 py-3 sm:py-6">
+
+                            <!-- Header -->
+                            <div class="mb-6">
+                                <h2 id="auth-header-title"
+                                    class="font-bebas text-3xl sm:text-5xl text-charcoal dark:text-chalk tracking-wide leading-tight mb-2">
+                                    SIGN IN TO DORFIE OS
+                                </h2>
+                                <p id="auth-header-sub"
+                                    class="text-xs sm:text-sm text-charcoal/65 dark:text-chalk/65 font-medium leading-relaxed">
+                                    Unified access portal for Athletes, Independent Coaches, and Gym Hubs.
+                                </p>
+                            </div>
+
+                            <!-- Alert Banner -->
+                            <div id="auth-alert-banner"
+                                class="hidden mb-4 p-3 rounded-2xl bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-mono flex items-center gap-2">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span id="auth-alert-text">Authentication failed. Please verify credentials.</span>
+                            </div>
+
+                            <!-- Form Container -->
+                            <form onsubmit="handleAuthSubmit(event)" class="space-y-4" novalidate>
+
+                                <div>
+                                    <label id="auth-identity-label"
+                                        class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1.5">
+                                        Email Address or Dorfie ID
+                                    </label>
+                                    <div class="relative flex items-center">
+                                        <i
+                                            class="fa-regular fa-envelope absolute left-4 text-charcoal/40 dark:text-chalk/40 text-sm select-none pointer-events-none"></i>
+                                        <input type="email" id="auth-identity-input" required
+                                            placeholder="alex@dorfiefit.com"
+                                            class="w-full pl-11 pr-4 py-3.5 rounded-2xl liquid-glass-well text-charcoal dark:text-chalk text-sm font-sans focus:outline-none focus:border-accent-orange focus:ring-1 focus:ring-accent-orange/40 transition-all border border-charcoal/10 dark:border-white/10">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between items-center mb-1.5">
+                                        <label
+                                            class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70">
+                                            Password
+                                        </label>
+                                        <span id="auth-forgot-hint"
+                                            onclick="openDownloadNotice('Password recovery code dispatched to registered email.')"
+                                            class="text-[10px] font-mono font-bold text-accent-orange hover:underline cursor-pointer">
+                                            Forgot?
+                                        </span>
+                                    </div>
+                                    <div class="relative flex items-center">
+                                        <i
+                                            class="fa-solid fa-lock absolute left-4 text-charcoal/40 dark:text-chalk/40 text-sm select-none pointer-events-none"></i>
+                                        <input type="password" id="auth-password-input"
+                                            oninput="handlePasswordStrength(this.value)" required placeholder="••••••••"
+                                            class="w-full pl-11 pr-11 py-3.5 rounded-2xl liquid-glass-well text-charcoal dark:text-chalk text-sm font-sans focus:outline-none focus:border-accent-orange focus:ring-1 focus:ring-accent-orange/40 transition-all border border-charcoal/10 dark:border-white/10">
+                                        <button type="button"
+                                            onclick="togglePasswordVisibility('auth-password-input', this)"
+                                            aria-label="Toggle password visibility"
+                                            class="absolute right-4 text-charcoal/50 dark:text-chalk/50 hover:text-accent-orange transition-colors">
+                                            <i class="fa-regular fa-eye text-sm"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- Real-time Password Security Hint (Hidden for login) -->
+                                    <div id="password-strength-container" class="mt-2.5 hidden">
+                                        <div
+                                            class="flex items-center justify-between text-[10px] font-mono mb-1 text-charcoal/60 dark:text-chalk/60">
+                                            <span>Password Security</span>
+                                            <span id="password-strength-label"
+                                                class="font-bold text-red-400">Weak</span>
+                                        </div>
+                                        <div class="grid grid-cols-4 gap-1.5 h-1.5">
+                                            <div id="strength-bar-1"
+                                                class="rounded-full bg-charcoal-muted/30 dark:bg-white/10 transition-colors duration-300">
+                                            </div>
+                                            <div id="strength-bar-2"
+                                                class="rounded-full bg-charcoal-muted/30 dark:bg-white/10 transition-colors duration-300">
+                                            </div>
+                                            <div id="strength-bar-3"
+                                                class="rounded-full bg-charcoal-muted/30 dark:bg-white/10 transition-colors duration-300">
+                                            </div>
+                                            <div id="strength-bar-4"
+                                                class="rounded-full bg-charcoal-muted/30 dark:bg-white/10 transition-colors duration-300">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" id="auth-submit-btn"
+                                    class="liquid-glass-btn-orange w-full py-4 rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg hover:shadow-accent-orange/40 mt-3 flex items-center justify-center gap-2 cursor-pointer">
+                                    <span id="auth-submit-spinner" class="hidden"><i
+                                            class="fa-solid fa-circle-notch animate-spin"></i></span>
+                                    <span id="auth-submit-text">Sign In to Dorfie OS</span>
+                                </button>
+                            </form>
+
+                            <!-- Concept Divider -->
+                            <div class="relative flex py-4 items-center">
+                                <div class="flex-grow border-t border-charcoal/10 dark:border-white/10"></div>
+                                <span
+                                    class="flex-shrink mx-4 text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/40 dark:text-chalk/40">Or</span>
+                                <div class="flex-grow border-t border-charcoal/10 dark:border-white/10"></div>
+                            </div>
+
+                            <!-- Single-click Social & Passkey Logins (Google, Facebook, Apple) -->
+                            <div class="grid grid-cols-3 gap-3">
+                                <button type="button" onclick="dorfieQuickAuth('Google')"
+                                    class="py-3 rounded-2xl liquid-glass-well hover:border-accent-orange/50 flex items-center justify-center transition-all hover:-translate-y-0.5 group border border-charcoal/10 dark:border-white/10 cursor-pointer"
+                                    aria-label="Sign in with Google">
+                                    <i
+                                        class="fa-brands fa-google text-red-500 group-hover:scale-110 transition-transform"></i>
+                                </button>
+                                <button type="button" onclick="dorfieQuickAuth('Facebook')"
+                                    class="py-3 rounded-2xl liquid-glass-well hover:border-accent-orange/50 flex items-center justify-center transition-all hover:-translate-y-0.5 group border border-charcoal/10 dark:border-white/10 cursor-pointer"
+                                    aria-label="Sign in with Facebook">
+                                    <i
+                                        class="fa-brands fa-facebook-f text-blue-500 group-hover:scale-110 transition-transform"></i>
+                                </button>
+                                <button type="button" onclick="dorfieQuickAuth('Apple')"
+                                    class="py-3 rounded-2xl liquid-glass-well hover:border-accent-orange/50 flex items-center justify-center transition-all hover:-translate-y-0.5 group border border-charcoal/10 dark:border-white/10 cursor-pointer"
+                                    aria-label="Sign in with Apple">
+                                    <i
+                                        class="fa-brands fa-apple text-charcoal dark:text-chalk group-hover:scale-110 transition-transform text-lg"></i>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             VIEW 3: ULTRA-CLEAN MINIMAL DEMO PAYMENT GATEWAY (AUTHENTICATED)
+             ========================================================================== -->
+        <section id="view-checkout"
+            class="min-h-screen pt-28 pb-20 px-4 sm:px-6 max-w-5xl mx-auto relative z-10 hidden opacity-0 perspective-stage">
+
+            <!-- Top Minimal Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+                <button onclick="appRouter.navigate('home')" data-magnetic
+                    class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-accent-orange transition-colors">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Plans
+                </button>
+                <div
+                    class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full liquid-glass-pill text-[10px] sm:text-[11px] font-mono font-semibold text-charcoal/80 dark:text-chalk/80 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-subtle"></span>
+                    <span class="text-charcoal/60 dark:text-chalk/60">Signed in as:</span>
+                    <span id="gateway-user-display"
+                        class="font-bold text-accent-orange truncate max-w-[120px] sm:max-w-none">Athlete</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start perspective-stage">
+
+                <!-- Left Column: Minimal Clean Plan Summary -->
+                <div data-tilt data-tilt-max="8"
+                    class="lg:col-span-5 liquid-glass-panel p-5 sm:p-8 shadow-2xl cursor-default">
+                    <div class="card-glare"></div>
+                    <div class="card-layer-lift space-y-6">
+
+                        <!-- Header -->
+                        <div
+                            class="flex items-center justify-between pb-4 border-b border-charcoal/10 dark:border-white/10">
+                            <div>
+                                <span
+                                    class="text-[10px] font-mono font-bold tracking-widest uppercase text-accent-orange">MEMBERSHIP
+                                    PASS</span>
+                                <h3 id="checkout-plan-name"
+                                    class="font-bebas text-3xl sm:text-4xl text-charcoal dark:text-chalk tracking-wide leading-tight">
+                                    Coach Pro Suite</h3>
+                            </div>
+                            <span id="checkout-plan-cycle"
+                                class="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-accent-orange/15 text-accent-orange uppercase border border-accent-orange/30">Monthly</span>
+                        </div>
+
+                        <!-- Price Breakdown -->
+                        <div class="space-y-3.5 text-xs font-medium text-charcoal/75 dark:text-chalk/75">
+                            <div class="flex justify-between items-center">
+                                <span>Base Membership</span>
+                                <span id="checkout-base-price"
+                                    class="font-bold font-mono text-charcoal dark:text-chalk">₹1,499</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>Statutory GST (18%)</span>
+                                <span id="checkout-tax-amount"
+                                    class="font-bold font-mono text-charcoal dark:text-chalk">₹270</span>
+                            </div>
+                            <div id="checkout-discount-row"
+                                class="flex justify-between items-center text-emerald-500 hidden">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-tag text-[10px]"></i>
+                                    Special Promo (20%)</span>
+                                <span id="checkout-discount-amount" class="font-bold font-mono">-₹0</span>
+                            </div>
+                            <div
+                                class="pt-4 border-t border-charcoal/10 dark:border-white/10 flex justify-between items-baseline">
+                                <span
+                                    class="text-xs font-mono font-bold uppercase text-charcoal/60 dark:text-chalk/60">Total
+                                    Payable</span>
+                                <span id="checkout-final-total"
+                                    class="font-bebas text-3xl sm:text-4xl text-accent-orange tracking-wide">₹1,769</span>
+                            </div>
+                        </div>
+
+                        <!-- Minimal Promo Code Input -->
+                        <div class="flex gap-2">
+                            <input type="text" id="coupon-code-input" placeholder="Promo code (DORFIE20)"
+                                class="w-full px-3.5 sm:px-4 py-2.5 rounded-xl liquid-glass-well text-xs font-mono uppercase text-charcoal dark:text-chalk gateway-input focus:outline-none focus:border-accent-orange">
+                            <button onclick="appRouter.applyCoupon()"
+                                class="px-4 sm:px-5 py-2.5 rounded-xl liquid-glass-pill text-xs font-bold shrink-0 hover:text-accent-orange transition-colors">Apply</button>
+                        </div>
+
+                        <!-- Minimal Security Badge -->
+                        <div
+                            class="p-3.5 rounded-2xl liquid-glass-well text-[11px] text-charcoal/70 dark:text-chalk/70 flex items-center gap-3">
+                            <div
+                                class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 text-sm">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="leading-tight">
+                                <p class="font-bold text-charcoal dark:text-chalk">256-Bit SSL Encrypted Checkout</p>
+                                <p class="text-[10px] font-mono text-charcoal/50 dark:text-chalk/50">Zero card storage •
+                                    PCI-DSS Certified Demo</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right Column: Minimal Clean Payment Gateway Sheet -->
+                <div data-tilt data-tilt-max="8"
+                    class="lg:col-span-7 liquid-glass-panel p-5 sm:p-8 shadow-2xl cursor-default">
+                    <div class="card-glare"></div>
+                    <div class="card-layer-lift space-y-6">
+
+                        <!-- Header & Method Selector Tabs -->
+                        <div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                                <div>
+                                    <span
+                                        class="text-[10px] font-mono font-bold tracking-widest uppercase text-accent-orange">PAYMENT
+                                        CHECKOUT</span>
+                                    <h4
+                                        class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk tracking-wide">
+                                        CHOOSE PAYMENT METHOD</h4>
+                                </div>
+                                <div
+                                    class="flex items-center gap-1.5 text-xs text-charcoal/50 dark:text-chalk/50 font-mono">
+                                    <i class="fa-solid fa-lock text-[11px] text-accent-orange"></i>
+                                    <span>INSTANT CLEARANCE</span>
+                                </div>
+                            </div>
+
+                            <!-- Horizontal Method Switcher -->
+                            <div class="grid grid-cols-3 gap-2 sm:gap-2.5">
+                                <button type="button" onclick="appRouter.selectPaymentMethod('upi')" id="pay-tab-upi"
+                                    class="gateway-method-card is-active p-2.5 sm:p-3.5 text-center liquid-glass-well flex flex-col items-center justify-center gap-1 sm:gap-1.5 border border-transparent">
+                                    <i class="fa-solid fa-qrcode text-base sm:text-lg text-accent-orange"></i>
+                                    <span
+                                        class="text-[10px] sm:text-xs font-bold text-charcoal dark:text-chalk whitespace-nowrap">Instant
+                                        UPI</span>
+                                </button>
+                                <button type="button" onclick="appRouter.selectPaymentMethod('card')" id="pay-tab-card"
+                                    class="gateway-method-card p-2.5 sm:p-3.5 text-center liquid-glass-well flex flex-col items-center justify-center gap-1 sm:gap-1.5 border border-transparent">
+                                    <i
+                                        class="fa-regular fa-credit-card text-base sm:text-lg text-charcoal/70 dark:text-chalk/70"></i>
+                                    <span
+                                        class="text-[10px] sm:text-xs font-bold text-charcoal dark:text-chalk whitespace-nowrap">Debit
+                                        / Card</span>
+                                </button>
+                                <button type="button" onclick="appRouter.selectPaymentMethod('netbanking')"
+                                    id="pay-tab-netbanking"
+                                    class="gateway-method-card p-2.5 sm:p-3.5 text-center liquid-glass-well flex flex-col items-center justify-center gap-1 sm:gap-1.5 border border-transparent">
+                                    <i
+                                        class="fa-solid fa-building-columns text-base sm:text-lg text-charcoal/70 dark:text-chalk/70"></i>
+                                    <span
+                                        class="text-[10px] sm:text-xs font-bold text-charcoal dark:text-chalk whitespace-nowrap">Net
+                                        Banking</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- PANEL 1: Instant UPI Dynamic QR (Default) -->
+                        <div id="method-panel-upi" class="space-y-4">
+                            <div
+                                class="p-5 rounded-2xl liquid-glass-well flex flex-col sm:flex-row items-center gap-5 border border-charcoal/5 dark:border-white/5">
+                                <div
+                                    class="relative w-36 h-36 bg-white p-2.5 rounded-2xl shadow-md border border-charcoal/10 shrink-0 flex items-center justify-center group">
+                                    <!-- Scalable Demo QR code SVG -->
+                                    <svg viewBox="0 0 100 100" class="w-full h-full" fill="#121214">
+                                        <!-- Corner Markers -->
+                                        <rect x="5" y="5" width="28" height="28" rx="4" fill="none" stroke="#121214"
+                                            stroke-width="4" />
+                                        <rect x="12" y="12" width="14" height="14" rx="2" fill="#121214" />
+                                        <rect x="67" y="5" width="28" height="28" rx="4" fill="none" stroke="#121214"
+                                            stroke-width="4" />
+                                        <rect x="74" y="12" width="14" height="14" rx="2" fill="#121214" />
+                                        <rect x="5" y="67" width="28" height="28" rx="4" fill="none" stroke="#121214"
+                                            stroke-width="4" />
+                                        <rect x="12" y="74" width="14" height="14" rx="2" fill="#121214" />
+                                        <!-- Data Matrix Dots -->
+                                        <rect x="42" y="10" width="8" height="8" rx="1.5" />
+                                        <rect x="52" y="22" width="6" height="6" rx="1" />
+                                        <rect x="42" y="32" width="6" height="6" rx="1" />
+                                        <rect x="12" y="44" width="7" height="7" rx="1.5" />
+                                        <rect x="25" y="46" width="6" height="6" rx="1" />
+                                        <rect x="44" y="46" width="12" height="12" rx="2" fill="#FF5E00" />
+                                        <rect x="66" y="44" width="8" height="8" rx="1.5" />
+                                        <rect x="80" y="48" width="6" height="6" rx="1" />
+                                        <rect x="44" y="68" width="7" height="7" rx="1" />
+                                        <rect x="58" y="70" width="8" height="8" rx="1.5" />
+                                        <rect x="74" y="72" width="12" height="6" rx="1" />
+                                        <rect x="42" y="84" width="14" height="6" rx="1" />
+                                        <rect x="68" y="84" width="8" height="8" rx="1.5" />
+                                        <circle cx="50" cy="52" r="3" fill="#ffffff" />
+                                    </svg>
+                                </div>
+                                <div class="text-center sm:text-left space-y-2">
+                                    <div
+                                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent-orange/15 text-accent-orange text-[10px] font-mono font-bold">
+                                        <i class="fa-solid fa-bolt"></i> FAST DEMO SCAN
+                                    </div>
+                                    <h5 class="text-sm font-bold text-charcoal dark:text-chalk">Scan with any UPI App
+                                    </h5>
+                                    <p class="text-xs text-charcoal/65 dark:text-chalk/65 leading-relaxed">
+                                        Open Google Pay, PhonePe, Paytm, or CRED to approve instant verification.
+                                    </p>
+                                    <div
+                                        class="pt-1 flex flex-wrap gap-2 text-[10px] font-mono font-bold text-charcoal/60 dark:text-chalk/60">
+                                        <span class="px-2 py-0.5 rounded-md liquid-glass-pill">GPay</span>
+                                        <span class="px-2 py-0.5 rounded-md liquid-glass-pill">PhonePe</span>
+                                        <span class="px-2 py-0.5 rounded-md liquid-glass-pill">Paytm</span>
+                                        <span class="px-2 py-0.5 rounded-md liquid-glass-pill">CRED</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- UPI ID Input Fallback -->
+                            <div>
+                                <label
+                                    class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1.5">Or
+                                    Pay with Virtual Payment Address (VPA)</label>
+                                <div class="relative">
+                                    <input type="text" id="upi-vpa-input" placeholder="athlete@okhdfcbank"
+                                        value="alex@okhdfcbank"
+                                        class="w-full px-4 py-3 rounded-xl liquid-glass-well text-xs font-mono text-charcoal dark:text-chalk gateway-input focus:outline-none focus:border-accent-orange">
+                                    <span
+                                        class="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-md">VERIFIED</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PANEL 2: Clean Interactive Card Entry Form -->
+                        <div id="method-panel-card" class="space-y-4 hidden">
+                            <!-- Visual Minimal Credit Card Preview -->
+                            <div
+                                class="w-full p-5 rounded-2xl bg-gradient-to-tr from-charcoal to-charcoal-muted dark:from-charcoal-deep dark:to-charcoal border border-white/10 text-white shadow-lg space-y-4 relative overflow-hidden">
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="text-[10px] font-mono tracking-widest text-accent-orange font-bold uppercase">DORFIE
+                                        SECURE PASS</span>
+                                    <i class="fa-brands fa-cc-visa text-2xl text-blue-400"></i>
+                                </div>
+                                <div class="space-y-1 pt-1">
+                                    <p class="text-[10px] text-white/50 font-mono">CARD NUMBER</p>
+                                    <p id="preview-card-number"
+                                        class="font-mono text-sm sm:text-base tracking-widest font-semibold text-white/90">
+                                        4242 •••• •••• 4242</p>
+                                </div>
+                                <div class="flex justify-between items-center text-[10px] font-mono text-white/70 pt-1">
+                                    <div>
+                                        <span class="text-white/40 block">HOLDER</span>
+                                        <span id="preview-card-holder" class="font-bold text-white uppercase">ALEX
+                                            MORGAN</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-white/40 block">EXPIRES</span>
+                                        <span id="preview-card-expiry" class="font-bold text-white">09/29</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div>
+                                    <label
+                                        class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1">Card
+                                        Number</label>
+                                    <div class="relative">
+                                        <input type="text" id="card-number-input"
+                                            oninput="appRouter.handleCardInput(this)" maxlength="19"
+                                            placeholder="4242 •••• •••• 4242" value="4242 8890 2314 9012"
+                                            class="w-full px-4 py-3 rounded-xl liquid-glass-well text-xs font-mono tracking-wider text-charcoal dark:text-chalk gateway-input focus:outline-none focus:border-accent-orange">
+                                        <div
+                                            class="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-xs text-charcoal/50 dark:text-chalk/50">
+                                            <i class="fa-brands fa-cc-visa text-sm text-blue-500"></i>
+                                            <i class="fa-brands fa-cc-mastercard text-sm text-red-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label
+                                            class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1">Expires
+                                            (MM/YY)</label>
+                                        <input type="text" id="card-expiry-input"
+                                            oninput="appRouter.handleExpiryInput(this)" maxlength="5"
+                                            placeholder="12/28" value="09/29"
+                                            class="w-full px-4 py-3 rounded-xl liquid-glass-well text-xs font-mono text-charcoal dark:text-chalk gateway-input focus:outline-none focus:border-accent-orange">
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1">Security
+                                            CVV</label>
+                                        <input type="password" id="card-cvv-input" maxlength="4" placeholder="•••"
+                                            value="888"
+                                            class="w-full px-4 py-3 rounded-xl liquid-glass-well text-xs font-mono text-charcoal dark:text-chalk gateway-input focus:outline-none focus:border-accent-orange">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label
+                                        class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1">Cardholder
+                                        Name</label>
+                                    <input type="text" id="card-name-input" oninput="appRouter.handleHolderInput(this)"
+                                        placeholder="Alex Morgan" value="Alex Morgan"
+                                        class="w-full px-4 py-3 rounded-xl liquid-glass-well text-xs font-medium text-charcoal dark:text-chalk gateway-input focus:outline-none focus:border-accent-orange">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PANEL 3: Clean Net Banking Selection -->
+                        <div id="method-panel-netbanking" class="space-y-4 hidden">
+                            <label
+                                class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70">Popular
+                                Institutions</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                                <button type="button" onclick="appRouter.selectBank(this, 'HDFC Bank')"
+                                    class="gateway-quick-chip is-selected p-3 rounded-xl liquid-glass-well text-center text-xs font-bold text-charcoal dark:text-chalk border">
+                                    HDFC Bank
+                                </button>
+                                <button type="button" onclick="appRouter.selectBank(this, 'ICICI Bank')"
+                                    class="gateway-quick-chip p-3 rounded-xl liquid-glass-well text-center text-xs font-bold text-charcoal dark:text-chalk border border-transparent">
+                                    ICICI Bank
+                                </button>
+                                <button type="button" onclick="appRouter.selectBank(this, 'State Bank of India')"
+                                    class="gateway-quick-chip p-3 rounded-xl liquid-glass-well text-center text-xs font-bold text-charcoal dark:text-chalk border border-transparent">
+                                    SBI
+                                </button>
+                                <button type="button" onclick="appRouter.selectBank(this, 'Axis Bank')"
+                                    class="gateway-quick-chip p-3 rounded-xl liquid-glass-well text-center text-xs font-bold text-charcoal dark:text-chalk border border-transparent">
+                                    Axis Bank
+                                </button>
+                            </div>
+                            <div class="pt-1">
+                                <label
+                                    class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1">Selected
+                                    Institution</label>
+                                <input type="text" id="selected-bank-input" readonly
+                                    value="HDFC Bank (Instant Direct Clearance)"
+                                    class="w-full px-4 py-3 rounded-xl liquid-glass-well text-xs font-mono text-charcoal dark:text-chalk focus:outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Submit Action Button -->
+                        <button onclick="appRouter.executePayment()" id="gateway-submit-btn"
+                            class="liquid-glass-btn-orange w-full py-4 rounded-full font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 group">
+                            <i class="fa-solid fa-lock group-hover:scale-110 transition-transform"></i>
+                            <span id="gateway-submit-label">Confirm &amp; Authorize Demo Payment</span>
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             MINIMAL SMOOTH PAYMENT LOADER OVERLAY
+             ========================================================================== -->
+        <div id="gateway-loader-overlay"
+            class="fixed inset-0 z-[200] bg-charcoal/80 dark:bg-black/85 backdrop-blur-md flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+            <div id="gateway-loader-card"
+                class="liquid-glass-panel p-8 sm:p-10 max-w-sm w-full mx-4 text-center shadow-2xl scale-95 transition-transform duration-300">
+                <div class="card-glare"></div>
+                <div class="card-layer-lift space-y-5">
+
+                    <!-- Smooth Minimal Circular Spinner / Morphing Icon -->
+                    <div class="w-20 h-20 mx-auto relative flex items-center justify-center">
+                        <svg class="w-full h-full animate-spin" viewBox="0 0 100 100" fill="none"
+                            style="animation-duration: 1.8s;">
+                            <circle cx="50" cy="50" r="42" stroke="currentColor"
+                                class="text-charcoal-muted dark:text-white/10" stroke-width="5" />
+                            <circle cx="50" cy="50" r="42" stroke="url(#loaderGradient)" stroke-width="5"
+                                stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="180" />
+                            <defs>
+                                <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FF5E00" />
+                                    <stop offset="100%" stop-color="#FF9E00" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div id="gateway-loader-center-icon"
+                            class="absolute inset-0 flex items-center justify-center text-accent-orange text-xl">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Processing Labels -->
+                    <div>
+                        <span id="gateway-loader-step"
+                            class="text-[10px] font-mono font-bold uppercase tracking-widest text-accent-orange block mb-1">
+                            PROCESSING PAYMENT • 01/03
+                        </span>
+                        <h4 id="gateway-loader-title"
+                            class="font-bebas text-3xl text-charcoal dark:text-chalk tracking-wide leading-tight">
+                            COMMUNICATING WITH GATEWAY
+                        </h4>
+                        <p id="gateway-loader-sub"
+                            class="text-xs text-charcoal/65 dark:text-chalk/65 font-medium mt-1 leading-relaxed">
+                            Connecting securely with payment provider...
+                        </p>
+                    </div>
+
+                    <!-- Smooth Progress Bar -->
+                    <div class="w-full h-1.5 bg-charcoal-muted/30 dark:bg-white/10 rounded-full overflow-hidden">
+                        <div id="gateway-loader-progress-bar"
+                            class="h-full bg-gradient-to-r from-accent-orange to-amber-400 w-0 transition-all duration-300 ease-out">
+                        </div>
+                    </div>
+
+                    <!-- Security Pill -->
+                    <div
+                        class="pt-1 flex items-center justify-center gap-2 text-[10px] font-mono text-charcoal/50 dark:text-chalk/50">
+                        <i class="fa-solid fa-shield-check text-emerald-500"></i>
+                        <span>Encrypted &amp; secure transaction</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             DIGITAL TAX INVOICE & SUBSCRIPTION PASS MODAL (BACKEND-READY)
+             ========================================================================== -->
+        <div id="invoice-modal-overlay"
+            class="fixed inset-0 z-[220] bg-charcoal/85 dark:bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+            <div id="invoice-printable-card"
+                class="liquid-glass-panel p-4 sm:p-8 md:p-10 max-w-xl w-full my-auto shadow-2xl relative border border-white/20 dark:border-white/10 scale-95 transition-transform duration-300">
+                <div class="card-glare"></div>
+
+                <!-- Invoice Header Bar -->
+                <div
+                    class="flex flex-wrap items-start justify-between pb-5 sm:pb-6 border-b border-charcoal/10 dark:border-white/10 gap-3">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <img src="TEXT LOGO.png" alt="Dorfie Fit"
+                                class="h-6 w-auto object-contain filter dark:brightness-110" />
+                        </div>
+                        <p class="text-[10px] font-mono tracking-widest uppercase text-charcoal/50 dark:text-chalk/50">
+                            OFFICIAL TAX INVOICE &amp; PASS</p>
+                    </div>
+                    <div class="text-right">
+                        <span id="invoice-badge-status"
+                            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            ACTIVE &amp; SETTLED
+                        </span>
+                        <p id="invoice-order-id" class="text-xs font-mono font-bold text-accent-orange mt-1.5">
+                            DF-849201-2026</p>
+                    </div>
+                </div>
+
+                <!-- Metadata Grid -->
+                <div
+                    class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 py-4 sm:py-5 border-b border-charcoal/10 dark:border-white/10 text-xs">
+                    <div>
+                        <span class="text-[10px] font-mono uppercase text-charcoal/50 dark:text-chalk/50 block">ISSUED
+                            TO</span>
+                        <p id="invoice-customer-name" class="font-bold text-charcoal dark:text-chalk mt-0.5 truncate">
+                            Alex Morgan</p>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-mono uppercase text-charcoal/50 dark:text-chalk/50 block">DATE
+                            &amp; TIME</span>
+                        <p id="invoice-timestamp" class="font-mono text-charcoal/80 dark:text-chalk/80 mt-0.5">10 Oct
+                            2026</p>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-mono uppercase text-charcoal/50 dark:text-chalk/50 block">PAYMENT
+                            METHOD</span>
+                        <p id="invoice-method-label" class="font-mono text-charcoal/80 dark:text-chalk/80 mt-0.5">
+                            Instant UPI</p>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-mono uppercase text-charcoal/50 dark:text-chalk/50 block">ROLE
+                            PROFILE</span>
+                        <p id="invoice-role-badge" class="font-mono font-bold text-accent-orange mt-0.5 uppercase">
+                            ATHLETE</p>
+                    </div>
+                </div>
+
+                <!-- Itemized Breakdown Table -->
+                <div class="py-4 sm:py-5 space-y-3 text-xs">
+                    <div class="flex justify-between items-center py-2 border-b border-charcoal/5 dark:border-white/5">
+                        <div class="pr-2">
+                            <p id="invoice-plan-title" class="font-bold text-charcoal dark:text-chalk text-sm">Coach Pro
+                                Suite</p>
+                            <span id="invoice-plan-cycle-sub"
+                                class="text-[10px] font-mono text-charcoal/50 dark:text-chalk/50">Subscription Period •
+                                Annual Pass</span>
+                        </div>
+                        <span id="invoice-base-price"
+                            class="font-mono font-bold text-charcoal dark:text-chalk text-sm shrink-0">₹1,199</span>
+                    </div>
+                    <div class="flex justify-between items-center text-charcoal/70 dark:text-chalk/70">
+                        <span>Statutory GST (18%)</span>
+                        <span id="invoice-tax-price"
+                            class="font-mono font-bold text-charcoal dark:text-chalk shrink-0">₹216</span>
+                    </div>
+                    <div id="invoice-discount-line" class="flex justify-between items-center text-emerald-500 hidden">
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-tag text-[10px]"></i> Promotional
+                            Voucher Applied</span>
+                        <span id="invoice-discount-amount" class="font-mono font-bold shrink-0">-₹240</span>
+                    </div>
+                    <div
+                        class="pt-4 border-t-2 border-charcoal/15 dark:border-white/15 flex justify-between items-baseline">
+                        <span
+                            class="font-mono font-bold text-xs uppercase tracking-wider text-charcoal dark:text-chalk">Total
+                            Amount Cleared</span>
+                        <span id="invoice-total-amount"
+                            class="font-bebas text-3xl sm:text-4xl text-accent-orange tracking-wide">₹1,175</span>
+                    </div>
+                </div>
+
+                <!-- Footer Cryptographic Seal & Verification Note -->
+                <div
+                    class="pt-4 pb-2 border-t border-charcoal/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] font-mono text-charcoal/60 dark:text-chalk/60 text-center sm:text-left">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-emerald-500 text-sm"></i>
+                        <span>Verified Digital Receipt • Dorfie Fit Official Member Pass</span>
+                    </div>
+                    <span id="invoice-auth-code" class="text-accent-orange font-bold">AUTH: DF-99482X</span>
+                </div>
+
+                <!-- Actions: Print / PDF & Close (Hidden on Print) -->
+                <div
+                    class="mt-6 pt-4 border-t border-charcoal/10 dark:border-white/10 flex flex-wrap items-center justify-end gap-2.5 sm:gap-3 invoice-no-print">
+                    <button type="button" onclick="window.print()"
+                        class="px-4 sm:px-5 py-2.5 rounded-full liquid-glass-pill text-xs font-bold font-mono text-charcoal dark:text-chalk hover:text-accent-orange transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-print"></i> Print / Save PDF
+                    </button>
+                    <button type="button" onclick="closeInvoiceModal()"
+                        class="liquid-glass-btn-orange px-5 sm:px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-md flex items-center gap-2">
+                        <span>Done</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Download Notification Toast -->
+    <div id="download-toast"
+        class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
+        <div
+            class="liquid-glass-pill px-6 py-3.5 bg-charcoal/90 text-white flex items-center gap-3 shadow-2xl border border-white/20">
+            <span class="w-6 h-6 rounded-full bg-accent-orange flex items-center justify-center text-xs text-white">
+                <i class="fa-solid fa-check"></i>
+            </span>
+            <span id="download-toast-text" class="text-xs font-bold font-mono">Operation successful.</span>
+        </div>
+    </div>
+
+    <!-- Minimalist Floating Back-to-Top Button -->
+    <button id="back-to-top-btn" onclick="scrollToTop()" aria-label="Scroll to top"
+        class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full liquid-glass-pill flex items-center justify-center text-charcoal dark:text-chalk shadow-2xl opacity-0 pointer-events-none translate-y-4 transition-all duration-300 hover:scale-110 hover:border-accent-orange hover:text-accent-orange">
+        <i class="fa-solid fa-arrow-up text-xs"></i>
+    </button>
+
+    <!-- Dorfie Fit Interaction & Motion Engine -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
