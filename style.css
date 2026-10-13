@@ -1658,7 +1658,7 @@
         @media (max-width: 767px) {
             .features-stack-container,
             .features-stack-stage {
-                height: 560px;
+                height: 520px;
             }
             .features-stack-container .slide .item:nth-child(1),
             .features-stack-container .slide .item:nth-child(2),
@@ -1676,19 +1676,19 @@
             }
             .features-stack-container .content .name,
             .features-stack-stage .content .name {
-                font-size: 28px;
+                font-size: 26px;
                 line-height: 1.05;
             }
             .features-stack-container .content .des,
             .features-stack-stage .content .des {
-                font-size: 12.5px;
+                font-size: 12px;
                 line-height: 1.5;
                 margin-top: 8px;
                 margin-bottom: 14px;
             }
             .features-stack-container .content button,
             .features-stack-stage .content button {
-                padding: 10px 20px;
+                padding: 9px 18px;
                 font-size: 11px;
             }
             .features-stack-container .item .item-mascot-wrap,
@@ -1698,10 +1698,11 @@
             }
             .features-stack-container .slide .item:nth-child(3),
             .features-stack-stage .slide .item:nth-child(3) {
-                left: calc(100% - 130px);
-                width: 115px;
-                height: 160px;
-                bottom: 80px;
+                left: auto;
+                right: 14px;
+                width: 95px;
+                height: 130px;
+                bottom: 14px;
                 top: auto;
                 transform: none;
                 opacity: 0.95;
@@ -1709,25 +1710,27 @@
             }
             .features-stack-container .slide .item:nth-child(4),
             .features-stack-stage .slide .item:nth-child(4) {
-                left: calc(100% - 20px);
-                width: 115px;
-                height: 160px;
-                bottom: 80px;
+                left: auto;
+                right: -25px;
+                width: 95px;
+                height: 130px;
+                bottom: 14px;
                 top: auto;
                 transform: none;
-                opacity: 0.45;
+                opacity: 0.4;
                 z-index: 5;
             }
             .features-stack-container .slide .item:nth-child(n + 5),
             .features-stack-stage .slide .item:nth-child(n + 5) {
-                left: 120%;
+                left: auto;
+                right: -80px;
                 opacity: 0;
                 pointer-events: none;
             }
             .features-stack-container .stack-buttons,
             .features-stack-stage .stack-buttons {
                 left: 18px;
-                bottom: 20px;
+                bottom: 16px;
             }
         }
 
