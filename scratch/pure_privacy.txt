@@ -1,0 +1,56 @@
+﻿terms-hero-content
+terms-title tp_fade_anim
+terms-subtitle tp_fade_anim
+Your privacy matters to us. Learn how we protect your information.
+terms-content-wrapper
+terms-card tp_fade_anim
+Dorfie Labs Pvt Ltd
+(app or website).
+Information We Collect
+We collect various types of information to provide and improve our services.
+Personal Information:
+Name, email, phone number, payment details.
+Activity Information:
+Device Information:
+IP address, device type, operating system, app usage patterns.
+Location Information:
+To recommend nearby gyms, studios, and events.
+How We Use Your Information
+We use your information to.
+Provide and improve Dorfie Fit services.
+Personalize your fitness experience and match you with relevant trainers, gyms, and classes.
+Communicate updates, offers, promotions, and events.
+Analyze trends and usage to enhance app functionality.
+Deliver personalized recommendations and offers for gyms, studios, classes, and events.
+Share anonymized or aggregated data with verified advertising partners for targeted promotions.
+Targeted Advertising & User Choices
+Personalized Ads:
+We may use data such as your fitness interests, location, class preferences, and app activity to show relevant promotions from Dorfie Fit or our partners.
+Third-Party Advertising:
+Third-party partners may serve ads based on anonymized or aggregated data. They are prohibited from using your data for purposes other than delivering relevant advertisements.
+Opt-Out Options:
+You can opt out of personalized advertising through app settings or by contacting us at support@dorfielabs.com.
+Opting out will prevent tracking for targeted ads but may still display non-personalized ads.
+We respect your privacy and do not sell personal information. We may share your information.
+With trainers, gyms, or studios to facilitate bookings, events, or services.
+With verified third-party partners for analytics, marketing, or advertising.
+To comply with legal obligations, protect rights, or prevent fraud.
+We retain your data indefinitely for service improvement and legal compliance.
+We implement industry-standard security measures to protect your information. This includes encryption, biometric authentication, and secure payment processing.
+You have the right to.
+Access and review your personal information.
+Correct inaccuracies in your data.
+Request deletion of your personal information.
+Opt out of marketing communications and personalized ads.
+To exercise these rights, contact us at support@dorfielabs.com.
+Updates to This Policy
+We may update this Privacy Policy from time to time. Continued use of Dorfie Fit constitutes acceptance of any changes.
+section-description
+support@dorfielabs.com
+mailto:support@dorfielabs.com
+terms-list nested-list
+subsection-title
+Questions about our Privacy Policy? Contact us at
+tp-cursor-effect
+tp-magnetic-wrap
+a.tp-magnetic-item

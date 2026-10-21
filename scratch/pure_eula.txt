@@ -1,0 +1,92 @@
+﻿terms-hero-content
+terms-title tp_fade_anim
+End User License Agreement
+terms-subtitle tp_fade_anim
+Please read this agreement carefully before using Dorfie Fit.
+terms-content-wrapper
+terms-card tp_fade_anim
+Dorfie Labs Private Limited
+BY DOWNLOADING, INSTALLING, ACCESSING, OR USING THE APP, YOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO THESE TERMS, DO NOT DOWNLOAD, INSTALL, OR USE THE APP.
+Subject to your compliance with this Agreement and Apple's Usage Rules set forth in the App Store Terms of Service, Dorfie Labs grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to download and use the App for your personal or internal business purposes, solely on Apple-branded products that you own or control and as permitted by the Usage Rules.
+This license does not permit you to use the App on any device that you do not own or control, except as may be permitted by Apple's Usage Rules.
+Scope of License and Restrictions
+You may not, and may not permit any third party to:
+Copy, modify, adapt, translate, or create derivative works of the App.
+Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the App, except to the extent such restriction is prohibited by applicable law.
+Rent, lease, lend, sell, redistribute, or sublicense the App.
+Remove, alter, or obscure any proprietary notices on the App.
+Use the App for any unlawful purpose, or to transmit any harmful, defamatory, obscene, or infringing content.
+Use any automated system (bots, scrapers) to access the App or extract data from it.
+Circumvent any subscription tier limits, usage caps, or access controls described in this Agreement.
+All rights not expressly granted to you are reserved by Dorfie Labs and its licensors.
+Accounts and Roles
+The App supports multiple account roles, each with distinct features and responsibilities:
+Trainers/Coaches:
+fitness professionals who create a public profile, manage clients, apply to jobs, and create fitness events.
+gyms, studios, or fitness businesses that manage branches, staff, memberships, and job postings.
+individual end users who sign up to access trainers, gyms, and related services.
+You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account. You must be at least 18 years old, or the age of legal majority in your jurisdiction, to create an account. You agree to provide accurate and current information during registration and to promptly update it if it changes.
+Subscription Plans, Fees, and Billing
+Dorfie Fit offers free and paid subscription tiers for Trainers and Owners, as well as free membership for Members. Current plans and their features are described in-app and may include the following (subject to change as described in Section 5):
+4.1 Trainer Plans
+Base (Free) â€” sign-up, gym association, client management (up to 10 clients), job exploration, and pay-per-event creation (â‚¹100 per event).
+Advance (â‚¹500/month or â‚¹2,999/year) â€” everything in Base, plus job applications (up to 10/day), profile discoverability, 2 complimentary events/month, client management (up to 1,000 clients), and up to 3 client leads/day.
+Advance Pro (â‚¹1,000/month or â‚¹4,999/year) â€” everything in Advance, plus job applications (up to 100/day), boosted profile discoverability, 10 complimentary events/month, and unlimited client leads.
+Basic (Free) â€” discoverability and hiring tools.
+Intermediate (â‚¹1,000/month or â‚¹10,000/year) â€” includes management software for one branch.
+Advance (â‚¹1,500â€“â‚¹2,500/month or â‚¹12,000â€“â‚¹20,000/year) â€” includes biometric (face and fingerprint) and RFID integration.
+Advance Pro (custom pricing) â€” unlimited branches and monthly job postings.
+Membership sign-up is free. Members may be charged a platform fee on certain in-app payments made through the App, as disclosed at the time of payment.
+4.4 Billing Terms
+All fees are billed in advance on a monthly or annual basis, as selected at checkout, and are processed through Apple's In-App Purchase system where applicable.
+Subscriptions automatically renew at the end of each billing cycle unless cancelled at least 24 hours before the renewal date.
+Payment will be charged to your Apple ID account at confirmation of purchase, and your account will be charged for renewal within 24 hours prior to the end of the current period.
+You can manage or cancel your subscription at any time through your Apple ID account settings; cancellation takes effect at the end of the current billing period.
+Per-event fees (e.g., â‚¹100 per fitness event created on the Base plan) are one-time, non-recurring charges billed at the time the event is created.
+Except where required by law or by Apple's refund policies, all fees are non-refundable. Refund requests for purchases made through the App Store are handled by Apple in accordance with Apple's own policies.
+Changes to Plans and Features
+Dorfie Labs may modify, add, or discontinue subscription tiers, pricing, or features at any time. We will provide reasonable notice of material changes to paid plans before they take effect for existing subscribers. Continued use of the App after a change takes effect constitutes acceptance of the change.
+Health and Fitness Disclaimer
+The App is a platform that connects trainers, gyms, and members and facilitates the sharing of fitness plans, diet recommendations, and related content. Dorfie Labs is not a medical provider, and content shared through the App (including diet and exercise recommendations from trainers) does not constitute medical advice.
+You should consult a qualified physician before beginning any exercise or diet program, particularly if you have any pre-existing medical condition. You assume all risks associated with participating in fitness activities recommended or facilitated through the App. Dorfie Labs is not responsible for the accuracy, safety, or suitability of advice given by any Trainer using the App.
+Maintenance and Support
+Dorfie Labs is solely responsible for providing maintenance and support for the App. Apple has no obligation whatsoever to furnish any maintenance or support services with respect to the App. To the maximum extent permitted by applicable law, Apple has no other warranty obligations with respect to the App.
+Warranty Disclaimer
+In the event of any failure of the App to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price for the App to you, if any; to the maximum extent permitted by applicable law, Apple will have no other warranty obligation whatsoever with respect to the App, and any other claims, losses, liabilities, damages, costs, or expenses attributable to any failure to conform to any warranty will be Dorfie Labs' sole responsibility.
+Limitation of Liability
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, DORFIE LABS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, ARISING OUT OF YOUR USE OF THE APP, EVEN IF DORFIE LABS HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. DORFIE LABS' TOTAL LIABILITY ARISING OUT OF THIS AGREEMENT SHALL NOT EXCEED THE AMOUNT YOU PAID TO DORFIE LABS IN THE SIX (6) MONTHS PRECEDING THE CLAIM.
+Apple and its subsidiaries shall have no liability whatsoever to you in relation to any claim linked to the App or this Agreement.
+Product Claims and Third-Party Claims
+Dorfie Labs, not Apple, is solely responsible for addressing any claims by you or any third party relating to the App or your possession and/or use of the App, including but not limited to:
+Product liability claims.
+Any claim that the App fails to conform to any applicable legal or regulatory requirement.
+Claims arising under consumer protection, privacy, or similar legislation.
+In the event of any third-party claim that the App, or your possession and use of the App, infringes that third party's intellectual property rights, Dorfie Labs, not Apple, will be solely responsible for the investigation, defense, settlement, and discharge of any such claim.
+Legal Compliance
+terrorist supporting
+Intellectual Property
+The App, including all software, text, graphics, logos, and other content (excluding user-generated content and third-party content), is owned by Dorfie Labs or its licensors and is protected by copyright, trademark, and other intellectual property laws. Nothing in this Agreement transfers any ownership rights to you.
+You retain ownership of content you submit to the App (such as profile information, client notes, diet plans, or event listings). By submitting content, you grant Dorfie Labs a worldwide, non-exclusive, royalty-free license to host, store, reproduce, and display that content solely for the purpose of operating and providing the App's features.
+You are solely responsible for the content you submit and confirm you have the right to share it.
+This Agreement is effective until terminated. Dorfie Labs may suspend or terminate your access to the App at any time, with or without notice, if you breach this Agreement or engage in conduct that Dorfie Labs determines, in its reasonable discretion, to be harmful to the App or other users. You may terminate this Agreement at any time by deleting the App and discontinuing use.
+Upon termination, your right to use the App ceases immediately; Sections 6â€“13 and 16â€“19 of this Agreement survive termination.
+Third-Party Services and Content
+The App may permit access to or interaction with third-party services (such as payment processors and wireless carriers). Your use of such third-party services is subject to the terms of those third parties, and you agree to comply with any applicable third-party agreements when using the App (for example, your wireless data service agreement).
+Governing Law and Dispute Resolution
+This Agreement shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law principles. Subject to Section 17 below, the courts located in New Delhi, India shall have exclusive jurisdiction over any dispute arising out of or relating to this Agreement.
+Apple as Third-Party Beneficiary
+You acknowledge and agree that Apple, and Apple's subsidiaries, are third-party beneficiaries of this Agreement, and that, upon your acceptance of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against you as a third-party beneficiary of this Agreement.
+Changes to This Agreement
+Dorfie Labs may update this Agreement from time to time. If we make material changes, we will notify you through the App or by other reasonable means before the change takes effect. Your continued use of the App after the effective date of any revised Agreement constitutes your acceptance of the changes.
+Contact Information
+Questions, complaints, or claims regarding the App should be directed to:
+naman.nagi@gosbfy.com
+AWFIS - A-24/9, Mohan Co-operative Industrial Estate, Mathura Road, Saidabad, Mohan Cooperative, New Delhi 110044
+Any support, maintenance, or warranty inquiries should be directed to Dorfie Labs at the contact details above and not to Apple.
+This Agreement constitutes the entire agreement between you and Dorfie Labs regarding the App and supersedes any prior agreements. If any provision of this Agreement is held to be unenforceable, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions will remain in full force and effect. Dorfie Labs' failure to enforce any right or provision of this Agreement will not be deemed a waiver of such right or provision.
+section-description
+subsection-title
+This document is a draft template prepared for Dorfie Labs Private Limited and does not constitute legal advice. We recommend having it reviewed by a licensed attorney familiar with Indian law and Apple App Store requirements before publishing.
+tp-cursor-effect
+tp-magnetic-wrap
+a.tp-magnetic-item

@@ -835,10 +835,10 @@
             member: [
                 {
                     id: "01 / 06",
-                    icon: "fa-chart-line",
-                    tag: "Live Updates",
-                    title: "Real-Time Gym Footfall",
-                    desc: "Check live crowd density and peak equipment utilization at partner gyms before heading out.",
+                    icon: "fa-network-wired",
+                    tag: "Community Hub",
+                    title: "Primary Ecosystem Hub",
+                    desc: "Primary profile that connects you to the entire Dorfie Fit ecosystem with unified access.",
                     bg: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Gymming.png"
                 },
@@ -847,156 +847,156 @@
                     icon: "fa-location-dot",
                     tag: "Geo-Discovery",
                     title: "Hyper-Local Discovery",
-                    desc: "Discover cross-training boxes, Pilates sanctuaries, and studios near your location with verified reviews.",
+                    desc: "Discover fitness centres, gyms, badminton courts, and personal trainers near you.",
                     bg: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Running_Marathon.png"
                 },
                 {
                     id: "03 / 06",
-                    icon: "fa-dumbbell",
-                    tag: "Free Cloud Storage",
-                    title: "Lifetime Metric Logging",
-                    desc: "Log progressive overload, milestone personal records, and caloric trends—completely free forever.",
+                    icon: "fa-calendar-star",
+                    tag: "Active Community",
+                    title: "Fitness & Sport Events",
+                    desc: "Explore and participate in community-driven fitness challenges, meets, and sporting events.",
                     bg: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Chilling_Looking_At_Sky.png"
                 },
                 {
                     id: "04 / 06",
                     icon: "fa-calendar-check",
-                    tag: "Direct Booking",
-                    title: "Instant Slot Booking",
-                    desc: "Reserve spinning bikes, reformer beds, or HIIT classes in two taps with live slot synchronization.",
+                    tag: "Session Manager",
+                    title: "Unified Member Hub",
+                    desc: "Manage memberships, personal training sessions, and classes in one intuitive place.",
                     bg: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Coffee.png"
                 },
                 {
                     id: "05 / 06",
-                    icon: "fa-user-check",
-                    tag: "Verified Creds",
-                    title: "Vetted Personal Coaches",
-                    desc: "Find certified trainers by specialty with transparent rate cards and secure in-app sessions.",
+                    icon: "fa-comments",
+                    tag: "Direct Guidance",
+                    title: "Direct Coach & Staff Chat",
+                    desc: "Chat directly with trainers and fitness centre staff for guidance, form checks, and workout support.",
                     bg: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Accounts.png"
                 },
                 {
                     id: "06 / 06",
-                    icon: "fa-trophy",
-                    tag: "Leaderboards",
-                    title: "Community Milestones",
-                    desc: "Compete on friendly gym leaderboards, claim badges, and share achievements with fellow athletes.",
+                    icon: "fa-mobile-screen-button",
+                    tag: "Single Platform",
+                    title: "Connected Fitness Life",
+                    desc: "Enjoy a seamless, connected fitness experience and workout tracking from a single app.",
                     bg: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Pharmacy.png"
-                }
-            ],
-            trainer: [
-                {
-                    id: "01 / 06",
-                    icon: "fa-globe",
-                    tag: "Career Reach",
-                    title: "Studio Opportunities",
-                    desc: "Access verified openings, hotel studio residencies, and client requests across premier networks.",
-                    bg: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Running_Marathon.png"
-                },
-                {
-                    id: "02 / 06",
-                    icon: "fa-users",
-                    tag: "Client Roster",
-                    title: "Unified Athlete CRM",
-                    desc: "Manage client regimens, check-in videos, and daily biometric logs without cluttered messaging.",
-                    bg: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Gymming.png"
-                },
-                {
-                    id: "03 / 06",
-                    icon: "fa-file-invoice-dollar",
-                    tag: "Direct Billing",
-                    title: "Automated Invoicing",
-                    desc: "Collect subscription fees and session dues automatically with instantaneous digital receipts.",
-                    bg: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Accounts.png"
-                },
-                {
-                    id: "04 / 06",
-                    icon: "fa-calendar-plus",
-                    tag: "Availability Sync",
-                    title: "Smart Slot Calendar",
-                    desc: "Sync 1-on-1 availability, set booking limits, and eliminate manual appointment confirmations.",
-                    bg: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Coffee.png"
-                },
-                {
-                    id: "05 / 06",
-                    icon: "fa-certificate",
-                    tag: "Verified Badge",
-                    title: "Accredited Profile",
-                    desc: "Showcase certified NSCA, ACE, ACSM, or CSCS credentials with tamper-proof verification badges.",
-                    bg: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Chilling_Looking_At_Sky.png"
-                },
-                {
-                    id: "06 / 06",
-                    icon: "fa-book-journal-whills",
-                    tag: "Program Builder",
-                    title: "Regimen Blueprints",
-                    desc: "Build periodized workout routines with video demos and automatic progressive overload math.",
-                    bg: "https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Pharmacy.png"
                 }
             ],
             owner: [
                 {
                     id: "01 / 06",
-                    icon: "fa-id-badge",
-                    tag: "Smart Access",
-                    title: "Biometric Speed Gates",
-                    desc: "Turnstiles with sub-second facial recognition, RFID wristband tap, and anti-tailgating sensors.",
+                    icon: "fa-building",
+                    tag: "Zero Chaos",
+                    title: "Gym Management, Zero Chaos",
+                    desc: "Memberships, automated renewals, billing, check-ins, staff permissions, and one command centre instead of six tools.",
                     bg: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Gymming.png"
                 },
                 {
                     id: "02 / 06",
-                    icon: "fa-magnifying-glass-chart",
-                    tag: "Zero Fee",
-                    title: "Free Studio Discovery",
-                    desc: "Claim your facility profile on the Dorfie consumer map at zero charge to receive new walk-ins.",
+                    icon: "fa-brands fa-whatsapp",
+                    tag: "Free Integration",
+                    title: "Free WhatsApp Messaging Integration",
+                    desc: "Free WhatsApp Messaging Integration for automated payment receipts, renewal alerts, booking notices, and client communication.",
                     bg: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Running_Marathon.png"
                 },
                 {
                     id: "03 / 06",
-                    icon: "fa-cash-register",
-                    tag: "Direct Debits",
-                    title: "Subscription Automation",
-                    desc: "Eliminate manual payment chasing with recurring debits, automated WhatsApp alerts, and receipts.",
+                    icon: "fa-user-secret",
+                    tag: "Revenue Shield",
+                    title: "Under-The-Table PT Detection",
+                    desc: "Automated floor intelligence to detect uncontracted personal training sessions, protect club revenue, and enforce gym policy.",
                     bg: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Accounts.png"
                 },
                 {
                     id: "04 / 06",
-                    icon: "fa-bullhorn",
-                    tag: "Geo-Targeting",
-                    title: "Local In-App Promotion",
-                    desc: "Launch seasonal promotions directly to active fitness enthusiasts within a 5km radius.",
+                    icon: "fa-radar",
+                    tag: "Churn Radar",
+                    title: "Live Tracking, Not Rear-View Reporting",
+                    desc: "Know who's slipping this week, not who left last quarter. Real-time check-ins, gym occupancy radar, and automatic churn alerts.",
                     bg: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Coffee.png"
                 },
                 {
                     id: "05 / 06",
-                    icon: "fa-tv",
-                    tag: "Studio Screens",
-                    title: "Gym TV Leaderboards",
-                    desc: "Cast group heart rates, calorie burn metrics, and interval timers to gym monitors effortlessly.",
+                    icon: "fa-user-check",
+                    tag: "Talent Pipeline",
+                    title: "Hiring, Your Unfair Advantage",
+                    desc: "Reach verified trainers and fitness staff directly. See certifications and experience upfront. Hire, onboard, and schedule in one platform.",
                     bg: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Chilling_Looking_At_Sky.png"
                 },
                 {
                     id: "06 / 06",
-                    icon: "fa-user-group",
-                    tag: "Staff Dashboard",
-                    title: "Coach Shift Tracking",
-                    desc: "Track floor shifts, coach commission splits, and client completions inside one clean portal.",
+                    icon: "fa-trophy",
+                    tag: "Retention Moat",
+                    title: "Community & Member Moat",
+                    desc: "Members cancel memberships; they rarely leave communities. Branded app, challenges, leaderboards, and slot bookings for courts and turfs.",
                     bg: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop",
+                    mascot: "Pharmacy.png"
+                }
+            ],
+            trainer: [
+                {
+                    id: "01 / 06",
+                    icon: "fa-users-gear",
+                    tag: "Client Management",
+                    title: "Dual Client Roster",
+                    desc: "Manage personal clients and associated fitness centre clients from one unified profile.",
+                    bg: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200&auto=format&fit=crop",
+                    mascot: "Running_Marathon.png"
+                },
+                {
+                    id: "02 / 06",
+                    icon: "fa-calendar-check",
+                    tag: "Session Planner",
+                    title: "Integrated Session Calendar",
+                    desc: "Schedule training sessions for each client with an integrated session planner.",
+                    bg: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1200&auto=format&fit=crop",
+                    mascot: "Gymming.png"
+                },
+                {
+                    id: "03 / 06",
+                    icon: "fa-shield-halved",
+                    tag: "Verified Access",
+                    title: "OTP-Verified Sessions",
+                    desc: "Conduct secure OTP-verified personal training sessions for reliable attendance and verification.",
+                    bg: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop",
+                    mascot: "Accounts.png"
+                },
+                {
+                    id: "04 / 06",
+                    icon: "fa-id-badge",
+                    tag: "Public Branding",
+                    title: "Public Coach Profile",
+                    desc: "Build and customize a public profile to promote your training services and attract new clients.",
+                    bg: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop",
+                    mascot: "Coffee.png"
+                },
+                {
+                    id: "05 / 06",
+                    icon: "fa-comment-dots",
+                    tag: "Direct Support",
+                    title: "Direct In-App Client Chat",
+                    desc: "Chat directly with clients for seamless communication, diet recommendations, and routine adjustments.",
+                    bg: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop",
+                    mascot: "Chilling_Looking_At_Sky.png"
+                },
+                {
+                    id: "06 / 06",
+                    icon: "fa-briefcase",
+                    tag: "Career Growth",
+                    title: "Verified Fitness Job Openings",
+                    desc: "Explore and apply for verified job opportunities and studio residencies posted by fitness centres.",
+                    bg: "https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?q=80&w=1200&auto=format&fit=crop",
                     mascot: "Pharmacy.png"
                 }
             ]
@@ -1555,22 +1555,429 @@
             window.whyDorfieCarousel = whyDorfieCarouselInstance;
         }
 
+        let currentPricingAudience = 'centres';
+
+        const pricingData = {
+            centres: {
+                title: "Fitness Centres / Communities",
+                subtitle: "Unlock powerful tools to manage your fitness centre, engage your community, and streamline your daily operations with the plan that's right for you.",
+                plans: [
+                    {
+                        tier: "TIER 01",
+                        name: "Base Plan",
+                        productIdMonthly: null,
+                        productIdYearly: null,
+                        tag: "CENTRES FREE",
+                        desc: "Let potential customers discover you, hire the best folks from the fitness industry, and showcase your offerings.",
+                        monthlyPrice: 0,
+                        annualPrice: 0,
+                        priceLabelMonthly: "forever free",
+                        priceLabelAnnual: "forever free",
+                        buttonText: "Get Started Free",
+                        isPopular: false,
+                        features: [
+                            "Public facility profile on Dorfie directory & map",
+                            "Hire the best verified fitness professionals",
+                            "Showcase your centre offerings & facilities",
+                            "Basic member check-in support"
+                        ]
+                    },
+                    {
+                        tier: "TIER 02",
+                        name: "Intermediate",
+                        productIdMonthly: "fitness_centre_intermediate_monthly",
+                        productIdYearly: "fitness_centre_intermediate_yearly",
+                        tag: "MOST POPULAR",
+                        desc: "Everything in Base + Complete management software for one branch with multiple branch access and no cap on membership.",
+                        monthlyPrice: 1299,
+                        annualPrice: 13000,
+                        priceLabelMonthly: "month",
+                        priceLabelAnnual: "year (Save ~17%)",
+                        buttonText: "Buy Now",
+                        isPopular: true,
+                        features: [
+                            "Everything in Base Plan plus:",
+                            "Complete management software for one branch",
+                            "Multiple branch access with no cap on membership",
+                            "Free WhatsApp Messaging Integration for receipts & alerts",
+                            "Staff accounts with Role-Based Access Control (RBAC)",
+                            "Public classes & court / turf slot bookings",
+                            "Dynamic in-gym live member data & churn signals"
+                        ]
+                    },
+                    {
+                        tier: "TIER 03",
+                        name: "Advance",
+                        productIdMonthly: "fitness_centre_advance_monthly",
+                        productIdYearly: "fitness_centre_advance_yearly",
+                        tag: "BIOMETRIC SMART HUB",
+                        desc: "Everything in Intermediate + Biometric Integration (Face + Fingerprint) and RFID integration for turnstiles.",
+                        monthlyPrice: 3299,
+                        annualPrice: 26000,
+                        priceLabelMonthly: "month",
+                        priceLabelAnnual: "year (Save ~34%)",
+                        buttonText: "Buy Now",
+                        isPopular: false,
+                        features: [
+                            "Everything in Intermediate Plan plus:",
+                            "Biometric Integration (Face + Fingerprint)",
+                            "RFID card & smart wristband speed gate turnstiles",
+                            "Free WhatsApp Messaging Integration included",
+                            "Under-the-table PT detection & revenue protection",
+                            "Offline-ready local sync for 100% turnstile uptime",
+                            "Dedicated hardware technician setup & support"
+                        ]
+                    },
+                    {
+                        tier: "TIER 04",
+                        name: "Advance Pro",
+                        productIdMonthly: "fitness_centre_advance_pro_custom",
+                        productIdYearly: "fitness_centre_advance_pro_custom",
+                        tag: "ENTERPRISE & FRANCHISE",
+                        desc: "Everything in Advance + Unlimited Branches + 2 Job postings per month.",
+                        monthlyPrice: "Custom",
+                        annualPrice: "Custom",
+                        priceLabelMonthly: "custom pricing",
+                        priceLabelAnnual: "custom pricing",
+                        buttonText: "Contact Sales",
+                        isPopular: false,
+                        features: [
+                            "Everything in Advance Plan plus:",
+                            "Unlimited branches & multi-location franchises",
+                            "2 Job postings per month in fitness talent network",
+                            "Free WhatsApp Messaging Integration for all locations",
+                            "Centralized multi-club analytics & audit reports",
+                            "Dedicated enterprise account manager & 24/7 SLA"
+                        ]
+                    }
+                ]
+            },
+            trainers: {
+                title: "Trainers & Coaches",
+                subtitle: "Elevate your coaching business, manage 1-on-1 sessions, generate verified client leads, and expand your fitness career.",
+                plans: [
+                    {
+                        tier: "TIER 01",
+                        name: "Base Plan",
+                        productIdMonthly: null,
+                        productIdYearly: null,
+                        tag: "TRAINER FREE",
+                        desc: "Sign-up in the app, and associate with the gym you are working with.",
+                        monthlyPrice: 0,
+                        annualPrice: 0,
+                        priceLabelMonthly: "forever free",
+                        priceLabelAnnual: "forever free",
+                        buttonText: "Get Started Free",
+                        isPopular: false,
+                        features: [
+                            "Sign-up in the app & associate with your gym",
+                            "Create your own public coach profile",
+                            "Manage your clients (up to 10 active clients)",
+                            "Track your clients progress",
+                            "Push your clients and recommend diets & exercises",
+                            "Chat with your clients directly in-app",
+                            "Explore verified jobs in the fitness industry",
+                            "Create fitness events (INR-100 per event)"
+                        ]
+                    },
+                    {
+                        tier: "TIER 02",
+                        name: "Advance",
+                        productIdMonthly: "trainer_intermediate_monthly",
+                        productIdYearly: "trainer_intermediate_yearly",
+                        tag: "PRO COACH",
+                        desc: "Everything in BASE plan plus client lead generation, verified badges, and expanded roster capacity.",
+                        monthlyPrice: 699,
+                        annualPrice: 3999,
+                        priceLabelMonthly: "month",
+                        priceLabelAnnual: "year (Save ~52%)",
+                        buttonText: "Buy Now",
+                        isPopular: true,
+                        features: [
+                            "Everything in BASE plan plus:",
+                            "Apply to 10 Jobs Daily across partner gyms",
+                            "Get discovered in Find a Fitness Coach directory",
+                            "Create 2 complimentary events monthly",
+                            "Manage your clients (up to 1,000 clients)",
+                            "Get leads of new clients (up to 3 leads daily)",
+                            "Eligible for badges & achievements to boost trust",
+                            "Refer clients for products & earn commissions",
+                            "Push your clients and recommend diets & exercises"
+                        ]
+                    },
+                    {
+                        tier: "TIER 03",
+                        name: "Advance Pro",
+                        productIdMonthly: "trainer_advance_pro_monthly",
+                        productIdYearly: "trainer_advance_pro_yearly",
+                        tag: "TOP RANKING",
+                        desc: "Everything in ADVANCE plan plus 100 daily jobs, boosted top coach discovery, and unlimited client leads.",
+                        monthlyPrice: 1299,
+                        annualPrice: 6499,
+                        priceLabelMonthly: "month",
+                        priceLabelAnnual: "year (Save ~58%)",
+                        buttonText: "Buy Now",
+                        isPopular: false,
+                        features: [
+                            "Everything in ADVANCE plan plus:",
+                            "Apply to 100 Jobs Daily across gym networks",
+                            "Boosted to the very top in Find a Fitness Coach",
+                            "Create 10 complimentary events monthly",
+                            "Manage your clients (up to 1,000 clients)",
+                            "Get leads of new clients (no limits on leads)",
+                            "Top placement in job applicant lists for fitness centres",
+                            "Increase income by connecting with fitness communities"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function updatePricingGlider(btn, animate = true) {
+            const glider = document.getElementById('pricing-audience-glider');
+            if (!glider || !btn) return;
+
+            const left = btn.offsetLeft;
+            const top = btn.offsetTop;
+            const width = btn.offsetWidth;
+            const height = btn.offsetHeight;
+
+            if (width === 0) return;
+
+            if (animate && window.gsap) {
+                gsap.to(glider, {
+                    left: left,
+                    top: top,
+                    width: width,
+                    height: height,
+                    duration: 0.32,
+                    ease: "power3.out"
+                });
+            } else {
+                glider.style.left = `${left}px`;
+                glider.style.top = `${top}px`;
+                glider.style.width = `${width}px`;
+                glider.style.height = `${height}px`;
+            }
+        }
+
+        function switchPricingAudience(audienceKey, btn) {
+            currentPricingAudience = audienceKey;
+            const targetBtn = btn || document.getElementById(audienceKey === 'centres' ? 'pricing-btn-centres' : 'pricing-btn-trainers');
+
+            document.querySelectorAll('.pricing-audience-btn').forEach(b => {
+                b.classList.remove('active', 'text-white', 'font-bold');
+                b.classList.add('text-charcoal/70', 'dark:text-chalk/70', 'font-semibold');
+            });
+
+            if (targetBtn) {
+                targetBtn.classList.add('active', 'text-white', 'font-bold');
+                targetBtn.classList.remove('text-charcoal/70', 'dark:text-chalk/70', 'font-semibold');
+                updatePricingGlider(targetBtn, true);
+            }
+
+            const container = document.getElementById('pricing-cards-container');
+            if (container) {
+                if (window.gsap) {
+                    gsap.to(container, {
+                        opacity: 0,
+                        y: 10,
+                        duration: 0.16,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            renderPricingCards();
+                            gsap.fromTo(container, 
+                                { opacity: 0, y: -10 },
+                                { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }
+                            );
+                        }
+                    });
+                } else {
+                    renderPricingCards();
+                }
+            } else {
+                renderPricingCards();
+            }
+        }
+
+        function renderPricingCards() {
+            const container = document.getElementById('pricing-cards-container');
+            if (!container) return;
+
+            const audienceGroup = pricingData[currentPricingAudience] || pricingData.centres;
+            const plans = audienceGroup.plans;
+
+            // Responsive grid adjusts automatically for 3 or 4 cards
+            container.className = plans.length >= 4 
+                ? "cards-grid perspective-stage grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch w-full mb-10"
+                : "cards-grid perspective-stage grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch w-full mb-10";
+
+            container.innerHTML = plans.map((plan, index) => {
+                const isFree = plan.monthlyPrice === 0;
+                const isCustom = plan.monthlyPrice === 'Custom';
+                const price = isCustom ? 'Custom' : (isAnnualPricing ? plan.annualPrice : plan.monthlyPrice);
+                const cycle = isFree ? 'free' : (isCustom ? 'custom' : (isAnnualPricing ? 'annual' : 'monthly'));
+                const priceLabel = isCustom ? 'bespoke quote' : (isAnnualPricing ? plan.priceLabelAnnual : plan.priceLabelMonthly);
+                const priceFormatted = isFree ? '₹0' : (isCustom ? 'Custom' : `₹${price.toLocaleString()}`);
+
+                return `
+                    <div class="card-wrapper" data-delay="${(index * 0.12).toFixed(2)}">
+                        <div class="card orange ${plan.isPopular ? 'popular-card' : ''}">
+                            <div class="card-highlight-bar"></div>
+
+                            ${plan.isPopular ? `
+                            <div class="popular-ribbon">
+                                <span><i class="fa-solid fa-fire text-amber-300"></i> ${plan.tag}</span>
+                            </div>` : ''}
+
+                            <div class="flex items-center justify-between w-full mb-3">
+                                <span class="card-icon text-accent-orange">
+                                    <i class="fa-solid ${isFree ? 'fa-seedling' : (isCustom ? 'fa-network-wired' : (index === 1 ? 'fa-bolt' : 'fa-crown'))} text-2xl"></i>
+                                </span>
+                                <span class="font-mono text-[10px] font-bold text-accent-orange bg-accent-orange/15 px-2.5 py-0.5 rounded-full border border-accent-orange/30">${plan.tier}</span>
+                            </div>
+
+                            <div class="card-tags">
+                                <span class="card-tag">${plan.tag}</span>
+                                ${plan.features.some(f => f.includes('WhatsApp')) ? '<span class="card-tag bg-[#25D366]/20 text-[#25D366] border-[#25D366]/40">FREE WHATSAPP</span>' : ''}
+                            </div>
+
+                            <h3 class="card-title font-bebas text-3xl sm:text-4xl tracking-wide ${plan.isPopular ? 'text-accent-orange' : ''}">${plan.name}</h3>
+                            <p class="card-description">${plan.desc}</p>
+
+                            <div class="card-price-row flex items-baseline gap-1.5 pb-4 mb-4 border-b border-white/10">
+                                <span class="font-bebas text-4xl sm:text-5xl ${plan.isPopular ? 'text-accent-orange' : 'text-charcoal dark:text-chalk'} leading-none">${priceFormatted}</span>
+                                <span class="text-xs font-mono font-bold text-charcoal/60 dark:text-chalk/60 uppercase">/ ${priceLabel}</span>
+                            </div>
+
+                            <ul class="card-features">
+                                ${plan.features.map(f => {
+                                    const isWhatsApp = f.includes('WhatsApp');
+                                    return `
+                                        <li class="card-feature ${isWhatsApp ? 'text-[#25D366] font-bold' : ''}">
+                                            ${isWhatsApp ? '<i class="fa-brands fa-whatsapp text-sm mr-1 text-[#25D366]"></i>' : ''}
+                                            ${f}
+                                        </li>
+                                    `;
+                                }).join('')}
+                            </ul>
+
+                            <div class="card-btn-wrapper mt-auto flex flex-col gap-2">
+                                <button onclick="${isCustom ? "appRouter.navigateLandingSection('book-demo')" : `appRouter.startPlanCheckout('${plan.name} (${audienceGroup.title})', ${isFree ? 0 : price}, '${cycle}')`}" class="card-btn">
+                                    <span>${plan.buttonText}</span>
+                                    <span>→</span>
+                                </button>
+                                <button type="button" onclick="openPlanDetailsModal(${index}, '${currentPricingAudience}')" class="card-view-details-btn">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span>View Details</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Re-bind Luxury 3D Cards
+            if (typeof LuxuryCard3D !== 'undefined') {
+                container.querySelectorAll('.card').forEach(el => new LuxuryCard3D(el));
+            }
+        }
+
+        function openPlanDetailsModal(planIndex, audienceKey = currentPricingAudience) {
+            const group = pricingData[audienceKey] || pricingData.centres;
+            const plan = group.plans[planIndex];
+            if (!plan) return;
+
+            const modalOverlay = document.getElementById('plan-details-modal');
+            if (!modalOverlay) return;
+
+            const titleEl = document.getElementById('plan-modal-title');
+            const tierEl = document.getElementById('plan-modal-tier');
+            const priceEl = document.getElementById('plan-modal-price');
+            const descEl = document.getElementById('plan-modal-desc');
+            const prodIdEl = document.getElementById('plan-modal-product-id');
+            const listEl = document.getElementById('plan-modal-features-list');
+            const actionBtn = document.getElementById('plan-modal-action-btn');
+
+            if (titleEl) titleEl.textContent = plan.name;
+            if (tierEl) tierEl.textContent = `${plan.tier} • ${group.title.toUpperCase()}`;
+            if (descEl) descEl.textContent = plan.desc;
+
+            const isFree = plan.monthlyPrice === 0;
+            const isCustom = plan.monthlyPrice === 'Custom';
+            let priceText = '₹0 / Forever Free';
+            if (isCustom) {
+                priceText = 'Custom Enterprise Pricing';
+            } else if (!isFree) {
+                const currentP = isAnnualPricing ? plan.annualPrice : plan.monthlyPrice;
+                const cycle = isAnnualPricing ? 'year' : 'month';
+                priceText = `₹${currentP.toLocaleString()} / ${cycle}`;
+            }
+            if (priceEl) priceEl.textContent = priceText;
+
+            const prodId = isAnnualPricing ? plan.productIdYearly : plan.productIdMonthly;
+            if (prodIdEl) {
+                if (prodId) {
+                    prodIdEl.innerHTML = `<span class="text-charcoal/50 dark:text-chalk/50">App Store Product ID:</span> <code class="px-2.5 py-1 rounded-md bg-black/10 dark:bg-white/10 font-mono text-[11px] text-accent-orange font-bold">${prodId}</code>`;
+                    prodIdEl.classList.remove('hidden');
+                } else {
+                    prodIdEl.classList.add('hidden');
+                }
+            }
+
+            if (listEl) {
+                listEl.innerHTML = plan.features.map(f => {
+                    const isWhatsApp = f.includes('WhatsApp');
+                    return `
+                        <li class="flex items-start gap-2.5 py-1.5 ${isWhatsApp ? 'text-[#25D366] font-bold' : 'text-charcoal/85 dark:text-chalk/85'}">
+                            <i class="${isWhatsApp ? 'fa-brands fa-whatsapp text-[#25D366]' : 'fa-solid fa-circle-check text-accent-orange'} mt-1 text-xs shrink-0"></i>
+                            <span class="text-xs sm:text-sm">${f}</span>
+                        </li>
+                    `;
+                }).join('');
+            }
+
+            if (actionBtn) {
+                actionBtn.onclick = () => {
+                    closePlanDetailsModal();
+                    if (isCustom) {
+                        appRouter.navigateLandingSection('book-demo');
+                    } else {
+                        const cycle = isFree ? 'free' : (isAnnualPricing ? 'annual' : 'monthly');
+                        const pVal = isFree ? 0 : (isAnnualPricing ? plan.annualPrice : plan.monthlyPrice);
+                        appRouter.startPlanCheckout(`${plan.name} (${group.title})`, pVal, cycle);
+                    }
+                };
+                actionBtn.textContent = isCustom ? 'Inquire / Book Demo' : plan.buttonText;
+            }
+
+            modalOverlay.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modalOverlay.classList.remove('opacity-0');
+                const card = document.getElementById('plan-modal-card');
+                if (card) card.classList.remove('scale-95');
+            });
+        }
+
+        function closePlanDetailsModal() {
+            const modalOverlay = document.getElementById('plan-details-modal');
+            if (!modalOverlay) return;
+            modalOverlay.classList.add('opacity-0');
+            const card = document.getElementById('plan-modal-card');
+            if (card) card.classList.add('scale-95');
+            setTimeout(() => {
+                modalOverlay.classList.add('hidden');
+            }, 300);
+        }
+
         function toggleBilling() {
             isAnnualPricing = !isAnnualPricing;
             const knob = document.getElementById('pricing-toggle-knob');
-            const trainerEl = document.getElementById('price-trainer');
-            const ownerEl = document.getElementById('price-owner');
             const labelMonthly = document.getElementById('label-monthly');
             const labelAnnual = document.getElementById('label-annual');
 
             if (isAnnualPricing) {
                 if (knob) knob.classList.add('translate-x-6');
-                if (trainerEl) {
-                    gsap.fromTo(trainerEl, { scale: 0.85, opacity: 0.3 }, { scale: 1, opacity: 1, duration: 0.3, onStart: () => trainerEl.textContent = '₹1,199' });
-                }
-                if (ownerEl) {
-                    gsap.fromTo(ownerEl, { scale: 0.85, opacity: 0.3 }, { scale: 1, opacity: 1, duration: 0.3, onStart: () => ownerEl.textContent = '₹3,199' });
-                }
                 if (labelAnnual) {
                     labelAnnual.classList.replace('text-charcoal/60', 'text-charcoal');
                     labelAnnual.classList.replace('dark:text-chalk/60', 'dark:text-chalk');
@@ -1579,15 +1986,9 @@
                     labelMonthly.classList.replace('text-charcoal', 'text-charcoal/60');
                     labelMonthly.classList.replace('dark:text-chalk', 'dark:text-chalk/60');
                 }
-                openDownloadNotice("Annual Billing Active — 20% discount unlocked!", "fa-percent");
+                openDownloadNotice("Annual Billing Active — Discounted pricing unlocked!", "fa-percent");
             } else {
                 if (knob) knob.classList.remove('translate-x-6');
-                if (trainerEl) {
-                    gsap.fromTo(trainerEl, { scale: 0.85, opacity: 0.3 }, { scale: 1, opacity: 1, duration: 0.3, onStart: () => trainerEl.textContent = '₹1,499' });
-                }
-                if (ownerEl) {
-                    gsap.fromTo(ownerEl, { scale: 0.85, opacity: 0.3 }, { scale: 1, opacity: 1, duration: 0.3, onStart: () => ownerEl.textContent = '₹3,999' });
-                }
                 if (labelMonthly) {
                     labelMonthly.classList.replace('text-charcoal/60', 'text-charcoal');
                     labelMonthly.classList.replace('dark:text-chalk/60', 'dark:text-chalk');
@@ -1598,6 +1999,93 @@
                 }
                 openDownloadNotice("Monthly Billing Active — Flexible plan", "fa-calendar");
             }
+            renderPricingCards();
+        }
+
+        /* -------------------------------------------------------------
+           POLICY MODAL HANDLERS (5 LIVE OFFICIAL POLICIES)
+           ------------------------------------------------------------- */
+        function openPolicyModal(policyKey = 'terms') {
+            const overlay = document.getElementById('policy-modal-overlay');
+            if (!overlay) return;
+            overlay.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                overlay.classList.remove('opacity-0');
+                const card = document.getElementById('policy-modal-card');
+                if (card) card.classList.remove('scale-95');
+            });
+            switchPolicyTab(policyKey);
+        }
+
+        function closePolicyModal() {
+            const overlay = document.getElementById('policy-modal-overlay');
+            if (!overlay) return;
+            overlay.classList.add('opacity-0');
+            const card = document.getElementById('policy-modal-card');
+            if (card) card.classList.add('scale-95');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 300);
+        }
+
+        function switchPolicyTab(policyKey) {
+            document.querySelectorAll('.policy-tab-btn').forEach(btn => {
+                if (btn.getAttribute('data-policy') === policyKey) {
+                    btn.classList.add('active');
+                    btn.classList.remove('text-charcoal/70', 'dark:text-chalk/70');
+                } else {
+                    btn.classList.remove('active');
+                    btn.classList.add('text-charcoal/70', 'dark:text-chalk/70');
+                }
+            });
+
+            const bodyEl = document.getElementById('policy-modal-body');
+            const titleEl = document.getElementById('policy-modal-title');
+            if (!bodyEl) return;
+
+            const policies = window.dorfiePolicies || {};
+            const policy = policies[policyKey];
+
+            if (policy) {
+                if (titleEl) titleEl.textContent = policy.title.toUpperCase();
+                bodyEl.innerHTML = `
+                    <div class="mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-accent-orange font-bold">
+                        <span>LAST UPDATED: ${policy.lastUpdated}</span>
+                        <span>OFFICIAL DORFIE FIT POLICY</span>
+                    </div>
+                    <div class="policy-raw-content whitespace-pre-line font-sans text-xs sm:text-sm text-charcoal/85 dark:text-chalk/85 leading-relaxed">
+                        ${escapePolicyHtml(policy.content)}
+                    </div>
+                `;
+            } else {
+                bodyEl.innerHTML = `<p class="text-sm font-mono text-red-400">Policy document not found.</p>`;
+            }
+        }
+
+        function escapePolicyHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function handleDemoSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.querySelector('[name="demo_name"]')?.value || 'Guest';
+            openDownloadNotice(`Demo request received for ${name}! Our team will connect via WhatsApp within 24 hours.`, 'fa-calendar-check');
+            form.reset();
+        }
+
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const emailInput = form.querySelector('input[type="email"]');
+            const email = emailInput ? emailInput.value : '';
+            openDownloadNotice(`Subscribed ${email} to Dorfie Fit updates!`, 'fa-envelope-circle-check');
+            form.reset();
         }
 
         function toggleColorMode() {
@@ -2426,6 +2914,8 @@
                     capyCompanion.init();
                     const activeRoleBtn = document.querySelector('.feature-tab-btn.active');
                     if (activeRoleBtn) updateRoleGlider(activeRoleBtn, false);
+                    const activePricingBtn = document.querySelector('.pricing-audience-btn.active');
+                    if (activePricingBtn) updatePricingGlider(activePricingBtn, false);
                 }
             });
 
@@ -2470,6 +2960,9 @@
         }
 
         function initSubscriptionCards() {
+            renderPricingCards();
+            const activePricingBtn = document.querySelector('.pricing-audience-btn.active');
+            if (activePricingBtn) updatePricingGlider(activePricingBtn, false);
             const wrappers = document.querySelectorAll("#pricing .card-wrapper");
             if (!wrappers.length) return;
 
@@ -2520,12 +3013,16 @@
             setTimeout(() => {
                 const activeRoleBtn = document.querySelector('.feature-tab-btn.active');
                 if (activeRoleBtn) updateRoleGlider(activeRoleBtn, false);
+                const activePricingBtn = document.querySelector('.pricing-audience-btn.active');
+                if (activePricingBtn) updatePricingGlider(activePricingBtn, false);
             }, 60);
         });
         window.addEventListener('resize', () => {
             if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
             const activeRoleBtn = document.querySelector('.feature-tab-btn.active');
             if (activeRoleBtn) updateRoleGlider(activeRoleBtn, false);
+            const activePricingBtn = document.querySelector('.pricing-audience-btn.active');
+            if (activePricingBtn) updatePricingGlider(activePricingBtn, false);
         });
 
         // Expose global handlers & interfaces for seamless inline HTML handler integration
@@ -2541,6 +3038,14 @@
             window.scrollToTop = scrollToTop;
             window.switchTab = switchTab;
             window.toggleBilling = toggleBilling;
+            window.switchPricingAudience = switchPricingAudience;
+            window.updatePricingGlider = updatePricingGlider;
+            window.renderPricingCards = renderPricingCards;
+            window.openPolicyModal = openPolicyModal;
+            window.closePolicyModal = closePolicyModal;
+            window.switchPolicyTab = switchPolicyTab;
+            window.handleDemoSubmit = handleDemoSubmit;
+            window.handleNewsletterSubmit = handleNewsletterSubmit;
             window.toggleColorMode = toggleColorMode;
             window.toggleMobileNav = toggleMobileNav;
             window.togglePasswordVisibility = togglePasswordVisibility;

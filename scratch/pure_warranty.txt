@@ -1,0 +1,27 @@
+﻿tp-cursor-effect
+tp-magnetic-wrap
+a.tp-magnetic-item
+containe app-hero-heading
+terms-hero-content app-hero-heading
+terms-title tp_fade_anim
+terms-subtitle tp_fade_anim
+Understanding our service guarantees and limitations
+terms-content-wrapper
+terms-card tp_fade_anim
+Dorfie Labs Pvt Ltd (â€œweâ€, â€œourâ€, â€œusâ€) provides Dorfie Fit as a digital platform connecting members, trainers, and fitness centres / studio owners . Please read the following carefully:
+No Guarantee on Fitness Results
+Dorfie Fit provides tools, programs, and connections to facilitate your fitness journey.
+Individual results may vary based on effort, adherence, and personal circumstances.
+We do not guarantee specific outcomes, including weight loss, muscle gain, or fitness performance.
+Service Availability
+Dorfie Fit strives for uninterrupted, high-quality service across iOS, Android, and Web platforms.
+We cannot guarantee 100% uptime due to technical issues, maintenance, or third-party disruptions.
+Third-Party Services
+Trainers, studios / fitness centre owners and other users provide content, sessions, or advice.
+Dorfie Fit is not responsible for the quality, accuracy, or safety of third-party services.
+Liability Limitations
+By using Dorfie Fit, you agree to assume all risks associated with your participation in fitness activities.
+We are not liable for injuries, losses, or damages arising from use of the platform or third-party services.
+Questions about our Warranty Policy? Contact us at
+mailto:support@dorfiefit.com
+support@dorfiefit.com

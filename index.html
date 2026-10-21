@@ -176,7 +176,7 @@
     </svg>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" data-magnetic
+    <a href="https://wa.me/918585906628" target="_blank" rel="noopener noreferrer" data-magnetic
         class="whatsapp-float flex items-center gap-2 sm:gap-3 px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-full bg-[#25D366] text-white font-extrabold text-xs uppercase tracking-wider shadow-2xl border border-white/40 backdrop-blur-md">
         <span class="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white animate-ping"></span>
         <i class="fa-brands fa-whatsapp text-base sm:text-lg"></i>
@@ -190,9 +190,20 @@
         </div>
     </div>
 
+    <!-- Dynamic Offers Ribbon (Whimsical Primary Reference / Client Integration) -->
+    <div id="dynamic-offers-ribbon" class="offers-ribbon">
+        <span class="inline-flex items-center gap-1.5 font-bold">
+            <i class="fa-brands fa-whatsapp text-sm text-white"></i>
+            <span>FREE WHATSAPP MESSAGING INTEGRATION</span>
+        </span>
+        <span class="opacity-70 hidden sm:inline">|</span>
+        <span class="hidden sm:inline">Included With All Centre Subscriptions • Zero Commission Direct Payments</span>
+        <a href="#pricing" onclick="appRouter.navigateLandingSection('pricing', event)" class="underline hover:text-white/80 ml-1.5 font-extrabold">Explore Plans →</a>
+    </div>
+
     <!-- Navigation Header -->
     <header id="main-header"
-        class="fixed top-2 sm:top-4 md:top-5 left-0 right-0 z-40 px-2.5 sm:px-6 md:px-8 max-w-[1400px] mx-auto transition-all duration-300">
+        class="fixed top-9 sm:top-11 md:top-12 left-0 right-0 z-40 px-2.5 sm:px-6 md:px-8 max-w-[1400px] mx-auto transition-all duration-300">
         <div id="main-header-panel"
             class="liquid-glass-pill px-3.5 sm:px-6 md:px-8 py-2 sm:py-3.5 flex items-center justify-between shadow-xl transition-all duration-300 gap-2 sm:gap-4">
             <!-- Brand Logo: Full Size Prominent Display -->
@@ -204,26 +215,24 @@
                     class="h-8 sm:h-10 md:h-12 w-auto max-w-[120px] sm:max-w-none object-contain object-center select-none transition-transform duration-300 group-hover:scale-105 drop-shadow-sm mx-auto" />
             </a>
 
-            <!-- Minimal Navigation Links -->
+            <!-- Whimsical Navigation Links -->
             <nav
-                class="hidden lg:flex items-center gap-2 text-[14px] sm:text-[15px] font-semibold text-charcoal/85 dark:text-chalk/85">
+                class="hidden lg:flex items-center gap-1 text-[13px] sm:text-[14px] font-semibold text-charcoal/85 dark:text-chalk/85">
                 <a href="#about" onclick="appRouter.navigateLandingSection('about', event)" data-target="about"
                     data-magnetic
-                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">About</a>
+                    class="nav-section-link px-3.5 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">About us</a>
                 <a href="#features" onclick="appRouter.navigateLandingSection('features', event)" data-target="features"
                     data-magnetic
-                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Features</a>
+                    class="nav-section-link px-3.5 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Our Features</a>
                 <a href="#pricing" onclick="appRouter.navigateLandingSection('pricing', event)" data-target="pricing"
                     data-magnetic
-                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Pricing</a>
-                <a href="#why-dorfie" onclick="appRouter.navigateLandingSection('why-dorfie', event)"
-                    data-target="why-dorfie" data-magnetic
-                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Why
-                    Dorfie</a>
+                    class="nav-section-link px-3.5 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Subscriptions</a>
                 <a href="#software-apps" onclick="appRouter.navigateLandingSection('software-apps', event)"
                     data-target="software-apps" data-magnetic
-                    class="nav-section-link px-4 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Apps
-                    &amp; QR</a>
+                    class="nav-section-link px-3.5 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Download</a>
+                <a href="#book-demo" onclick="appRouter.navigateLandingSection('book-demo', event)"
+                    data-target="book-demo" data-magnetic
+                    class="nav-section-link px-3.5 py-2 rounded-full border border-transparent hover:text-accent-orange transition-all">Book a Demo</a>
             </nav>
 
             <!-- Actions: Theme Toggle + Auth -->
@@ -252,17 +261,17 @@
         <div id="mobile-nav-drawer"
             class="lg:hidden mt-2 p-4 sm:p-5 liquid-glass-panel hidden flex-col gap-2.5 sm:gap-3 shadow-2xl">
             <a href="#about" onclick="toggleMobileNav(); appRouter.navigateLandingSection('about', event)"
-                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">About</a>
+                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">About us</a>
             <a href="#features" onclick="toggleMobileNav(); appRouter.navigateLandingSection('features', event)"
-                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Features</a>
+                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Our Features</a>
             <a href="#pricing" onclick="toggleMobileNav(); appRouter.navigateLandingSection('pricing', event)"
-                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Pricing</a>
-            <a href="#why-dorfie" onclick="toggleMobileNav(); appRouter.navigateLandingSection('why-dorfie', event)"
-                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Why
-                Dorfie</a>
+                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Subscriptions</a>
             <a href="#software-apps"
                 onclick="toggleMobileNav(); appRouter.navigateLandingSection('software-apps', event)"
-                class="py-2 text-sm font-semibold text-accent-orange">Apps &amp; QR</a>
+                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Download</a>
+            <a href="#book-demo"
+                onclick="toggleMobileNav(); appRouter.navigateLandingSection('book-demo', event)"
+                class="py-2 text-sm font-semibold text-accent-orange font-bold">Book a Demo</a>
             <div id="mobile-drawer-auth"
                 class="pt-3 border-t border-charcoal/10 dark:border-white/10 flex flex-col gap-2">
                 <button onclick="toggleMobileNav(); appRouter.openAuth('login')"
@@ -335,55 +344,54 @@
              ========================================================================== -->
         <div id="view-home" class="view-panel block">
 
-            <!-- Hero Section -->
+            <!-- Hero Section (Whimsical Frame 2) -->
             <section id="hero"
-                class="min-h-[100svh] pt-24 sm:pt-32 md:pt-40 pb-6 sm:pb-10 px-4 sm:px-8 lg:px-10 max-w-7xl mx-auto flex flex-col justify-between">
+                class="min-h-[100svh] pt-28 sm:pt-36 md:pt-44 pb-6 sm:pb-10 px-4 sm:px-8 lg:px-10 max-w-7xl mx-auto flex flex-col justify-between">
                 <div class="my-auto w-full py-4 sm:py-6">
                     <div
                         class="inline-flex flex-wrap items-center gap-1.5 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 liquid-glass-pill text-[10px] sm:text-xs font-mono uppercase tracking-wider mb-5 sm:mb-8 text-charcoal dark:text-chalk max-w-full leading-normal">
                         <span class="w-2.5 h-2.5 rounded-full bg-accent-orange animate-pulse shrink-0"></span>
-                        <span>CONNECTED GYM ECOSYSTEM</span>
+                        <span>HOLISTIC • CONNECTED • COMMUNITY DRIVEN FITNESS</span>
                         <span class="text-charcoal/30 dark:text-white/30 hidden xs:inline">|</span>
-                        <span class="text-accent-orange font-bold">SMART FITNESS PLATFORM</span>
+                        <span class="text-emerald-500 font-bold"><i class="fa-brands fa-whatsapp mr-1"></i> FREE WHATSAPP MESSAGING INTEGRATION</span>
                     </div>
 
                     <h1
-                        class="split-kinetic-text hero-heading font-bebas text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] text-charcoal dark:text-chalk leading-[0.94] tracking-tight uppercase mb-6 sm:mb-10 select-none">
-                        <span class="block">CONNECTED <span class="text-accent-orange">ECOSYSTEM</span></span>
-                        <span class="block">FOR MODERN <span
-                                class="font-serif italic font-normal tracking-normal text-charcoal/80 dark:text-chalk/80">ATHLETES</span></span>
-                        <span class="block">&amp; FITNESS HUBS.</span>
+                        class="split-kinetic-text hero-heading font-bebas text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] text-charcoal dark:text-chalk leading-[0.94] tracking-tight uppercase mb-6 sm:mb-10 select-none">
+                        <span class="block">BUILT FOR EVERY MEMBER</span>
+                        <span class="block">OF YOUR <span class="text-accent-orange">FITNESS COMMUNITY.</span></span>
                     </h1>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-end w-full">
                         <p
                             class="md:col-span-7 text-charcoal/80 dark:text-chalk/80 text-base sm:text-xl md:text-2xl font-medium leading-relaxed max-w-2xl">
-                            Unifying physical access hardware, biometric turnstiles, and member mobile passes. Built for
-                            modern gym owners, independent personal trainers, and fitness enthusiasts.
+                            “A gym is a community with equipment, not equipment with members.” Whether you're managing a fitness centre, training clients, or working out, Dorfie Fit brings operations, biometric turnstiles, and member experience together into one connected platform with zero commission fees.
                         </p>
 
                         <div class="md:col-span-5 flex flex-wrap gap-3 sm:gap-4 md:justify-end items-center w-full">
-                            <a href="#software-apps" data-magnetic
+                            <a href="#book-demo" onclick="appRouter.navigateLandingSection('book-demo', event)"
+                                data-magnetic
                                 class="liquid-glass-btn-orange w-full sm:w-auto px-7 sm:px-9 py-4 rounded-full font-black text-xs sm:text-sm uppercase tracking-widest flex items-center justify-center gap-2 whitespace-nowrap shadow-lg">
-                                <i class="fa-solid fa-qrcode text-base"></i> Download Apps
+                                <i class="fa-solid fa-calendar-check text-base"></i> Book a Demo
                             </a>
-                            <a href="#about" data-magnetic
+                            <a href="#pricing" onclick="appRouter.navigateLandingSection('pricing', event)"
+                                data-magnetic
                                 class="liquid-glass-pill w-full sm:w-auto px-7 sm:px-8 py-4 font-black text-xs sm:text-sm uppercase tracking-widest text-charcoal dark:text-chalk hover:text-accent-orange text-center whitespace-nowrap shadow-sm">
-                                Explore Platform
+                                Explore Plans
                             </a>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Live Gym Status Ticker -->
+                <!-- Live Gym Status Ticker with Free WhatsApp Messaging Integration -->
                 <div
                     class="liquid-glass-pill py-2 sm:py-3.5 px-3 sm:px-6 rounded-full border border-charcoal/10 dark:border-white/10 shadow-xl overflow-hidden relative backdrop-blur-md mt-5 sm:mt-8">
                     <div class="marquee-inner-wrap flex items-center whitespace-nowrap">
                         <div
                             class="marquee-content-chunk flex items-center gap-4 sm:gap-8 font-bebas text-sm sm:text-2xl md:text-3xl tracking-wider text-charcoal dark:text-chalk px-2 sm:px-4">
                             <span class="inline-flex items-center gap-2.5 text-accent-orange"><i
-                                    class="fa-solid fa-bolt"></i> 100% UNIFIED DATA FLOW</span>
+                                    class="fa-brands fa-whatsapp text-emerald-500"></i> FREE WHATSAPP MESSAGING INTEGRATION</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
                             <span>BIOMETRIC FACE CLEARANCE</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
@@ -391,21 +399,19 @@
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
                             <span>LIVE GYM OCCUPANCY</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
-                            <span
-                                class="inline-flex items-center gap-2 text-green-500 font-mono text-xs sm:text-xl font-bold"><i
-                                    class="fa-solid fa-stopwatch"></i> &lt; 0.18s LATENCY</span>
+                            <span class="inline-flex items-center gap-2 text-green-500 font-mono text-xs sm:text-xl font-bold"><i
+                                    class="fa-solid fa-hand-holding-dollar"></i> ZERO COMMISSIONS</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
                             <span>SEAMLESS MEMBERSHIP BILLING</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
                             <span>SMART ACCESS GATES</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
-                            <span class="text-accent-orange font-mono text-xs sm:text-xl font-bold">24/7 AUTOMATED
-                                ENTRY</span>
+                            <span class="text-accent-orange font-mono text-xs sm:text-xl font-bold">24/7 AUTOMATED ENTRY</span>
                         </div>
                         <div class="marquee-content-chunk flex items-center gap-6 sm:gap-8 font-bebas text-sm sm:text-2xl md:text-3xl tracking-wider text-charcoal dark:text-chalk px-4"
                             aria-hidden="true">
                             <span class="inline-flex items-center gap-2.5 text-accent-orange"><i
-                                    class="fa-solid fa-bolt"></i> 100% UNIFIED DATA FLOW</span>
+                                    class="fa-brands fa-whatsapp text-emerald-500"></i> FREE WHATSAPP MESSAGING INTEGRATION</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
                             <span>BIOMETRIC FACE CLEARANCE</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
@@ -413,16 +419,248 @@
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
                             <span>LIVE GYM OCCUPANCY</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
-                            <span
-                                class="inline-flex items-center gap-2 text-green-500 font-mono text-xs sm:text-xl font-bold"><i
-                                    class="fa-solid fa-stopwatch"></i> &lt; 0.18s LATENCY</span>
+                            <span class="inline-flex items-center gap-2 text-green-500 font-mono text-xs sm:text-xl font-bold"><i
+                                    class="fa-solid fa-hand-holding-dollar"></i> ZERO COMMISSIONS</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
                             <span>SEAMLESS MEMBERSHIP BILLING</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
                             <span>SMART ACCESS GATES</span>
                             <span class="text-charcoal/20 dark:text-white/20">•</span>
-                            <span class="text-accent-orange font-mono text-xs sm:text-xl font-bold">24/7 AUTOMATED
-                                ENTRY</span>
+                            <span class="text-accent-orange font-mono text-xs sm:text-xl font-bold">24/7 AUTOMATED ENTRY</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================================================
+                 EXPLORE EVENTS SECTION (Whimsical Frame 3)
+                 ========================================================================== -->
+            <section id="events" class="py-16 sm:py-24 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                <div class="liquid-glass-panel p-5 sm:p-10 lg:p-14 relative w-full flex flex-col justify-between shadow-2xl">
+                    <div class="card-glare"></div>
+
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6 relative z-10">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 liquid-glass-pill text-[9px] sm:text-xs font-mono uppercase tracking-widest mb-4 text-accent-orange font-bold">
+                                <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
+                                <span>COMMUNITY GATHERINGS &amp; WORKSHOPS</span>
+                            </div>
+                            <h2 class="split-kinetic-text font-bebas text-4xl sm:text-6xl lg:text-7xl text-charcoal dark:text-chalk leading-[0.95] uppercase tracking-wide">
+                                EXPLORE <span class="text-accent-orange">EVENTS</span>
+                            </h2>
+                            <p class="text-xs sm:text-base text-charcoal/75 dark:text-chalk/75 font-semibold max-w-xl mt-3 leading-relaxed">
+                                Participate in high-energy marathons, community bootcamps, and masterclasses hosted across our verified network.
+                            </p>
+                        </div>
+                        <div class="shrink-0">
+                            <a href="#book-demo" onclick="appRouter.navigateLandingSection('book-demo', event)"
+                                class="liquid-glass-pill px-5 py-3 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-charcoal dark:text-chalk hover:text-accent-orange flex items-center gap-2">
+                                <span>Host an Event</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 3 Upcoming Event Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 relative z-10">
+                        <!-- Event 1 -->
+                        <div class="community-card p-6 flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-accent-orange/15 text-accent-orange font-mono text-[10px] font-bold uppercase border border-accent-orange/30">Community Run</span>
+                                    <span class="text-[10px] font-mono text-charcoal/60 dark:text-chalk/60 uppercase">Oct 25, 2026</span>
+                                </div>
+                                <h3 class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk mb-2 group-hover:text-accent-orange transition-colors">
+                                    Dorfie Sunrise Run &amp; Mobility Flow
+                                </h3>
+                                <p class="text-xs text-charcoal/70 dark:text-chalk/70 leading-relaxed mb-4">
+                                    5K community run followed by guided mobility, cool-down breathwork, and healthy hydration with fellow athletes.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-charcoal/10 dark:border-white/10 flex items-center justify-between text-xs font-mono text-charcoal/60 dark:text-chalk/60">
+                                <span><i class="fa-solid fa-location-dot text-accent-orange mr-1"></i> Central Park / Marine Drive</span>
+                                <span class="font-bold text-accent-orange">6:00 AM</span>
+                            </div>
+                        </div>
+
+                        <!-- Event 2 -->
+                        <div class="community-card p-6 flex flex-col justify-between group border-accent-orange/40">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-500 font-mono text-[10px] font-bold uppercase border border-emerald-500/30">Championship</span>
+                                    <span class="text-[10px] font-mono text-charcoal/60 dark:text-chalk/60 uppercase">Nov 12, 2026</span>
+                                </div>
+                                <h3 class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk mb-2 group-hover:text-accent-orange transition-colors">
+                                    CrossFit Power &amp; Conditioning Championship
+                                </h3>
+                                <p class="text-xs text-charcoal/70 dark:text-chalk/70 leading-relaxed mb-4">
+                                    Showcase personal records, clean &amp; jerk milestones, and high-intensity team relays with 50+ competing athletes.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-charcoal/10 dark:border-white/10 flex items-center justify-between text-xs font-mono text-charcoal/60 dark:text-chalk/60">
+                                <span><i class="fa-solid fa-location-dot text-accent-orange mr-1"></i> Iron Hub Arena</span>
+                                <span class="font-bold text-accent-orange">9:00 AM</span>
+                            </div>
+                        </div>
+
+                        <!-- Event 3 -->
+                        <div class="community-card p-6 flex flex-col justify-between group">
+                            <div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <span class="px-3 py-1 rounded-full bg-blue-500/15 text-blue-500 font-mono text-[10px] font-bold uppercase border border-blue-500/30">Masterclass</span>
+                                    <span class="text-[10px] font-mono text-charcoal/60 dark:text-chalk/60 uppercase">Dec 05, 2026</span>
+                                </div>
+                                <h3 class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk mb-2 group-hover:text-accent-orange transition-colors">
+                                    Mindful Yoga &amp; Breathwork Sanctuary
+                                </h3>
+                                <p class="text-xs text-charcoal/70 dark:text-chalk/70 leading-relaxed mb-4">
+                                    A restorative session focusing on core stability, Vinyasa alignment, and guided sound relaxation. Limited slots.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-charcoal/10 dark:border-white/10 flex items-center justify-between text-xs font-mono text-charcoal/60 dark:text-chalk/60">
+                                <span><i class="fa-solid fa-location-dot text-accent-orange mr-1"></i> Zenith Wellness Studio</span>
+                                <span class="font-bold text-accent-orange">7:30 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================================================
+                 FITNESS COMMUNITIES SECTION (Whimsical Frame 4)
+                 ========================================================================== -->
+            <section id="communities" class="py-16 sm:py-24 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                <div class="liquid-glass-panel p-5 sm:p-10 lg:p-14 relative w-full flex flex-col justify-between shadow-2xl">
+                    <div class="card-glare"></div>
+
+                    <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-14 relative z-10">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 liquid-glass-pill text-[9px] sm:text-xs font-mono uppercase tracking-widest mb-4 text-accent-orange font-bold">
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent-orange animate-pulse"></span>
+                            <span>JOIN YOUR TRIBE</span>
+                            <span class="text-charcoal/30 dark:text-white/30">|</span>
+                            <span>LOCAL PASSIONS</span>
+                        </div>
+                        <h2 class="split-kinetic-text font-bebas text-4xl sm:text-6xl lg:text-7xl text-charcoal dark:text-chalk leading-[0.95] uppercase tracking-wide">
+                            FITNESS <span class="text-accent-orange">COMMUNITIES</span>
+                        </h2>
+                        <p class="text-xs sm:text-base text-charcoal/75 dark:text-chalk/75 font-semibold max-w-2xl mx-auto mt-3 leading-relaxed">
+                            From high-intensity CrossFit boxes to mindful yoga sanctuaries, explore specialized communities and connect with like-minded athletes near you.
+                        </p>
+                    </div>
+
+                    <!-- 10 Community Cards Grid (Whimsical Frame 4) -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-5 relative z-10 mb-10">
+                        <!-- 1. Running -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-accent-orange/15 text-accent-orange flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-person-running"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Running Clubs</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">Urban pacers, marathon training squads &amp; weekend trail runners.</p>
+                        </div>
+
+                        <!-- 2. Strength -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-red-500/15 text-red-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Strength &amp; Power</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">Heavy barbell mastery, bench press &amp; deadlift power clubs.</p>
+                        </div>
+
+                        <!-- 3. Yoga -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-spa"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Yoga &amp; Mind</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">Vinyasa flow, breathwork &amp; mindful meditation sanctuaries.</p>
+                        </div>
+
+                        <!-- 4. CrossFit -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-fire"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">CrossFit &amp; WODs</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">High-intensity functional conditioning &amp; Olympic lifting boxes.</p>
+                        </div>
+
+                        <!-- 5. Calisthenics -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-500/15 text-blue-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Calisthenics</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">Bar gymnastics, muscle-ups, levers &amp; street workout squads.</p>
+                        </div>
+
+                        <!-- 6. Combat -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-rose-500/15 text-rose-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-hand-fist"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Boxing &amp; MMA</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">Boxing, Muay Thai, kickboxing sparring &amp; martial arts rings.</p>
+                        </div>
+
+                        <!-- 7. Pilates -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-500/15 text-purple-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-cubes-stacked"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Pilates Reformer</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">Core precision, reformer carriage workouts &amp; posture clinics.</p>
+                        </div>
+
+                        <!-- 8. Cycling -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 text-cyan-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-bicycle"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Spin &amp; Cycling</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">High-cadence rhythm indoor spin &amp; road cycling pelotons.</p>
+                        </div>
+
+                        <!-- 9. Dance -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-pink-500/15 text-pink-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-music"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Dance &amp; Zumba</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">High-energy cardio choreography &amp; Latin rhythm dance sessions.</p>
+                        </div>
+
+                        <!-- 10. Aquatics -->
+                        <div class="community-card p-4 sm:p-5 flex flex-col items-center text-center group cursor-pointer">
+                            <div class="w-12 h-12 rounded-2xl bg-teal-500/15 text-teal-500 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-person-swimming"></i>
+                            </div>
+                            <h4 class="font-bebas text-lg sm:text-xl text-charcoal dark:text-chalk group-hover:text-accent-orange transition-colors">Aquatics &amp; Swim</h4>
+                            <p class="text-[11px] text-charcoal/65 dark:text-chalk/65 mt-1 leading-snug">Endurance lap training, open water swimming &amp; aqua fitness.</p>
+                        </div>
+                    </div>
+
+                    <!-- Verified Partner Centres Banner -->
+                    <div class="p-4 sm:p-5 rounded-2xl liquid-glass-well flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-accent-orange/20 text-accent-orange flex items-center justify-center text-sm shrink-0">
+                                <i class="fa-solid fa-shield-check"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-charcoal dark:text-chalk uppercase">
+                                Verified Communities Across 150+ Leading Fitness Hubs &amp; Boutiques
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs font-mono font-semibold text-charcoal/60 dark:text-chalk/60 flex-wrap justify-center">
+                            <span>Iron Hub</span>
+                            <span>•</span>
+                            <span>Zenith Fitness</span>
+                            <span>•</span>
+                            <span>Veloce Studio</span>
+                            <span>•</span>
+                            <span>Olympia Club</span>
+                            <span>•</span>
+                            <span>Pulse Athletic</span>
                         </div>
                     </div>
                 </div>
@@ -452,17 +690,13 @@
 
                                 <h2
                                     class="split-kinetic-text section-heading-clamp font-bebas text-4xl sm:text-6xl md:text-7xl lg:text-[4.4rem] text-charcoal dark:text-chalk leading-[0.96] uppercase tracking-wide mb-4 sm:mb-6">
-                                    <span class="block">REIMAGINING THE</span>
-                                    <span class="block text-accent-orange">CONNECTED FITNESS</span>
-                                    <span class="block">ECOSYSTEM.</span>
+                                    <span class="block">ABOUT</span>
+                                    <span class="block text-accent-orange">DORFIE FIT</span>
                                 </h2>
 
                                 <p
                                     class="text-charcoal/80 dark:text-chalk/80 text-sm sm:text-base font-medium leading-relaxed max-w-2xl mb-5 sm:mb-6">
-                                    Traditional fitness platforms isolate members, independent trainers, and club owners
-                                    into fragmented data silos. Dorfie Fit connects physical speed gate turnstiles
-                                    directly to live cloud schedules and member mobile passes—granting sub-second
-                                    biometric clearance with zero intermediary commissions.
+                                    Dorfie Fit is a modern fitness management platform that brings fitness centres/communities, trainers, and members together in one seamless ecosystem. Designed with simplicity and efficiency in mind, it helps streamline daily operations, strengthen community engagement, and deliver a better fitness experience for everyone. From memberships and attendance to training sessions, events, and progress tracking, Dorfie Fit provides the tools needed to manage and grow a thriving fitness community, all from a single, intuitive platform.
                                 </p>
 
                                 <!-- Mascot Pace Indicator -->
@@ -566,7 +800,7 @@
                                     <div class="card-layer-lift">
                                         <span
                                             class="font-mono text-[10px] uppercase font-bold text-accent-orange block mb-1">AUTH
-                                            SPEED</span>
+                                             SPEED</span>
                                         <p class="font-bebas text-3xl sm:text-4xl text-accent-orange leading-none tabular-nums whitespace-nowrap"
                                             data-counter="0.18" data-counter-prefix="< " data-counter-suffix="s"
                                             data-counter-decimals="2">&lt; 0.18s</p>
@@ -579,13 +813,86 @@
                                     <div class="card-layer-lift">
                                         <span
                                             class="font-mono text-[10px] uppercase font-bold text-accent-orange block mb-1">DATA
-                                            FLOW</span>
+                                             FLOW</span>
                                         <p class="font-bebas text-3xl sm:text-4xl text-charcoal dark:text-chalk leading-none tabular-nums whitespace-nowrap"
                                             data-counter="1.2" data-counter-suffix="M+" data-counter-decimals="1">1.2M+
                                         </p>
                                         <p class="text-[9px] font-mono text-charcoal/60 dark:text-chalk/60 mt-1">Monthly
                                             Sets</p>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Booklet Manifesto: Why Tools Fail vs Why Dorfie Fit (Booklet Slides 2 & 3) -->
+                    <div class="mt-10 sm:mt-14 pt-8 sm:pt-10 border-t border-charcoal/10 dark:border-white/10 relative z-10 w-full max-w-5xl mx-auto">
+                        <div class="text-center mb-8">
+                            <span class="text-[10px] font-mono text-accent-orange font-bold uppercase tracking-widest block mb-1">THE FITNESS PLATFORM PARADOX</span>
+                            <h3 class="font-bebas text-3xl sm:text-5xl text-charcoal dark:text-chalk uppercase tracking-wide">
+                                STOP RUNNING YOUR GYM ON <span class="text-accent-orange">PATCHWORK</span>
+                            </h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                            <!-- Left: Why current tools are failing you -->
+                            <div class="manifesto-problem-card liquid-glass-well p-5 sm:p-7 rounded-2xl flex flex-col justify-between shadow-md">
+                                <div>
+                                    <div class="flex items-center gap-2.5 text-rose-500 mb-3 font-mono text-xs font-bold uppercase tracking-wider">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                        <span>Why Your Current Tools Are Failing You</span>
+                                    </div>
+                                    <p class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk mb-4 leading-snug">
+                                        Most gym software was built to bill members, not keep them.
+                                    </p>
+                                    <ul class="space-y-3 text-xs sm:text-sm text-charcoal/75 dark:text-chalk/75">
+                                        <li class="flex items-start gap-2.5">
+                                            <i class="fa-solid fa-xmark text-rose-500 mt-1 shrink-0"></i>
+                                            <span><strong>Rear-View Blindspots:</strong> It records what happened in the past but can't warn you what churn is coming this week.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2.5">
+                                            <i class="fa-solid fa-xmark text-rose-500 mt-1 shrink-0"></i>
+                                            <span><strong>Tool Fragmentation:</strong> Billing, bookings, hiring, access turnstiles, and community sit isolated in 4 to 6 disconnected tools.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2.5">
+                                            <i class="fa-solid fa-xmark text-rose-500 mt-1 shrink-0"></i>
+                                            <span><strong>Invoice-Feeling Apps:</strong> Members receive an app that feels like a payment bill, not an inspiring reason to show up.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="mt-5 pt-4 border-t border-charcoal/10 dark:border-white/10 font-mono text-[11px] text-rose-500 font-bold">
+                                    You're not running a gym on software. You're running it on patchwork.
+                                </div>
+                            </div>
+
+                            <!-- Right: Why Dorfie Fit -->
+                            <div class="manifesto-solution-card liquid-glass-well p-5 sm:p-7 rounded-2xl flex flex-col justify-between border border-accent-orange/30 shadow-md">
+                                <div>
+                                    <div class="flex items-center gap-2.5 text-accent-orange mb-3 font-mono text-xs font-bold uppercase tracking-wider">
+                                        <i class="fa-solid fa-bolt"></i>
+                                        <span>Why Dorfie Fit</span>
+                                    </div>
+                                    <p class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk mb-4 leading-snug">
+                                        A gym is a community with equipment, not equipment with members.
+                                    </p>
+                                    <ul class="space-y-3 text-xs sm:text-sm text-charcoal/75 dark:text-chalk/75">
+                                        <li class="flex items-start gap-2.5">
+                                            <i class="fa-solid fa-check text-accent-orange mt-1 shrink-0"></i>
+                                            <span><strong>Holistic Architecture:</strong> Operations, members, trainers, and talent pipeline unified in one system.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2.5">
+                                            <i class="fa-solid fa-check text-accent-orange mt-1 shrink-0"></i>
+                                            <span><strong>Connected Real-Time Data:</strong> Live data flowing across your entire gym from turnstiles to floor tracking.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2.5">
+                                            <i class="fa-solid fa-check text-accent-orange mt-1 shrink-0"></i>
+                                            <span><strong>Community-Driven Moat:</strong> Retention and engagement built directly into the product, not bolted on.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="mt-5 pt-4 border-t border-charcoal/10 dark:border-white/10 font-mono text-[11px] text-emerald-500 font-bold flex items-center gap-2">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                                    <span>Free WhatsApp Messaging Integration Included With Centre Subscriptions</span>
                                 </div>
                             </div>
                         </div>
@@ -619,7 +926,7 @@
                             client roster management for coaches, and POS automation for studio operators.
                         </p>
 
-                        <!-- Role Switcher -->
+                        <!-- Role Switcher (Whimsical Frame 6, 7, 8) -->
                         <div class="mt-8 flex justify-center w-full px-2 overflow-x-auto no-scrollbar py-1"
                             style="scrollbar-width: none; -ms-overflow-style: none;">
                             <div id="role-tab-container"
@@ -634,15 +941,15 @@
                                     <i class="fa-solid fa-user text-[11px] sm:text-xs"></i>
                                     <span>Members</span>
                                 </button>
+                                <button onclick="switchTab('owner', this)" data-magnetic
+                                    class="feature-tab-btn px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10">
+                                    <i class="fa-solid fa-building text-[11px] sm:text-xs"></i>
+                                    <span>Fitness Centres/Communities</span>
+                                </button>
                                 <button onclick="switchTab('trainer', this)" data-magnetic
                                     class="feature-tab-btn px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10">
                                     <i class="fa-solid fa-dumbbell text-[11px] sm:text-xs"></i>
                                     <span>Trainers</span>
-                                </button>
-                                <button onclick="switchTab('owner', this)" data-magnetic
-                                    class="feature-tab-btn px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10">
-                                    <i class="fa-solid fa-building text-[11px] sm:text-xs"></i>
-                                    <span>Studio Owners</span>
                                 </button>
                             </div>
                         </div>
@@ -956,10 +1263,10 @@
                 </div>
             </section>
 
-            <!-- Pricing Section (3D Interactive Tier Cards) -->
+            <!-- Pricing Section (Whimsical Frames 10, 11, 12) -->
             <section id="pricing"
                 class="py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
-                <div class="text-center max-w-4xl mx-auto mb-14 sm:mb-16">
+                <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-12">
                     <div class="inline-flex items-center gap-2.5 px-4 py-1.5 liquid-glass-pill text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-4 text-accent-orange font-bold"
                         data-magnetic>
                         <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
@@ -973,13 +1280,37 @@
                     </h2>
                     <p
                         class="text-xs sm:text-base text-charcoal/75 dark:text-chalk/75 font-semibold max-w-2xl mx-auto mt-4 leading-relaxed">
-                        Transparent, zero-commission infrastructure designed for individual athletes, independent
-                        coaches, and turnstile fitness studios.
+                        Transparent, zero-commission infrastructure with Free WhatsApp Messaging Integration on centre plans. Select your category below.
                     </p>
+
+                    <!-- Pricing Audience Selector (Whimsical Frame 10 & 11) -->
+                    <div class="mt-8 flex justify-center w-full px-2 overflow-x-auto no-scrollbar py-1"
+                        style="scrollbar-width: none; -ms-overflow-style: none;">
+                        <div id="pricing-audience-container"
+                            class="pricing-audience-selector inline-flex p-1 sm:p-1.5 liquid-glass-pill gap-1 sm:gap-1.5 shadow-sm items-center relative select-none rounded-full overflow-hidden shrink-0">
+                            <!-- Sliding Glider Background Pill for silky fluid animation -->
+                            <div id="pricing-audience-glider"
+                                class="absolute rounded-full bg-accent-orange shadow-[0_4px_14px_rgba(255,94,0,0.35)] pointer-events-none z-0">
+                            </div>
+
+                            <button type="button"
+                                class="pricing-audience-btn active px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10 cursor-pointer focus:outline-none"
+                                id="pricing-btn-centres" onclick="switchPricingAudience('centres', this)" data-magnetic>
+                                <i class="fa-solid fa-building text-[11px] sm:text-xs"></i>
+                                <span>Fitness Centres / Communities</span>
+                            </button>
+                            <button type="button"
+                                class="pricing-audience-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10 cursor-pointer focus:outline-none"
+                                id="pricing-btn-trainers" onclick="switchPricingAudience('trainers', this)" data-magnetic>
+                                <i class="fa-solid fa-dumbbell text-[11px] sm:text-xs"></i>
+                                <span>Personal Trainers</span>
+                            </button>
+                        </div>
+                    </div>
 
                     <!-- Monthly / Annual Toggle -->
                     <div
-                        class="mt-8 inline-flex items-center gap-3 sm:gap-4 liquid-glass-pill px-4 sm:px-5 py-2 sm:py-2.5 shadow-sm max-w-full flex-wrap justify-center">
+                        class="mt-6 inline-flex items-center gap-3 sm:gap-4 liquid-glass-pill px-4 sm:px-5 py-2 sm:py-2.5 shadow-sm max-w-full flex-wrap justify-center">
                         <span id="label-monthly"
                             class="text-xs font-mono font-bold uppercase tracking-wider text-charcoal dark:text-chalk">
                             Monthly
@@ -1002,183 +1333,37 @@
                     </div>
                 </div>
 
-                <!-- 3 Plans Grid with Glowing Edge Highlights and 3D Tilt -->
-                <div
+                <!-- Dynamic Pricing Cards Container (Rendered by renderPricingCards()) -->
+                <div id="pricing-cards-container"
                     class="cards-grid perspective-stage grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch w-full mb-10">
+                    <!-- Populated dynamically from pricingData in script.js -->
+                </div>
 
-                    <!-- CARD 1: Lifestyle Pass (Free / Orange Dorfie Hue) -->
-                    <div class="card-wrapper" data-delay="0">
-                        <div class="card orange">
-                            <div class="card-highlight-bar"></div>
-
-                            <!-- Card Icon with Flicker & Drop-Shadow -->
-                            <div class="flex items-center justify-between w-full mb-3">
-                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-                                </svg>
-                                <span
-                                    class="font-mono text-[10px] font-bold text-accent-orange bg-accent-orange/15 px-2.5 py-0.5 rounded-full border border-accent-orange/30">TIER
-                                    01</span>
+                <!-- Member Free Access Notice & Community Sign-Up Banner (Official Section 4.3 Policy & Booklet) -->
+                <div class="mb-10 p-5 sm:p-7 rounded-3xl liquid-glass-panel border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-5 relative shadow-xl">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-xl shrink-0 border border-emerald-500/30 shadow-inner">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                                <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/25">MEMBER ACCESS • FOREVER FREE</span>
+                                <span class="text-xs text-charcoal/40 dark:text-chalk/40">•</span>
+                                <span class="text-xs font-mono text-charcoal/60 dark:text-chalk/60">Zero Recurring App Charges</span>
                             </div>
-
-                            <!-- Tags -->
-                            <div class="card-tags">
-                                <span class="card-tag">ATHLETES</span>
-                                <span class="card-tag">FREE PASS</span>
-                            </div>
-
-                            <h3 class="card-title font-bebas text-3xl sm:text-4xl tracking-wide">Lifestyle Pass</h3>
-                            <p class="card-description">
-                                Unlimited lifetime workout logging, personal record tracking, and verified gym discovery
-                                nationwide.
+                            <h4 class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk tracking-wide leading-tight">
+                                ARE YOU AN INDIVIDUAL GYM MEMBER OR ATHLETE?
+                            </h4>
+                            <p class="text-xs sm:text-sm text-charcoal/75 dark:text-chalk/75 font-medium leading-relaxed max-w-2xl mt-1">
+                                App registration is 100% free for members. Discover local gyms, book verified personal trainers, participate in community challenges, track PRs, and connect with fellow fitness enthusiasts with zero subscription fees.
                             </p>
-
-                            <div class="card-price-row flex items-baseline gap-1.5 pb-4 mb-4 border-b border-white/10">
-                                <span
-                                    class="font-bebas text-4xl sm:text-5xl text-charcoal dark:text-chalk leading-none">₹0</span>
-                                <span
-                                    class="text-xs font-mono font-bold text-charcoal/60 dark:text-chalk/60 uppercase">/
-                                    forever free</span>
-                            </div>
-
-                            <ul class="card-features">
-                                <li class="card-feature">Lifetime PR tracking &amp; progressive overload metrics</li>
-                                <li class="card-feature">Hyper-local verified gym &amp; studio discovery</li>
-                                <li class="card-feature">Real-time gym occupancy &amp; footfall radar</li>
-                                <li class="card-feature">Apple Wallet &amp; NFC smartphone check-in</li>
-                            </ul>
-
-                            <div class="card-btn-wrapper mt-auto">
-                                <button onclick="appRouter.startPlanCheckout('Lifestyle Pass', 0, 'free')"
-                                    class="card-btn">
-                                    <span>Get Started Free</span>
-                                    <span>→</span>
-                                </button>
-                            </div>
                         </div>
                     </div>
-
-                    <!-- CARD 2: Coach Pro Suite (Orange Dorfie Hue / Featured) -->
-                    <div class="card-wrapper" data-delay="0.15">
-                        <div class="card orange">
-                            <div class="card-highlight-bar"></div>
-
-                            <!-- Most Popular Tag -->
-                            <div class="popular-ribbon">
-                                <span><i class="fa-solid fa-fire text-amber-300"></i> MOST POPULAR</span>
-                            </div>
-
-                            <!-- Card Icon -->
-                            <div class="flex items-center justify-between w-full mb-3">
-                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path
-                                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                                </svg>
-                                <span
-                                    class="font-mono text-[10px] font-bold text-accent-orange bg-accent-orange/15 px-2.5 py-0.5 rounded-full border border-accent-orange/30">TIER
-                                    02</span>
-                            </div>
-
-                            <!-- Tags -->
-                            <div class="card-tags">
-                                <span class="card-tag">INDEPENDENT COACHES</span>
-                                <span class="card-tag">PRO CRM</span>
-                            </div>
-
-                            <h3 class="card-title font-bebas text-3xl sm:text-4xl tracking-wide text-accent-orange">
-                                Coach Pro Suite</h3>
-                            <p class="card-description">
-                                Complete athlete CRM, automated slot scheduling, client video check-ins, and direct
-                                billing.
-                            </p>
-
-                            <div class="card-price-row flex items-baseline gap-1.5 pb-4 mb-4 border-b border-white/10">
-                                <span id="price-trainer"
-                                    class="font-bebas text-4xl sm:text-5xl text-accent-orange leading-none">₹1,499</span>
-                                <span
-                                    class="text-xs font-mono font-bold text-charcoal/60 dark:text-chalk/60 uppercase">/
-                                    month</span>
-                            </div>
-
-                            <ul class="card-features">
-                                <li class="card-feature">Unlimited active athlete roster CRM</li>
-                                <li class="card-feature">Smart 1-on-1 calendar sync &amp; automatic reminders</li>
-                                <li class="card-feature">Periodized workout blueprint builder with video exercises</li>
-                                <li class="card-feature">Automated recurring subscription invoicing &amp; WhatsApp
-                                    receipts</li>
-                            </ul>
-
-                            <div class="card-btn-wrapper mt-auto">
-                                <button
-                                    onclick="appRouter.startPlanCheckout('Coach Pro Suite', isAnnualPricing ? 1199 : 1499, isAnnualPricing ? 'annual' : 'monthly')"
-                                    class="card-btn">
-                                    <span>Start 14-Day Free Trial</span>
-                                    <span>→</span>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="shrink-0 flex items-center gap-3 w-full md:w-auto">
+                        <a href="#software-apps" onclick="appRouter.navigateLandingSection('software-apps', event)" class="liquid-glass-btn-orange px-6 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider text-center w-full md:w-auto flex items-center justify-center gap-2 shadow-lg">
+                            <i class="fa-brands fa-apple text-sm"></i> <span>Download Free App</span>
+                        </a>
                     </div>
-
-                    <!-- CARD 3: Studio OS (Orange Dorfie Enterprise Hue) -->
-                    <div class="card-wrapper" data-delay="0.3">
-                        <div class="card orange">
-                            <div class="card-highlight-bar"></div>
-
-                            <!-- Card Icon -->
-                            <div class="flex items-center justify-between w-full mb-3">
-                                <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                    fill="currentColor">
-                                    <path
-                                        d="M21 10.5h-1.5V9h-3v1.5H15v3h1.5V15h3v-1.5H21v-3zm-3-6h-1.5V3h-3v1.5H12v3h1.5V9h3V7.5H18v-3zm-9 12H7.5V15h-3v1.5H3v3h1.5V21h3v-1.5H9v-3z" />
-                                </svg>
-                                <span
-                                    class="font-mono text-[10px] font-bold text-accent-orange bg-accent-orange/15 px-2.5 py-0.5 rounded-full border border-accent-orange/30">TIER
-                                    03</span>
-                            </div>
-
-                            <!-- Tags -->
-                            <div class="card-tags">
-                                <span class="card-tag">GYMS &amp; CLUBS</span>
-                                <span class="card-tag">GATE HARDWARE</span>
-                            </div>
-
-                            <h3 class="card-title font-bebas text-3xl sm:text-4xl tracking-wide">Studio OS</h3>
-                            <p class="card-description">
-                                Complete turnstile hardware integration, front-desk POS kiosk, and live attendance
-                                tracking.
-                            </p>
-
-                            <div class="card-price-row flex items-baseline gap-1.5 pb-4 mb-4 border-b border-white/10">
-                                <span id="price-owner"
-                                    class="font-bebas text-4xl sm:text-5xl text-charcoal dark:text-chalk leading-none">₹3,999</span>
-                                <span
-                                    class="text-xs font-mono font-bold text-charcoal/60 dark:text-chalk/60 uppercase">/
-                                    month</span>
-                            </div>
-
-                            <ul class="card-features">
-                                <li class="card-feature">Biometric turnstile speed gates &amp; facial recognition</li>
-                                <li class="card-feature">Front-desk POS terminal &amp; COM-port gate relay control</li>
-                                <li class="card-feature">Zero-commission direct recurring billing &amp; tax accounting
-                                </li>
-                                <li class="card-feature">Offline-ready local sync so turnstile gates work without
-                                    internet</li>
-                            </ul>
-
-                            <div class="card-btn-wrapper mt-auto">
-                                <button
-                                    onclick="appRouter.startPlanCheckout('Studio OS', isAnnualPricing ? 3199 : 3999, isAnnualPricing ? 'annual' : 'monthly')"
-                                    class="card-btn">
-                                    <span>Request Studio Demo</span>
-                                    <span>→</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <!-- Assurance Strip -->
@@ -1451,6 +1636,96 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Comparison Matrix: Dorfie Fit vs Typical Gym Software (Booklet Slide 8) -->
+                    <div class="mt-14 pt-12 border-t border-charcoal/10 dark:border-white/10 w-full">
+                        <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+                            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 liquid-glass-pill text-[10px] font-mono uppercase tracking-widest text-accent-orange font-bold mb-3">
+                                <i class="fa-solid fa-code-compare"></i> BOOKLET COMPARISON MATRIX
+                            </span>
+                            <h3 class="font-bebas text-3xl sm:text-5xl lg:text-6xl text-charcoal dark:text-chalk leading-none tracking-tight uppercase">
+                                DORFIE FIT <span class="text-accent-orange">VS. THE REST</span>
+                            </h3>
+                            <p class="text-xs sm:text-sm text-charcoal/70 dark:text-chalk/70 font-medium max-w-xl mx-auto mt-2">
+                                Most gym platforms were built a decade ago to process bills, not build communities. Here is how Dorfie Fit compares directly.
+                            </p>
+                        </div>
+
+                        <!-- Responsive Comparison Table -->
+                        <div class="comparison-table-wrapper rounded-3xl liquid-glass-well p-3 sm:p-6 overflow-x-auto border border-charcoal/10 dark:border-white/10">
+                            <table class="comparison-table w-full text-left text-xs sm:text-sm border-collapse min-w-[640px]">
+                                <thead>
+                                    <tr class="border-b border-charcoal/10 dark:border-white/10 text-charcoal/70 dark:text-chalk/70 font-mono text-[11px] uppercase tracking-wider">
+                                        <th class="py-3.5 px-4 w-1/4">Dimension</th>
+                                        <th class="py-3.5 px-4 w-3/8 text-charcoal/60 dark:text-chalk/60">Typical Gym Software</th>
+                                        <th class="py-3.5 px-4 w-3/8 text-accent-orange font-bold bg-accent-orange/10 rounded-t-2xl">Dorfie Fit</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-charcoal/10 dark:divide-white/10 text-charcoal/85 dark:text-chalk/85">
+                                    <tr>
+                                        <td class="py-4 px-4 font-bold font-mono text-xs text-charcoal dark:text-chalk">Purpose</td>
+                                        <td class="py-4 px-4 text-charcoal/70 dark:text-chalk/70">Billing, access control, attendance. Software built solely for the back office.</td>
+                                        <td class="py-4 px-4 bg-accent-orange/5 font-semibold text-charcoal dark:text-chalk border-x border-accent-orange/20">
+                                            <div class="flex items-start gap-2">
+                                                <i class="fa-solid fa-check text-accent-orange mt-1"></i>
+                                                <span>Retention, revenue growth, community building, and full gym operations in one ecosystem.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-4 font-bold font-mono text-xs text-charcoal dark:text-chalk">Member Engagement</td>
+                                        <td class="py-4 px-4 text-charcoal/70 dark:text-chalk/70">None. Members don't download the app (or hate using it). Fragmented login portals.</td>
+                                        <td class="py-4 px-4 bg-accent-orange/5 font-semibold text-charcoal dark:text-chalk border-x border-accent-orange/20">
+                                            <div class="flex items-start gap-2">
+                                                <i class="fa-solid fa-check text-accent-orange mt-1"></i>
+                                                <span>Social feeds, gym challenges, live leaderboards, personal records, and direct coach messaging.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-4 font-bold font-mono text-xs text-charcoal dark:text-chalk">Churn Prevention</td>
+                                        <td class="py-4 px-4 text-charcoal/70 dark:text-chalk/70">Reactive. You only find out a member left when their card declines or they stop showing up.</td>
+                                        <td class="py-4 px-4 bg-accent-orange/5 font-semibold text-charcoal dark:text-chalk border-x border-accent-orange/20">
+                                            <div class="flex items-start gap-2">
+                                                <i class="fa-solid fa-check text-accent-orange mt-1"></i>
+                                                <span>Live Tracking Churn Radar: Predictive signals flag disengaged members before they cancel.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-4 font-bold font-mono text-xs text-charcoal dark:text-chalk">PT Revenue &amp; Leakage</td>
+                                        <td class="py-4 px-4 text-charcoal/70 dark:text-chalk/70">Trainers and members take sessions offline. The gym loses 30–50% of potential personal training revenue.</td>
+                                        <td class="py-4 px-4 bg-accent-orange/5 font-semibold text-charcoal dark:text-chalk border-x border-accent-orange/20">
+                                            <div class="flex items-start gap-2">
+                                                <i class="fa-solid fa-check text-accent-orange mt-1"></i>
+                                                <span>In-app session booking, logging, and Under-The-Table PT Detection to safeguard gym margins.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-4 font-bold font-mono text-xs text-charcoal dark:text-chalk">Trainer Hiring</td>
+                                        <td class="py-4 px-4 text-charcoal/70 dark:text-chalk/70">Disorganized WhatsApp groups, unverified word of mouth, or expensive external job portals.</td>
+                                        <td class="py-4 px-4 bg-accent-orange/5 font-semibold text-charcoal dark:text-chalk border-x border-accent-orange/20">
+                                            <div class="flex items-start gap-2">
+                                                <i class="fa-solid fa-check text-accent-orange mt-1"></i>
+                                                <span>Built-in talent marketplace with verified coach credentials, client ratings, and direct hiring pipeline.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 px-4 font-bold font-mono text-xs text-charcoal dark:text-chalk">WhatsApp &amp; Messaging</td>
+                                        <td class="py-4 px-4 text-charcoal/70 dark:text-chalk/70">Manual broadcast groups or third-party SMS/WhatsApp tools charging recurring monthly fees.</td>
+                                        <td class="py-4 px-4 bg-accent-orange/5 font-semibold text-charcoal dark:text-chalk border-x border-accent-orange/20 rounded-b-2xl">
+                                            <div class="flex items-start gap-2">
+                                                <i class="fa-solid fa-check text-[#25D366] mt-1"></i>
+                                                <span class="text-[#25D366] font-bold">Free WhatsApp Messaging Integration included natively with automated reminders and alerts.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -1465,12 +1740,11 @@
                             <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
                             <span>CROSS-PLATFORM DEPLOYMENT</span>
                             <span class="text-charcoal/30 dark:text-white/30">|</span>
-                            <span class="text-accent-orange font-bold">ALL OS ECOSYSTEM</span>
+                            <span class="text-accent-orange font-bold">NATIVE SUITE</span>
                         </div>
-
                         <h2
                             class="split-kinetic-text font-bebas text-5xl sm:text-7xl lg:text-8xl text-charcoal dark:text-chalk leading-none tracking-tight uppercase">
-                            FITNESS IN YOUR POCKET &amp; <span class="text-accent-orange">ON DESKTOPS</span>
+                            EMPOWERING EVERY STEP OF YOUR <span class="text-accent-orange">FITNESS JOURNEY</span>
                         </h2>
 
                         <p
@@ -1765,88 +2039,245 @@
                 </div>
             </section>
 
-            <!-- Luxury Footer -->
+            <!-- ==========================================================================
+                 BOOK A DEMO SECTION (Whimsical Frame 14)
+                 ========================================================================== -->
+            <section id="book-demo" class="py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                <div class="liquid-glass-panel p-6 sm:p-10 lg:p-16 relative w-full shadow-2xl">
+                    <div class="card-glare"></div>
+
+                    <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-14 relative z-10">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 liquid-glass-pill text-[9px] sm:text-xs font-mono uppercase tracking-widest mb-4 text-accent-orange font-bold">
+                            <span class="w-2 h-2 rounded-full bg-accent-orange animate-ping"></span>
+                            <span>PERSONALIZED PLATFORM WALKTHROUGH</span>
+                            <span class="text-charcoal/30 dark:text-white/30">|</span>
+                            <span>ONBOARDING SUPPORT</span>
+                        </div>
+                        <h2 class="split-kinetic-text font-bebas text-5xl sm:text-7xl lg:text-8xl text-charcoal dark:text-chalk leading-[0.95] uppercase tracking-wide">
+                            BOOK A <span class="text-accent-orange">DEMO</span>
+                        </h2>
+                        <p class="text-xs sm:text-base text-charcoal/75 dark:text-chalk/75 font-semibold max-w-2xl mx-auto mt-3 leading-relaxed">
+                            See how Dorfie Fit automates your turnstiles, unifies member management, and includes Free WhatsApp Messaging Integration. Schedule a quick 15-minute walkthrough.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-stretch relative z-10">
+                        <!-- Left: Interactive Demo Booking Form -->
+                        <div class="lg:col-span-7 flex flex-col justify-between">
+                            <form onsubmit="handleDemoSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1.5">
+                                            Your Name *
+                                        </label>
+                                        <input type="text" id="demo-name" name="demo_name" required placeholder="Alex Morgan"
+                                            class="w-full px-4 py-3.5 rounded-2xl liquid-glass-well text-charcoal dark:text-chalk text-sm font-sans focus:outline-none focus:border-accent-orange border border-charcoal/10 dark:border-white/10">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1.5">
+                                            Contact Number *
+                                        </label>
+                                        <input type="tel" id="demo-phone" required placeholder="+91 98765 43210"
+                                            class="w-full px-4 py-3.5 rounded-2xl liquid-glass-well text-charcoal dark:text-chalk text-sm font-sans focus:outline-none focus:border-accent-orange border border-charcoal/10 dark:border-white/10">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1.5">
+                                            Email Address *
+                                        </label>
+                                        <input type="email" id="demo-email" required placeholder="alex@gymdomain.com"
+                                            class="w-full px-4 py-3.5 rounded-2xl liquid-glass-well text-charcoal dark:text-chalk text-sm font-sans focus:outline-none focus:border-accent-orange border border-charcoal/10 dark:border-white/10">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1.5">
+                                            Business Format / Category *
+                                        </label>
+                                        <select id="demo-format" required
+                                            class="w-full px-4 py-3.5 rounded-2xl liquid-glass-well text-charcoal dark:text-chalk text-sm font-sans focus:outline-none focus:border-accent-orange border border-charcoal/10 dark:border-white/10 bg-transparent">
+                                            <option value="Fitness Centre / Gym Hub" class="dark:bg-charcoal text-charcoal dark:text-chalk">Fitness Centre / Gym Hub</option>
+                                            <option value="Personal Trainer / Coach" class="dark:bg-charcoal text-charcoal dark:text-chalk">Personal Trainer / Coach</option>
+                                            <option value="Yoga / Pilates / Boutique Studio" class="dark:bg-charcoal text-charcoal dark:text-chalk">Yoga / Pilates / Boutique Studio</option>
+                                            <option value="Multi-Location Fitness Franchise" class="dark:bg-charcoal text-charcoal dark:text-chalk">Multi-Location Fitness Franchise</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-charcoal/70 dark:text-chalk/70 mb-1.5">
+                                        Message &amp; Requirements (Optional)
+                                    </label>
+                                    <textarea id="demo-message" rows="3" placeholder="Tell us about your facility size, current turnstiles, or features you are looking for..."
+                                        class="w-full px-4 py-3 rounded-2xl liquid-glass-well text-charcoal dark:text-chalk text-sm font-sans focus:outline-none focus:border-accent-orange border border-charcoal/10 dark:border-white/10 resize-none"></textarea>
+                                </div>
+
+                                <button type="submit"
+                                    class="liquid-glass-btn-orange w-full py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl flex items-center justify-center gap-2 cursor-pointer">
+                                    <i class="fa-solid fa-calendar-check text-sm"></i>
+                                    <span>Schedule Demo Walkthrough</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Right: Direct Contact & Perks -->
+                        <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                            <div class="p-6 rounded-3xl liquid-glass-well border border-accent-orange/30 flex flex-col justify-between h-full">
+                                <div>
+                                    <span class="font-mono text-[10px] uppercase font-bold text-accent-orange tracking-widest block mb-1">DIRECT INQUIRIES</span>
+                                    <h3 class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk leading-tight mb-2">Speak Directly With An Onboarding Specialist</h3>
+                                    <p class="text-xs text-charcoal/70 dark:text-chalk/70 leading-relaxed mb-6">
+                                        Get your questions answered immediately regarding biometric turnstiles, Free WhatsApp Messaging Integration, or bespoke multi-branch setups.
+                                    </p>
+
+                                    <div class="space-y-3 mb-6">
+                                        <a href="mailto:Demo@dorfiefit.com" class="p-3.5 rounded-2xl liquid-glass-panel flex items-center gap-3.5 text-xs font-semibold hover:border-accent-orange transition-colors">
+                                            <div class="w-9 h-9 rounded-xl bg-accent-orange/15 text-accent-orange flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-envelope"></i>
+                                            </div>
+                                            <div class="min-w-0">
+                                                <span class="text-[10px] font-mono uppercase text-charcoal/50 dark:text-chalk/50 block">Demo Inquiries</span>
+                                                <span class="font-bold text-charcoal dark:text-chalk truncate block">Demo@dorfiefit.com</span>
+                                            </div>
+                                        </a>
+
+                                        <a href="https://wa.me/918585906628" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl liquid-glass-panel flex items-center gap-3.5 text-xs font-semibold hover:border-emerald-500 transition-colors">
+                                            <div class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center shrink-0">
+                                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                            </div>
+                                            <div class="min-w-0">
+                                                <span class="text-[10px] font-mono uppercase text-charcoal/50 dark:text-chalk/50 block">Instant WhatsApp Chat</span>
+                                                <span class="font-bold text-emerald-500 truncate block">+91 8585906628</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="pt-4 border-t border-charcoal/10 dark:border-white/10 flex items-center gap-2 text-[11px] font-mono text-charcoal/60 dark:text-chalk/60">
+                                    <i class="fa-solid fa-check text-green-500"></i>
+                                    <span>Zero obligation • 15-minute quick walkthrough</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Luxury Footer (Whimsical Frame 15 / Policy References) -->
             <footer
                 class="pt-16 pb-12 px-4 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
                 <div
                     class="liquid-glass-panel p-6 sm:p-10 lg:p-14 relative w-full flex flex-col justify-between shadow-2xl">
                     <div class="card-glare"></div>
-                    <div
-                        class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 pb-10 sm:pb-12 border-b border-charcoal/10 dark:border-white/10">
+
+                    <!-- Top Row: Brand & Newsletter Signup -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 pb-10 sm:pb-12 border-b border-charcoal/10 dark:border-white/10">
                         <div class="lg:col-span-5 flex flex-col justify-between">
                             <div>
-                                <div class="flex items-center gap-3 mb-6">
+                                <div class="flex items-center gap-3 mb-4">
                                     <img src="TEXT LOGO.png" alt="Dorfie Fit"
                                         class="h-8 sm:h-11 w-auto max-w-[140px] sm:max-w-none object-contain filter dark:brightness-110 drop-shadow-sm" />
                                 </div>
+                                <p class="font-bebas text-xl text-accent-orange tracking-wider mb-2">
+                                    For Fitness, By the Fitness
+                                </p>
                                 <p
                                     class="text-xs sm:text-sm text-charcoal/75 dark:text-chalk/75 font-medium leading-relaxed max-w-md mb-6">
-                                    The unified platform for modern fitness hubs, coaches, and athletes.
-                                    Integrating fast biometric turnstiles, workout tracking, and seamless club
-                                    management.
+                                    The unified ecosystem connecting fitness centres, personal trainers, and members.
+                                    Fast biometric turnstiles, live footfall radar, and Free WhatsApp Messaging Integration.
                                 </p>
                                 <div
                                     class="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-2 liquid-glass-pill text-[10px] sm:text-[11px] font-mono font-bold text-charcoal dark:text-chalk max-w-full">
-                                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shrink-0"></span>
-                                    <span class="truncate">SMART BIOMETRIC ACCESS • 24/7 LIVE SYSTEM</span>
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+                                    <span class="truncate">FREE WHATSAPP MESSAGING INTEGRATION • 24/7 SYSTEM</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 text-xs font-semibold">
+                        <!-- Right Columns: Links, Newsletter, Inquiries -->
+                        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-xs font-semibold">
                             <div>
                                 <span
-                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">ECOSYSTEM</span>
+                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">EXPLORE</span>
                                 <ul class="space-y-2.5 text-charcoal/75 dark:text-chalk/75">
-                                    <li><a href="#about" class="hover:text-accent-orange transition-colors">Biometric
-                                            Turnstiles</a></li>
-                                    <li><a href="#features" class="hover:text-accent-orange transition-colors">Occupancy
-                                            Radar</a></li>
-                                    <li><a href="#software-apps" class="hover:text-accent-orange transition-colors">iOS
-                                            &amp; WatchOS Pass</a></li>
-                                    <li><a href="#software-apps"
-                                            class="hover:text-accent-orange transition-colors">Android
-                                            NFC Tap</a></li>
+                                    <li><a href="#about" class="hover:text-accent-orange transition-colors">About us</a></li>
+                                    <li><a href="#features" class="hover:text-accent-orange transition-colors">Our Features</a></li>
+                                    <li><a href="#pricing" class="hover:text-accent-orange transition-colors">Subscriptions</a></li>
+                                    <li><a href="#events" class="hover:text-accent-orange transition-colors">Explore Events</a></li>
+                                    <li><a href="#communities" class="hover:text-accent-orange transition-colors">Communities</a></li>
+                                    <li><a href="#book-demo" class="hover:text-accent-orange transition-colors">Book a Demo</a></li>
                                 </ul>
                             </div>
+
                             <div>
                                 <span
-                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">SOLUTIONS</span>
+                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">INQUIRIES &amp; CAREERS</span>
                                 <ul class="space-y-2.5 text-charcoal/75 dark:text-chalk/75">
-                                    <li><a href="#pricing" class="hover:text-accent-orange transition-colors">Athlete
-                                            Lifestyle Pass</a></li>
-                                    <li><a href="#pricing" class="hover:text-accent-orange transition-colors">Coach Pro
-                                            Suite</a></li>
-                                    <li><a href="#pricing" class="hover:text-accent-orange transition-colors">Studio
-                                            Turnstile OS</a></li>
+                                    <li>
+                                        <span class="text-[10px] font-mono text-charcoal/50 dark:text-chalk/50 block">Direct Call &amp; WhatsApp:</span>
+                                        <a href="https://wa.me/918585906628" target="_blank" rel="noopener noreferrer" class="hover:text-accent-orange transition-colors font-bold text-emerald-500 flex items-center gap-1.5">
+                                            <i class="fa-brands fa-whatsapp text-sm"></i> +91 8585906628
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <span class="text-[10px] font-mono text-charcoal/50 dark:text-chalk/50 block">Demo Inquiries:</span>
+                                        <a href="mailto:Demo@dorfiefit.com" class="hover:text-accent-orange transition-colors font-bold">Demo@dorfiefit.com</a>
+                                    </li>
+                                    <li>
+                                        <span class="text-[10px] font-mono text-charcoal/50 dark:text-chalk/50 block">Support:</span>
+                                        <a href="mailto:Support@dorfiefit.com" class="hover:text-accent-orange transition-colors font-bold">Support@dorfiefit.com</a>
+                                    </li>
+                                    <li>
+                                        <span class="text-[10px] font-mono text-charcoal/50 dark:text-chalk/50 block">Careers:</span>
+                                        <a href="mailto:Career@dorfiefit.com" class="hover:text-accent-orange transition-colors font-bold">Career@dorfiefit.com</a>
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="col-span-2 sm:col-span-1">
+
+                            <div>
                                 <span
-                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">DORFIE
-                                    LABS</span>
-                                <ul class="space-y-2.5 text-charcoal/75 dark:text-chalk/75">
-                                    <li><a href="https://wa.me/919999999999" target="_blank"
-                                            class="hover:text-accent-orange transition-colors">Priority Support</a></li>
-                                    <li><a href="javascript:void(0)"
-                                            class="hover:text-accent-orange transition-colors">Hardware SDK &amp;
-                                            API</a></li>
-                                </ul>
+                                    class="font-mono text-[10px] font-extrabold uppercase tracking-widest text-accent-orange block mb-4">UPDATES &amp; INSIGHTS</span>
+                                <p class="text-[11px] text-charcoal/70 dark:text-chalk/70 mb-3">Subscribe for new updates, platform releases, and community events.</p>
+                                <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
+                                    <input type="email" id="newsletter-email" required placeholder="your.email@domain.com"
+                                        class="w-full px-3 py-2 rounded-xl liquid-glass-well text-xs font-mono text-charcoal dark:text-chalk border border-charcoal/10 dark:border-white/10 focus:outline-none focus:border-accent-orange">
+                                    <button type="submit"
+                                        class="liquid-glass-btn-orange w-full py-2 rounded-xl font-bold text-xs uppercase tracking-wider">
+                                        Subscribe
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Policies Strip (Preserving Exact Official Policies from dorfiefit.com) -->
+                    <div class="py-5 border-b border-charcoal/10 dark:border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                        <span class="font-bold text-accent-orange text-[11px] uppercase tracking-wider">Legal &amp; Policies:</span>
+                        <div class="flex flex-wrap items-center gap-3 sm:gap-5 text-charcoal/75 dark:text-chalk/75">
+                            <button type="button" onclick="openPolicyModal('terms')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">Terms &amp; Conditions</button>
+                            <span>•</span>
+                            <button type="button" onclick="openPolicyModal('privacy')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">Privacy Policy</button>
+                            <span>•</span>
+                            <button type="button" onclick="openPolicyModal('warranty')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">Warranty Policy</button>
+                            <span>•</span>
+                            <button type="button" onclick="openPolicyModal('refund')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">Refund Policy</button>
+                            <span>•</span>
+                            <button type="button" onclick="openPolicyModal('eula')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">End User License Agreement (EULA)</button>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Row: Copyright & Security -->
                     <div
                         class="pt-6 sm:pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] sm:text-[11px] font-mono text-charcoal/60 dark:text-chalk/60 text-center md:text-left">
-                        <p>© 2026 Dorfie Fit. Engineered by <span class="font-bold text-accent-orange">Dorfie
-                                Labs</span>.</p>
+                        <p>© 2026 Dorfie Fit. All rights reserved. <span class="font-bold text-accent-orange">For Fitness, By the Fitness</span>.</p>
                         <div class="flex items-center justify-center gap-2.5 sm:gap-3 flex-wrap">
                             <span class="flex items-center gap-1.5"><i
                                     class="fa-solid fa-lock text-green-500 text-[10px]"></i> End-to-End Encrypted</span>
                             <span>•</span>
+                            <span class="flex items-center gap-1.5"><i class="fa-brands fa-whatsapp text-emerald-500 text-[11px]"></i> Free WhatsApp Messaging Included</span>
+                            <span>•</span>
                             <span>Transparent Gym Pricing</span>
                         </div>
-                    </div>
                 </div>
             </footer>
         </div>
@@ -2584,6 +3015,142 @@
                 </div>
             </div>
         </div>
+        <!-- ==========================================================================
+             PLAN DETAILS MODAL (VERBATIM SUBSCRIPTION SPECIFICATIONS & APP STORE IDS)
+             ========================================================================== -->
+        <div id="plan-details-modal" onclick="if(event.target === this) closePlanDetailsModal()"
+            class="fixed inset-0 z-[225] bg-charcoal/85 dark:bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+            <div id="plan-modal-card"
+                class="liquid-glass-panel p-5 sm:p-8 max-w-xl w-full my-auto shadow-2xl relative border border-white/20 dark:border-white/10 scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
+                <div class="card-glare"></div>
+
+                <!-- Header -->
+                <div class="flex items-center justify-between pb-4 border-b border-charcoal/10 dark:border-white/10 shrink-0">
+                    <div>
+                        <span id="plan-modal-tier" class="text-[10px] font-mono text-accent-orange font-bold uppercase tracking-widest block">TIER DETAILS</span>
+                        <h3 id="plan-modal-title" class="font-bebas text-3xl sm:text-4xl text-charcoal dark:text-chalk tracking-wide leading-none mt-1">
+                            Plan Title
+                        </h3>
+                    </div>
+                    <button type="button" onclick="closePlanDetailsModal()" aria-label="Close plan details"
+                        class="w-9 h-9 rounded-full liquid-glass-pill flex items-center justify-center text-charcoal dark:text-chalk hover:text-accent-orange transition-colors cursor-pointer">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Price & App Store ID Badge -->
+                <div class="py-4 border-b border-charcoal/10 dark:border-white/10 flex flex-wrap items-center justify-between gap-3 shrink-0">
+                    <div>
+                        <span class="text-[10px] font-mono uppercase text-charcoal/50 dark:text-chalk/50 block">Pricing &amp; Billing Cycle</span>
+                        <div id="plan-modal-price" class="font-bebas text-2xl sm:text-3xl text-accent-orange leading-none mt-0.5">
+                            ₹0 / Forever Free
+                        </div>
+                    </div>
+                    <div id="plan-modal-product-id" class="text-right">
+                        <!-- Filled dynamically if App Store product ID exists -->
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <p id="plan-modal-desc" class="text-xs sm:text-sm text-charcoal/80 dark:text-chalk/80 leading-relaxed my-3 shrink-0">
+                    Plan description
+                </p>
+
+                <!-- Scrollable Features List -->
+                <div class="p-4 rounded-2xl liquid-glass-well my-2 flex-1 overflow-y-auto max-h-[42vh]">
+                    <span class="text-[10px] font-mono uppercase font-bold text-accent-orange tracking-widest block mb-2">COMPLETE INCLUDED ENTITLEMENTS</span>
+                    <ul id="plan-modal-features-list" class="space-y-1">
+                        <!-- Populated dynamically by openPlanDetailsModal() -->
+                    </ul>
+                </div>
+
+                <!-- WhatsApp Highlight Note -->
+                <div class="py-2.5 px-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center gap-2.5 my-2 shrink-0">
+                    <i class="fa-brands fa-whatsapp text-emerald-500 text-sm"></i>
+                    <span class="text-[11px] font-semibold text-emerald-500">Free WhatsApp Messaging Integration is permanently included with 24/7 delivery.</span>
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="pt-4 border-t border-charcoal/10 dark:border-white/10 flex items-center justify-between gap-3 shrink-0">
+                    <button type="button" onclick="closePlanDetailsModal()"
+                        class="px-4 py-2.5 rounded-full liquid-glass-pill text-xs font-mono font-bold text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-chalk uppercase cursor-pointer">
+                        Close
+                    </button>
+                    <button type="button" id="plan-modal-action-btn"
+                        class="liquid-glass-btn-orange px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+             OFFICIAL POLICIES MODAL (5 PRESERVED LEGAL POLICIES FROM DORFIEFIT.COM)
+             ========================================================================== -->
+        <div id="policy-modal-overlay"
+            class="fixed inset-0 z-[230] bg-charcoal/85 dark:bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+            <div id="policy-modal-card"
+                class="liquid-glass-panel p-5 sm:p-8 max-w-4xl w-full my-auto shadow-2xl relative border border-white/20 dark:border-white/10 scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
+                <div class="card-glare"></div>
+
+                <!-- Header -->
+                <div class="flex items-center justify-between pb-4 border-b border-charcoal/10 dark:border-white/10 shrink-0">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-accent-orange/15 text-accent-orange flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-mono text-accent-orange font-bold uppercase tracking-widest block">OFFICIAL POLICIES</span>
+                            <h3 id="policy-modal-title" class="font-bebas text-2xl sm:text-3xl text-charcoal dark:text-chalk tracking-wide leading-none">
+                                TERMS &amp; CONDITIONS
+                            </h3>
+                        </div>
+                    </div>
+                    <button type="button" onclick="closePolicyModal()" aria-label="Close policy dialog"
+                        class="w-9 h-9 rounded-full liquid-glass-pill flex items-center justify-center text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Policy Navigation Tabs -->
+                <div class="py-3 border-b border-charcoal/10 dark:border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar shrink-0">
+                    <button type="button" data-policy="terms" onclick="switchPolicyTab('terms')"
+                        class="policy-tab-btn active px-3.5 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap">
+                        Terms &amp; Conditions
+                    </button>
+                    <button type="button" data-policy="privacy" onclick="switchPolicyTab('privacy')"
+                        class="policy-tab-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap text-charcoal/70 dark:text-chalk/70">
+                        Privacy Policy
+                    </button>
+                    <button type="button" data-policy="warranty" onclick="switchPolicyTab('warranty')"
+                        class="policy-tab-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap text-charcoal/70 dark:text-chalk/70">
+                        Warranty Policy
+                    </button>
+                    <button type="button" data-policy="refund" onclick="switchPolicyTab('refund')"
+                        class="policy-tab-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap text-charcoal/70 dark:text-chalk/70">
+                        Refund Policy
+                    </button>
+                    <button type="button" data-policy="eula" onclick="switchPolicyTab('eula')"
+                        class="policy-tab-btn px-3.5 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap text-charcoal/70 dark:text-chalk/70">
+                        EULA
+                    </button>
+                </div>
+
+                <!-- Scrollable Body Content -->
+                <div id="policy-modal-body" class="p-4 sm:p-6 overflow-y-auto max-h-[55vh] rounded-2xl liquid-glass-well my-4 flex-1">
+                    <!-- Populated dynamically by switchPolicyTab() -->
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="pt-3 border-t border-charcoal/10 dark:border-white/10 flex items-center justify-between text-xs font-mono text-charcoal/60 dark:text-chalk/60 shrink-0">
+                    <span class="hidden sm:inline">Preserved verbatim from dorfiefit.com</span>
+                    <button type="button" onclick="closePolicyModal()"
+                        class="liquid-glass-btn-orange px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider ml-auto">
+                        Close Policy
+                    </button>
+                </div>
+            </div>
+        </div>
 
     </main>
 
@@ -2606,6 +3173,7 @@
     </button>
 
     <!-- Dorfie Fit Interaction & Motion Engine -->
+    <script src="js/policy-data.js"></script>
     <script src="js/script.js"></script>
 </body>
 

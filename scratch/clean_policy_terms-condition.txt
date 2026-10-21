@@ -1,0 +1,67 @@
+﻿jsx-3efd145255aee036 terms-hero
+jsx-3efd145255aee036 containe app-hero-heading
+jsx-3efd145255aee036 terms-hero-content app-hero-heading
+jsx-3efd145255aee036 terms-title  tp_fade_anim 
+Terms & Conditions
+jsx-3efd145255aee036 terms-subtitle tp_fade_anim
+Please read these terms carefully before using Dorfie Fit
+jsx-3efd145255aee036 terms-content-wrapper
+jsx-3efd145255aee036 terms-card tp_fade_anim
+Acceptance of Terms
+Accessing or using Dorfie Fit constitutes acceptance of these Terms and Conditions. If you do not agree, please do not use our platform.
+You must be at least the following years old to use Dorfie Fit. Trainers and Fitness Centre / Studio Owners must provide accurate credentials.
+Account Registration & Security
+Provide accurate information while registering.
+Keep your login credentials confidential.
+Notify Dorfie Fit immediately of unauthorized use.
+Dorfie Fit connects members, trainers, and gym / studio owners to facilitate fitness services, events, and community engagement.
+Users agree not to post illegal, harmful, or infringing content.
+Payments & Subscriptions
+Payments are recurring for subscriptions unless specified otherwise.
+All payment methods are accepted: Credit/Debit Cards, UPI, Wallets, and third-party gateways.
+Refunds are governed by our Refund Policy.
+Intellectual Property
+All content, logos, and platform material are property of Dorfie Labs Pvt Ltd or its partners. Unauthorized use is prohibited.
+Limitation of Liability
+Users engage in fitness activities at their own risk.
+Dorfie Fit is not responsible for personal injuries or losses from using the platform.
+We may suspend or terminate accounts violating these Terms or engaging in prohibited behavior.
+Changes to Terms
+Dorfie Fit may modify Terms at any time. Continued use indicates acceptance.
+jsx-3efd145255aee036 terms-section
+jsx-3efd145255aee036 section-header
+jsx-3efd145255aee036 section-number
+jsx-3efd145255aee036 section-title
+jsx-3efd145255aee036 highlight-box
+jsx-3efd145255aee036 section-description
+jsx-3efd145255aee036 age-grid
+jsx-3efd145255aee036 age-card
+jsx-3efd145255aee036 age-role
+jsx-3efd145255aee036 age-requirement
+jsx-3efd145255aee036 terms-list
+jsx-3efd145255aee036 terms-list-item
+/policies/refund
+jsx-3efd145255aee036 refund-link
+jsx-3efd145255aee036 footer-note
+Questions about our Terms & Conditions? Contact us at 
+mailto:support@dorifefit.com
+jsx-3efd145255aee036 contact-link
+support@dorifefit.com
+`name` must be a string
+-deleted-rule____{}
+`optimizeForSpeed` must be a boolean
+`setOptimizeForSpeed` accepts a boolean
+optimizeForSpeed cannot be when rules have already been inserted
+sheet already injected
+`insertRule` accepts only strings
+
+
+See https://stackoverflow.com/q/20007992 for more info
+old rule at index `
+makeStyleTag accepts only strings as second parameter
+.tp-magnetic-item
+a.tp-magnetic-item
+.tp-magnetic-wrap
+0px 1px 3px 0px rgba(18, 20, 32, 0.14)
+.tp-btn-disabled a
+.tp-cursor, .tp-cursor-effect

@@ -1,0 +1,41 @@
+﻿3efd145255aee036
+Terms & Conditions
+Please read these terms carefully before using Dorfie Fit
+Acceptance of Terms
+Accessing or using Dorfie Fit constitutes acceptance of these Terms and Conditions. If you do not agree, please do not use our platform.
+You must be at least the following years old to use Dorfie Fit. Trainers and Fitness Centre / Studio Owners must provide accurate credentials.
+Account Registration & Security
+Provide accurate information while registering.
+Keep your login credentials confidential.
+Notify Dorfie Fit immediately of unauthorized use.
+Dorfie Fit connects members, trainers, and gym / studio owners to facilitate fitness services, events, and community engagement.
+Users agree not to post illegal, harmful, or infringing content.
+Payments & Subscriptions
+Payments are recurring for subscriptions unless specified otherwise.
+All payment methods are accepted: Credit/Debit Cards, UPI, Wallets, and third-party gateways.
+Refunds are governed by our Refund Policy.
+Intellectual Property
+All content, logos, and platform material are property of Dorfie Labs Pvt Ltd or its partners. Unauthorized use is prohibited.
+Limitation of Liability
+Users engage in fitness activities at their own risk.
+Dorfie Fit is not responsible for personal injuries or losses from using the platform.
+We may suspend or terminate accounts violating these Terms or engaging in prohibited behavior.
+Changes to Terms
+Dorfie Fit may modify Terms at any time. Continued use indicates acceptance.
+/policies/refund
+Questions about our Terms & Conditions? Contact us at
+mailto:support@dorifefit.com
+support@dorifefit.com
+`name` must be a string
+-deleted-rule____{}
+`optimizeForSpeed` must be a boolean
+`setOptimizeForSpeed` accepts a boolean
+optimizeForSpeed cannot be when rules have already been inserted
+sheet already injected
+`insertRule` accepts only strings
+See https://stackoverflow.com/q/20007992 for more info
+old rule at index `
+makeStyleTag accepts only strings as second parameter
+tp-cursor-effect
+tp-magnetic-wrap
+a.tp-magnetic-item

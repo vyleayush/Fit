@@ -1,0 +1,32 @@
+﻿containe app-hero-heading
+terms-hero-content app-hero-heading
+terms-title tp_fade_anim
+terms-subtitle tp_fade_anim
+Fair and transparent refund process for all Dorfie Fit users
+terms-card tp_fade_anim
+Dorfie Labs Pvt Ltd aims to ensure a fair and transparent refund process. Refunds are subject to the following terms
+Subscription Refunds
+Refunds are available within 7 days of purchase if you have not accessed any paid services.
+Refund requests must include proof of purchase and reason for the request.
+Rights to refund lies with the company at companyâ€™s discretion.
+Refunds or rescheduling are subject to the policies of the trainer/s and/or studio / fitness centres.
+Please contact the trainer/s and/or fitness centre owners directly for session specific refund requests.
+Events and Workshops
+Refund eligibility depends on the specific terms of the event.
+Partial or no refunds may apply if the event has already occurred.
+How to Request a Refund
+Contact us at support@dorfielabs.com with the following information:
+Proof of purchase (transaction ID, receipt, or confirmation email).
+Reason for refund request.
+ Account details (username or registered email).
+Refunds are processed within 7â€“14 business days after verification.
+support@dorfielabs.com
+mailto:support@dorfielabs.com
+ with the following information:
+Have questions about refunds? Contact us at 
+.tp-magnetic-item
+a.tp-magnetic-item
+.tp-magnetic-wrap
+0px 1px 3px 0px rgba(18, 20, 32, 0.14)
+.tp-btn-disabled a
+.tp-cursor, .tp-cursor-effect
