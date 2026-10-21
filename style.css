@@ -8,9 +8,17 @@
             --glass-bg-dark: rgba(18, 18, 22, 0.78);
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         html {
             background-color: #121214;
             transition: background-color 0.35s ease, color 0.35s ease;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            -webkit-text-size-adjust: 100%;
         }
 
         html:not(.dark) body {
@@ -49,6 +57,9 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
             margin: 0;
             padding: 0;
             cursor: default;
@@ -58,6 +69,7 @@
         .perspective-stage {
             perspective: 1200px;
             transform-style: preserve-3d;
+            max-width: 100%;
         }
 
         /* Kinetic Typography Splitting Rules */
@@ -1102,11 +1114,19 @@
         /* Responsive Clamped Display Typography */
         #hero h1,
         .hero-heading {
-            font-size: clamp(3.4rem, 11vw, 8.4rem) !important;
-            line-height: clamp(0.92, 0.96, 1.0) !important;
+            font-size: clamp(2.2rem, 8.5vw, 4.2rem) !important;
+            line-height: 0.94 !important;
             letter-spacing: -0.01em;
             word-break: normal;
             overflow-wrap: break-word;
+        }
+
+        @media (min-width: 640px) {
+            #hero h1,
+            .hero-heading {
+                font-size: clamp(3.8rem, 8.5vw, 8.4rem) !important;
+                line-height: clamp(0.92, 0.96, 1.0) !important;
+            }
         }
 
         #about h2,
@@ -1114,12 +1134,29 @@
         #pricing h2,
         #why-dorfie h2,
         #software-apps h2,
+        #events h2,
+        #communities h2,
+        #book-demo h2,
         .section-heading-clamp {
-            font-size: clamp(2.1rem, 6.2vw, 5rem) !important;
+            font-size: clamp(1.85rem, 6.2vw, 3rem) !important;
             line-height: 0.98 !important;
             letter-spacing: -0.01em;
             word-break: normal;
             overflow-wrap: break-word;
+        }
+
+        @media (min-width: 640px) {
+            #about h2,
+            #features h2,
+            #pricing h2,
+            #why-dorfie h2,
+            #software-apps h2,
+            #events h2,
+            #communities h2,
+            #book-demo h2,
+            .section-heading-clamp {
+                font-size: clamp(2.5rem, 5.5vw, 5rem) !important;
+            }
         }
 
         /* Splitting Rules for Safe Mobile Word Wrapping */
@@ -1129,12 +1166,14 @@
             vertical-align: top;
             padding-bottom: 0.08em;
             max-width: 100%;
+            word-break: break-word;
         }
 
         .split-word {
             display: inline-block;
             will-change: transform, opacity;
             max-width: 100%;
+            word-break: break-word;
         }
 
         /* Mobile Header & Sticky Pill Navigation */
@@ -1152,48 +1191,55 @@
 
         @media (max-width: 639px) {
             #main-header {
-                top: 8px !important;
+                top: 36px;
                 padding-left: 8px !important;
                 padding-right: 8px !important;
+                transition: top 0.25s ease;
+            }
+
+            #main-header.scrolled {
+                top: 8px !important;
             }
 
             #main-header-panel {
-                padding: 7px 10px !important;
-                gap: 5px !important;
+                padding: 6px 10px !important;
+                gap: 6px !important;
                 border-radius: 9999px !important;
+                min-height: 46px;
             }
 
             #main-header-panel a.group img {
                 height: 26px !important;
-                max-width: 88px !important;
+                max-width: 90px !important;
                 width: auto !important;
             }
 
             #theme-toggle-btn {
-                width: 30px !important;
-                height: 30px !important;
+                width: 32px !important;
+                height: 32px !important;
                 font-size: 11px !important;
                 flex-shrink: 0 !important;
             }
 
             #nav-auth-container button {
-                padding: 5px 11px !important;
-                font-size: 10px !important;
+                padding: 5px 12px !important;
+                font-size: 11px !important;
                 white-space: nowrap !important;
                 letter-spacing: 0.03em !important;
                 flex-shrink: 0 !important;
             }
 
             header button[onclick="toggleMobileNav()"] {
-                width: 30px !important;
-                height: 30px !important;
+                width: 32px !important;
+                height: 32px !important;
                 font-size: 11px !important;
                 flex-shrink: 0 !important;
             }
 
             #mobile-nav-drawer {
                 border-radius: 1.25rem !important;
-                padding: 1rem !important;
+                padding: 1rem 1.25rem !important;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45) !important;
             }
         }
 
@@ -1254,9 +1300,14 @@
         }
 
         @media (max-width: 639px) {
+            #capy-scroll-companion {
+                bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+                left: 12px !important;
+            }
+
             #capy-avatar-wrap {
-                width: 52px !important;
-                height: 52px !important;
+                width: 46px !important;
+                height: 46px !important;
                 background: transparent !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
@@ -1273,14 +1324,24 @@
             }
 
             #capy-speech-bubble {
-                max-width: 170px !important;
-                font-size: 10px !important;
-                padding: 6px 10px !important;
+                max-width: 145px !important;
+                font-size: 9.5px !important;
+                padding: 5px 8px !important;
+                line-height: 1.3 !important;
             }
 
             .whatsapp-float {
-                padding: 9px 13px !important;
+                bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+                right: 12px !important;
+                padding: 8px 12px !important;
                 font-size: 11px !important;
+            }
+
+            #back-to-top-btn {
+                bottom: calc(66px + env(safe-area-inset-bottom, 0px)) !important;
+                right: 12px !important;
+                width: 36px !important;
+                height: 36px !important;
             }
         }
 
@@ -1658,7 +1719,18 @@
         @media (max-width: 767px) {
             .features-stack-container,
             .features-stack-stage {
-                height: 520px;
+                height: 480px;
+                overflow: hidden !important;
+                border-radius: 20px;
+                width: 100%;
+                max-width: 100%;
+            }
+            .features-stack-container .slide,
+            .features-stack-stage .slide {
+                overflow: hidden !important;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
             }
             .features-stack-container .slide .item:nth-child(1),
             .features-stack-container .slide .item:nth-child(2),
@@ -1668,27 +1740,30 @@
             }
             .features-stack-container .item .content,
             .features-stack-stage .item .content {
-                left: 18px;
-                top: 20px;
-                width: calc(100% - 36px);
+                left: 16px;
+                top: 16px;
+                width: calc(100% - 32px);
                 max-width: 100%;
+                max-height: calc(100% - 130px);
+                overflow-y: auto;
                 transform: none;
+                padding-right: 6px;
             }
             .features-stack-container .content .name,
             .features-stack-stage .content .name {
-                font-size: 26px;
-                line-height: 1.05;
+                font-size: 24px;
+                line-height: 1.08;
             }
             .features-stack-container .content .des,
             .features-stack-stage .content .des {
-                font-size: 12px;
-                line-height: 1.5;
-                margin-top: 8px;
-                margin-bottom: 14px;
+                font-size: 11.5px;
+                line-height: 1.48;
+                margin-top: 6px;
+                margin-bottom: 12px;
             }
             .features-stack-container .content button,
             .features-stack-stage .content button {
-                padding: 9px 18px;
+                padding: 8px 16px;
                 font-size: 11px;
             }
             .features-stack-container .item .item-mascot-wrap,
@@ -1699,10 +1774,10 @@
             .features-stack-container .slide .item:nth-child(3),
             .features-stack-stage .slide .item:nth-child(3) {
                 left: auto;
-                right: 14px;
-                width: 95px;
-                height: 130px;
-                bottom: 14px;
+                right: 12px;
+                width: 90px;
+                height: 120px;
+                bottom: 12px;
                 top: auto;
                 transform: none;
                 opacity: 0.95;
@@ -1712,9 +1787,9 @@
             .features-stack-stage .slide .item:nth-child(4) {
                 left: auto;
                 right: -25px;
-                width: 95px;
-                height: 130px;
-                bottom: 14px;
+                width: 90px;
+                height: 120px;
+                bottom: 12px;
                 top: auto;
                 transform: none;
                 opacity: 0.4;
@@ -1729,8 +1804,8 @@
             }
             .features-stack-container .stack-buttons,
             .features-stack-stage .stack-buttons {
-                left: 18px;
-                bottom: 16px;
+                left: 16px;
+                bottom: 14px;
             }
         }
 
@@ -2172,11 +2247,19 @@
             animation: ribbonGradient 8s ease infinite;
             color: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.75rem;
+            font-size: clamp(0.68rem, 2.5vw, 0.75rem);
             font-weight: 700;
             letter-spacing: 0.02em;
             padding: 0.45rem 1rem;
             box-shadow: 0 2px 10px rgba(255, 94, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 4px 10px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         @keyframes ribbonGradient {
@@ -2373,6 +2456,134 @@
 
         .comparison-table tbody tr:hover td {
             background-color: rgba(255, 94, 0, 0.03);
+        }
+
+        /* ==========================================================================
+           DORFIE FIT COMPREHENSIVE MOBILE RESPONSIVE ENGINE (< 640px)
+           Eliminates horizontal overflow, aligns buttons & text, optimizes touch
+           ========================================================================== */
+        @media (max-width: 639px) {
+            /* Prevent any card, container or stage from exceeding the screen width */
+            .liquid-glass-panel,
+            .crystal-glass-card,
+            .liquid-glass-well,
+            .cards-grid,
+            .card-wrapper,
+            .perspective-stage,
+            .comparison-table-wrapper {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Subscription 3D cards mobile comfort */
+            .card {
+                padding: 1.4rem 1.15rem !important;
+                min-height: auto !important;
+                border-radius: 20px !important;
+            }
+
+            .card-title {
+                font-size: 2.1rem !important;
+            }
+
+            .card-price-row {
+                flex-wrap: wrap !important;
+                gap: 0.35rem !important;
+                padding-bottom: 0.75rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+
+            .card-features {
+                margin-bottom: 1.2rem !important;
+                gap: 0.5rem !important;
+            }
+
+            .card-feature {
+                font-size: 0.82em !important;
+            }
+
+            .card-btn {
+                padding: 0.75em 1.2em !important;
+                font-size: 0.82em !important;
+                width: 100% !important;
+            }
+
+            .card-view-details-btn {
+                margin-top: 0.25rem !important;
+                width: 100% !important;
+            }
+
+            /* Audience & Role tab button fit */
+            .pricing-audience-selector,
+            #role-tab-container {
+                max-width: 100% !important;
+                padding: 3px !important;
+                gap: 4px !important;
+            }
+
+            .pricing-audience-btn,
+            .feature-tab-btn {
+                padding: 6px 12px !important;
+                font-size: 11px !important;
+                letter-spacing: 0.02em !important;
+            }
+
+            /* Comparison matrix mobile scroll hint and cell paddings */
+            .comparison-table-wrapper {
+                border-radius: 1.25rem !important;
+                padding: 0.75rem !important;
+                max-width: 100% !important;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem 0.85rem !important;
+                font-size: 11px !important;
+            }
+
+            /* Community cards grid touch cards */
+            .community-card {
+                padding: 0.85rem 0.65rem !important;
+                border-radius: 1rem !important;
+            }
+
+            /* Store buttons & pills */
+            .group\/btn {
+                padding: 0.75rem 0.9rem !important;
+            }
+
+            /* Manifesto problem & solution cards */
+            .manifesto-problem-card,
+            .manifesto-solution-card {
+                padding: 1rem !important;
+                border-radius: 1.15rem !important;
+            }
+
+            /* Dialogs / Modals mobile comfort */
+            #policy-modal-card,
+            #plan-modal-card {
+                padding: 1rem 1.15rem !important;
+                border-radius: 1.25rem !important;
+                max-height: 92vh !important;
+                margin: auto 6px !important;
+            }
+
+            #policy-modal-body,
+            #plan-modal-features-list {
+                max-height: 48vh !important;
+            }
+
+            #plan-modal-product-id code {
+                word-break: break-all !important;
+                white-space: normal !important;
+                max-width: 100% !important;
+            }
+
+            /* Auth view split layout mobile balance */
+            #view-auth .lg\:col-span-5 {
+                min-height: 220px !important;
+                padding: 1.25rem !important;
+            }
         }
 
 

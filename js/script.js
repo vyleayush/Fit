@@ -2728,7 +2728,15 @@
         }
 
         function updateHeaderOnScroll(scrollY) {
+            const header = document.getElementById('main-header');
             const headerPanel = document.getElementById('main-header-panel');
+            if (header) {
+                if (scrollY > 30) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
             if (!headerPanel) return;
             if (scrollY > 40) {
                 headerPanel.classList.add('shadow-2xl', 'py-2.5', 'sm:py-3');
@@ -2738,6 +2746,34 @@
                 headerPanel.classList.add('py-3.5', 'sm:py-4');
             }
         }
+
+        // Native scroll fallback when smooth scroll (Lenis) is disabled or inactive
+        window.addEventListener('scroll', () => {
+            if (!lenisInstance) {
+                const scrollY = window.scrollY;
+                updateHeaderOnScroll(scrollY);
+                updateBackToTop(scrollY);
+                const progressBar = document.getElementById('scroll-progress-bar');
+                if (progressBar) {
+                    const max = document.documentElement.scrollHeight - window.innerHeight;
+                    const p = max > 0 ? scrollY / max : 0;
+                    progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
+                }
+            }
+        }, { passive: true });
+
+        // Debounced responsive window resize handler for fluid gliders
+        let gliderResizeTimer = null;
+        window.addEventListener('resize', () => {
+            clearTimeout(gliderResizeTimer);
+            gliderResizeTimer = setTimeout(() => {
+                const activeRoleBtn = document.querySelector('.feature-tab-btn.active');
+                if (activeRoleBtn) updateRoleGlider(activeRoleBtn, false);
+
+                const activePricingBtn = document.querySelector('.pricing-audience-btn.active');
+                if (activePricingBtn) updatePricingGlider(activePricingBtn, false);
+            }, 100);
+        }, { passive: true });
 
         function updateBackToTop(scrollY) {
             const btn = document.getElementById('back-to-top-btn');

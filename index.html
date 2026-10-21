@@ -169,7 +169,7 @@
     </aside>
 
     <!-- Shutter SVG -->
-    <svg class="fixed top-0 left-0 w-screen h-screen pointer-events-none z-[998]" viewBox="0 0 100 100"
+    <svg class="fixed inset-0 w-full h-full pointer-events-none z-[998]" viewBox="0 0 100 100"
         preserveAspectRatio="none">
         <path id="shutter-path" vector-effect="non-scaling-stroke" fill="#121214"
             d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
@@ -194,11 +194,12 @@
     <div id="dynamic-offers-ribbon" class="offers-ribbon">
         <span class="inline-flex items-center gap-1.5 font-bold">
             <i class="fa-brands fa-whatsapp text-sm text-white"></i>
-            <span>FREE WHATSAPP MESSAGING INTEGRATION</span>
+            <span class="hidden xs:inline">FREE WHATSAPP MESSAGING INTEGRATION</span>
+            <span class="xs:hidden">FREE WHATSAPP INTEGRATION</span>
         </span>
-        <span class="opacity-70 hidden sm:inline">|</span>
-        <span class="hidden sm:inline">Included With All Centre Subscriptions • Zero Commission Direct Payments</span>
-        <a href="#pricing" onclick="appRouter.navigateLandingSection('pricing', event)" class="underline hover:text-white/80 ml-1.5 font-extrabold">Explore Plans →</a>
+        <span class="opacity-70 hidden md:inline">|</span>
+        <span class="hidden md:inline">Included With All Centre Subscriptions • Zero Commission</span>
+        <a href="#pricing" onclick="appRouter.navigateLandingSection('pricing', event)" class="underline hover:text-white/80 ml-1.5 font-extrabold whitespace-nowrap">Explore Plans →</a>
     </div>
 
     <!-- Navigation Header -->
@@ -259,23 +260,46 @@
 
         <!-- Mobile Drawer -->
         <div id="mobile-nav-drawer"
-            class="lg:hidden mt-2 p-4 sm:p-5 liquid-glass-panel hidden flex-col gap-2.5 sm:gap-3 shadow-2xl">
+            class="lg:hidden mt-2 p-4 sm:p-5 liquid-glass-panel hidden flex-col gap-1.5 shadow-2xl rounded-2xl max-h-[82vh] overflow-y-auto">
             <a href="#about" onclick="toggleMobileNav(); appRouter.navigateLandingSection('about', event)"
-                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">About us</a>
+                class="min-h-[44px] px-3 py-2.5 rounded-xl flex items-center gap-3 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange hover:bg-white/5 active:bg-white/10 transition-colors">
+                <i class="fa-solid fa-circle-info text-accent-orange text-xs w-4 text-center"></i>
+                <span>About us</span>
+            </a>
             <a href="#features" onclick="toggleMobileNav(); appRouter.navigateLandingSection('features', event)"
-                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Our Features</a>
+                class="min-h-[44px] px-3 py-2.5 rounded-xl flex items-center gap-3 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange hover:bg-white/5 active:bg-white/10 transition-colors">
+                <i class="fa-solid fa-shapes text-accent-orange text-xs w-4 text-center"></i>
+                <span>Our Features</span>
+            </a>
+            <a href="#events" onclick="toggleMobileNav(); appRouter.navigateLandingSection('events', event)"
+                class="min-h-[44px] px-3 py-2.5 rounded-xl flex items-center gap-3 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange hover:bg-white/5 active:bg-white/10 transition-colors">
+                <i class="fa-solid fa-calendar-days text-accent-orange text-xs w-4 text-center"></i>
+                <span>Events</span>
+            </a>
+            <a href="#communities" onclick="toggleMobileNav(); appRouter.navigateLandingSection('communities', event)"
+                class="min-h-[44px] px-3 py-2.5 rounded-xl flex items-center gap-3 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange hover:bg-white/5 active:bg-white/10 transition-colors">
+                <i class="fa-solid fa-users text-accent-orange text-xs w-4 text-center"></i>
+                <span>Communities</span>
+            </a>
             <a href="#pricing" onclick="toggleMobileNav(); appRouter.navigateLandingSection('pricing', event)"
-                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Subscriptions</a>
-            <a href="#software-apps"
-                onclick="toggleMobileNav(); appRouter.navigateLandingSection('software-apps', event)"
-                class="py-2 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange transition-colors">Download</a>
-            <a href="#book-demo"
-                onclick="toggleMobileNav(); appRouter.navigateLandingSection('book-demo', event)"
-                class="py-2 text-sm font-semibold text-accent-orange font-bold">Book a Demo</a>
+                class="min-h-[44px] px-3 py-2.5 rounded-xl flex items-center gap-3 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange hover:bg-white/5 active:bg-white/10 transition-colors">
+                <i class="fa-solid fa-tags text-accent-orange text-xs w-4 text-center"></i>
+                <span>Subscriptions</span>
+            </a>
+            <a href="#software-apps" onclick="toggleMobileNav(); appRouter.navigateLandingSection('software-apps', event)"
+                class="min-h-[44px] px-3 py-2.5 rounded-xl flex items-center gap-3 text-sm font-semibold text-charcoal dark:text-chalk hover:text-accent-orange hover:bg-white/5 active:bg-white/10 transition-colors">
+                <i class="fa-solid fa-mobile-screen text-accent-orange text-xs w-4 text-center"></i>
+                <span>Download Apps</span>
+            </a>
+            <a href="#book-demo" onclick="toggleMobileNav(); appRouter.navigateLandingSection('book-demo', event)"
+                class="min-h-[44px] px-3 py-2.5 rounded-xl flex items-center gap-3 text-sm font-bold text-accent-orange hover:bg-accent-orange/10 active:bg-accent-orange/20 transition-colors">
+                <i class="fa-solid fa-calendar-check text-accent-orange text-xs w-4 text-center"></i>
+                <span>Book a Demo</span>
+            </a>
             <div id="mobile-drawer-auth"
-                class="pt-3 border-t border-charcoal/10 dark:border-white/10 flex flex-col gap-2">
+                class="pt-3 mt-1 border-t border-charcoal/10 dark:border-white/10 flex flex-col gap-2">
                 <button onclick="toggleMobileNav(); appRouter.openAuth('login')"
-                    class="liquid-glass-btn-orange py-2.5 px-5 rounded-full text-xs font-bold text-center">Log
+                    class="liquid-glass-btn-orange w-full py-3 px-5 rounded-full text-xs font-black uppercase tracking-wider text-center">Log
                     In</button>
             </div>
         </div>
@@ -357,7 +381,7 @@
                     </div>
 
                     <h1
-                        class="split-kinetic-text hero-heading font-bebas text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] text-charcoal dark:text-chalk leading-[0.94] tracking-tight uppercase mb-6 sm:mb-10 select-none">
+                        class="split-kinetic-text hero-heading font-bebas text-4xl sm:text-7xl md:text-8xl lg:text-[7.5rem] text-charcoal dark:text-chalk leading-[0.94] tracking-tight uppercase mb-6 sm:mb-10 select-none">
                         <span class="block">BUILT FOR EVERY MEMBER</span>
                         <span class="block">OF YOUR <span class="text-accent-orange">FITNESS COMMUNITY.</span></span>
                     </h1>
@@ -944,7 +968,8 @@
                                 <button onclick="switchTab('owner', this)" data-magnetic
                                     class="feature-tab-btn px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10">
                                     <i class="fa-solid fa-building text-[11px] sm:text-xs"></i>
-                                    <span>Fitness Centres/Communities</span>
+                                    <span class="hidden sm:inline">Fitness Centres / Communities</span>
+                                    <span class="sm:hidden">Centres</span>
                                 </button>
                                 <button onclick="switchTab('trainer', this)" data-magnetic
                                     class="feature-tab-btn px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10">
@@ -1297,13 +1322,15 @@
                                 class="pricing-audience-btn active px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold tracking-wider text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10 cursor-pointer focus:outline-none"
                                 id="pricing-btn-centres" onclick="switchPricingAudience('centres', this)" data-magnetic>
                                 <i class="fa-solid fa-building text-[11px] sm:text-xs"></i>
-                                <span>Fitness Centres / Communities</span>
+                                <span class="hidden sm:inline">Fitness Centres / Communities</span>
+                                <span class="sm:hidden">Centres</span>
                             </button>
                             <button type="button"
                                 class="pricing-audience-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider text-charcoal/70 dark:text-chalk/70 hover:text-charcoal dark:hover:text-white transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 relative z-10 cursor-pointer focus:outline-none"
                                 id="pricing-btn-trainers" onclick="switchPricingAudience('trainers', this)" data-magnetic>
                                 <i class="fa-solid fa-dumbbell text-[11px] sm:text-xs"></i>
-                                <span>Personal Trainers</span>
+                                <span class="hidden sm:inline">Personal Trainers</span>
+                                <span class="sm:hidden">Trainers</span>
                             </button>
                         </div>
                     </div>
@@ -1649,6 +1676,12 @@
                             <p class="text-xs sm:text-sm text-charcoal/70 dark:text-chalk/70 font-medium max-w-xl mx-auto mt-2">
                                 Most gym platforms were built a decade ago to process bills, not build communities. Here is how Dorfie Fit compares directly.
                             </p>
+                        </div>
+
+                        <!-- Mobile swipe helper -->
+                        <div class="sm:hidden flex items-center justify-center gap-1.5 text-[11px] font-mono text-charcoal/60 dark:text-chalk/60 mb-2.5">
+                            <i class="fa-solid fa-arrows-left-right text-accent-orange animate-pulse"></i>
+                            <span>Swipe left &amp; right to compare</span>
                         </div>
 
                         <!-- Responsive Comparison Table -->
@@ -2251,17 +2284,17 @@
                     </div>
 
                     <!-- Policies Strip (Preserving Exact Official Policies from dorfiefit.com) -->
-                    <div class="py-5 border-b border-charcoal/10 dark:border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                        <span class="font-bold text-accent-orange text-[11px] uppercase tracking-wider">Legal &amp; Policies:</span>
-                        <div class="flex flex-wrap items-center gap-3 sm:gap-5 text-charcoal/75 dark:text-chalk/75">
+                    <div class="py-5 border-b border-charcoal/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
+                        <span class="font-bold text-accent-orange text-[11px] uppercase tracking-wider shrink-0">Legal &amp; Policies:</span>
+                        <div class="flex flex-wrap items-center gap-x-3 gap-y-2 sm:gap-x-4 text-charcoal/75 dark:text-chalk/75">
                             <button type="button" onclick="openPolicyModal('terms')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">Terms &amp; Conditions</button>
-                            <span>•</span>
+                            <span class="hidden sm:inline opacity-30">•</span>
                             <button type="button" onclick="openPolicyModal('privacy')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">Privacy Policy</button>
-                            <span>•</span>
+                            <span class="hidden sm:inline opacity-30">•</span>
                             <button type="button" onclick="openPolicyModal('warranty')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">Warranty Policy</button>
-                            <span>•</span>
+                            <span class="hidden sm:inline opacity-30">•</span>
                             <button type="button" onclick="openPolicyModal('refund')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">Refund Policy</button>
-                            <span>•</span>
+                            <span class="hidden sm:inline opacity-30">•</span>
                             <button type="button" onclick="openPolicyModal('eula')" class="hover:text-accent-orange transition-colors cursor-pointer underline-offset-4 hover:underline">End User License Agreement (EULA)</button>
                         </div>
                     </div>
