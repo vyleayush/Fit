@@ -23,6 +23,18 @@
             } else {
                 document.documentElement.classList.remove('dark');
             }
+
+            // Immediately unregister all service workers & purge caches
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(regs => {
+                    for (const r of regs) r.unregister();
+                });
+            }
+            if ('caches' in window) {
+                caches.keys().then(keys => {
+                    for (const k of keys) caches.delete(k);
+                });
+            }
         })();
     </script>
 
@@ -3362,16 +3374,7 @@
     <!-- Dorfie Fit Interaction & Motion Engine -->
     <script src="js/policy-data.js"></script>
     <script src="js/script.js"></script>
-    <!-- Dorfie Fit Offline Caching & Acceleration Service Worker -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').then((reg) => { if (reg) reg.update(); }).catch((err) => {
-                    console.warn('[SW] Registration failed:', err);
-                });
-            });
-        }
-    </script>
+
 </body>
 
 </html>
