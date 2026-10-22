@@ -234,12 +234,7 @@
             navigate(viewKey) {
                 if (this.activeView === viewKey) {
                     if (viewKey === 'home') {
-                        if (lenisInstance) {
-                            const isMobileNav = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
-                            lenisInstance.scrollTo(0, { duration: isMobileNav ? 0.65 : 0.9, easing: (t) => 1 - Math.pow(1 - t, 3.5) });
-                        } else {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }
+                        this.navigateLandingSection('hero');
                     }
                     this.isTransitioning = false;
                     return;
@@ -338,66 +333,154 @@
                     if (event.stopImmediatePropagation) event.stopImmediatePropagation();
                 }
 
-                // Prevent duplicate invocation for the same target within 300ms
+                // Prevent duplicate rapid clicks on the same target within 320ms
                 const now = performance.now();
-                if (this._lastNavTarget === sectionId && (now - this._lastNavTime) < 300) {
+                if (this._lastNavTarget === sectionId && (now - this._lastNavTime) < 320) {
                     return;
                 }
                 this._lastNavTarget = sectionId;
                 this._lastNavTime = now;
 
-                // Immediately close mobile navigation drawer cleanly before measuring header dimensions
+                // Close mobile navigation drawer cleanly
                 if (typeof closeMobileNav === 'function') {
                     closeMobileNav(true);
-                } else {
-                    const drawer = document.getElementById('mobile-nav-drawer');
-                    if (drawer && !drawer.classList.contains('hidden')) {
-                        drawer.classList.add('hidden');
-                        drawer.classList.remove('flex');
-                    }
                 }
 
-                const scrollToTarget = () => {
-                    const target = document.getElementById(sectionId);
-                    if (!target) return;
-
-                    if (target.classList.contains('section-deferred')) {
-                        target.style.contentVisibility = 'visible';
-                        setTimeout(() => { target.style.contentVisibility = ''; }, 1200);
-                    }
-
-                    const isMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
-                    // Measure #main-header-panel instead of #main-header so drawer height never pollutes offset
-                    const headerPanel = document.getElementById('main-header-panel');
-                    const headerHeight = headerPanel ? headerPanel.offsetHeight : (isMobile ? 56 : 72);
-                    const headerTopOffset = isMobile ? 8 : 12;
-                    const scrollOffset = -(headerHeight + headerTopOffset + (isMobile ? 12 : 20));
-
-                    if (lenisInstance) {
-                        // Velvet smooth, deliberate deceleration with zero stutter
-                        const scrollDuration = isMobile ? 0.6 : 0.8;
-                        lenisInstance.scrollTo(target, {
-                            offset: scrollOffset,
-                            duration: scrollDuration,
-                            easing: (t) => 1 - Math.pow(1 - t, 3.5),
-                            lock: false,
-                            immediate: false
-                        });
-                    } else {
-                        const rect = target.getBoundingClientRect();
-                        const topPos = rect.top + window.scrollY + scrollOffset;
-                        window.scrollTo({
-                            top: Math.max(0, topPos),
-                            behavior: 'smooth'
-                        });
-                    }
-                };
+                const targetKey = (!sectionId || sectionId === 'home') ? 'hero' : sectionId;
+                const target = document.getElementById(targetKey);
+                if (!target) return;
 
                 if (this.activeView !== 'home') {
                     this.navigate('home');
-                    setTimeout(scrollToTarget, 300);
+                }
+
+                const computeTargetTop = (el) => {
+                    if (el.id === 'hero') return 0;
+                    const isMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
+                    const headerPanel = document.getElementById('main-header-panel');
+                    const headerHeight = headerPanel ? headerPanel.offsetHeight : (isMobile ? 56 : 72);
+                    const headerTopOffset = isMobile ? 8 : 12;
+                    const scrollOffset = -(headerHeight + headerTopOffset + (isMobile ? 10 : 18));
+                    const rect = el.getBoundingClientRect();
+                    return Math.max(0, rect.top + window.scrollY + scrollOffset);
+                };
+
+                // Unpause deferred content so layout is ready
+                if (target.classList.contains('section-deferred')) {
+                    target.style.contentVisibility = 'visible';
+                    setTimeout(() => { target.style.contentVisibility = ''; }, 1200);
+                }
+
+                const topPos = computeTargetTop(target);
+
+                // If already at or very close to this section (within 60px), trigger arrival pulse
+                if (Math.abs(window.scrollY - topPos) < 60) {
+                    const panel = target.querySelector('.liquid-glass-panel') || target;
+                    panel.classList.remove('section-arrival-pulse');
+                    void panel.offsetWidth;
+                    panel.classList.add('section-arrival-pulse');
+                    return;
+                }
+
+                // Reduced motion fallback
+                if (isReducedMotion || !window.gsap) {
+                    window.scrollTo({ top: topPos, behavior: 'instant' });
+                    if (lenisInstance) lenisInstance.scrollTo(topPos, { immediate: true });
+                    target.querySelectorAll('.scroll-reveal-item').forEach(el => el.classList.add('scroll-reveal-visible'));
+                    target.classList.add('scroll-reveal-visible');
+                    updateHeaderOnScroll(topPos);
+                    updateBackToTop(topPos);
+                    return;
+                }
+
+                const curtain = document.getElementById('section-transition-curtain');
+                const curtainSheet = document.getElementById('curtain-sheet');
+                const mainContainer = document.getElementById('main-view-container') || document.getElementById('view-home') || document.body;
+
+                if (curtain && curtainSheet) {
+                    curtain.style.pointerEvents = 'auto';
+                    gsap.killTweensOf([curtainSheet, mainContainer, target]);
+
+                    const tl = gsap.timeline({
+                        onComplete: () => {
+                            curtain.style.pointerEvents = 'none';
+                            gsap.set(curtain, { opacity: 0 });
+                            gsap.set(curtainSheet, { yPercent: -100 });
+                            gsap.set(mainContainer, { clearProps: 'transform,filter,opacity' });
+                        }
+                    });
+
+                    // 1. Initial setup
+                    gsap.set(curtain, { opacity: 1 });
+                    gsap.set(curtainSheet, { yPercent: -100 });
+
+                    // 2. Wipe Down & Zoom Cut Out (Swift 180ms)
+                    tl.to(mainContainer, {
+                        scale: 0.965,
+                        filter: 'blur(3px)',
+                        opacity: 0.5,
+                        duration: 0.18,
+                        ease: 'power2.in'
+                    }, 0);
+
+                    tl.to(curtainSheet, {
+                        yPercent: 0,
+                        duration: 0.20,
+                        ease: 'power3.inOut'
+                    }, 0);
+
+                    // 3. Instant Section Jump at peak wipe cover
+                    tl.add(() => {
+                        const preciseTop = computeTargetTop(target);
+                        window.scrollTo({ top: preciseTop, behavior: 'instant' });
+                        if (lenisInstance) {
+                            lenisInstance.scrollTo(preciseTop, { immediate: true });
+                        }
+                        target.querySelectorAll('.scroll-reveal-item').forEach(el => {
+                            el.classList.add('scroll-reveal-visible');
+                        });
+                        target.classList.add('scroll-reveal-visible');
+
+                        updateHeaderOnScroll(preciseTop);
+                        updateBackToTop(preciseTop);
+                    });
+
+                    // 4. Wipe Down Out & Zoom In to Destination
+                    tl.to(curtainSheet, {
+                        yPercent: 100,
+                        duration: 0.22,
+                        ease: 'power3.out'
+                    });
+
+                    tl.fromTo(mainContainer,
+                        { scale: 0.97, filter: 'blur(3px)', opacity: 0.7 },
+                        { scale: 1, filter: 'blur(0px)', opacity: 1, duration: 0.25, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+                        "-=0.18"
+                    );
+
+                    // 5. Arrival highlight on target
+                    const arrivalCard = target.querySelector('.liquid-glass-panel') || target;
+                    arrivalCard.classList.remove('section-arrival-pulse');
+                    void arrivalCard.offsetWidth;
+                    arrivalCard.classList.add('section-arrival-pulse');
                 } else {
-                    requestAnimationFrame(scrollToTarget);
+                    // Fallback zoom cut if curtain element is absent
+                    gsap.to(mainContainer, {
+                        scale: 0.96,
+                        opacity: 0.3,
+                        duration: 0.15,
+                        ease: 'power2.in',
+                        onComplete: () => {
+                            const preciseTop = computeTargetTop(target);
+                            window.scrollTo({ top: preciseTop, behavior: 'instant' });
+                            gsap.to(mainContainer, {
+                                scale: 1,
+                                opacity: 1,
+                                duration: 0.22,
+                                ease: 'cubic-bezier(0.16, 1, 0.3, 1)'
+                            });
+                        }
+                    });
                 }
             },
 
@@ -2896,15 +2979,7 @@
         }
 
         function scrollToTop() {
-            if (lenisInstance) {
-                const isMobile = window.innerWidth < 768;
-                lenisInstance.scrollTo(0, {
-                    duration: isMobile ? 0.65 : 0.85,
-                    easing: (t) => 1 - Math.pow(1 - t, 3.5)
-                });
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            appRouter.navigateLandingSection('hero');
         }
 
         function initScrollSpy() {

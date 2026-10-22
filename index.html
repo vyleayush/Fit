@@ -361,6 +361,16 @@
     </div>
 
     <!-- MAIN VIEW CONTAINER -->
+    <!-- Cinematic Wipe & Zoom Transition Curtain -->
+    <div id="section-transition-curtain" aria-hidden="true"
+        class="fixed inset-0 pointer-events-none z-[990] opacity-0 overflow-hidden flex flex-col justify-end">
+        <div id="curtain-sheet"
+            class="w-full h-full bg-[#121214] dark:bg-[#0A0A0C] border-b-2 border-accent-orange/60 shadow-[0_15px_40px_rgba(255,94,0,0.4)] flex flex-col justify-end transform -translate-y-full will-change-transform">
+            <!-- Radiant Laser Glow Edge -->
+            <div class="w-full h-[3px] bg-gradient-to-r from-transparent via-[#FF5E00] to-transparent shadow-[0_0_24px_#FF5E00]"></div>
+        </div>
+    </div>
+
     <main id="main-view-container" class="relative z-10 w-full">
 
         <!-- ==========================================================================
