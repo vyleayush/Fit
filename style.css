@@ -2600,51 +2600,87 @@
 
 
         /* -------------------------------------------------------------
+           SECTION SCROLL MARGINS & OVERLAY CONTAINMENT
+           Ensures seamless landing below fixed headers & prevents modal scroll bleed
+           ------------------------------------------------------------- */
+        section[id],
+        #about,
+        #features,
+        #pricing,
+        #why-dorfie,
+        #software-apps,
+        #events,
+        #communities,
+        #book-demo {
+            scroll-margin-top: 100px;
+        }
+
+        @media (max-width: 768px) {
+            section[id],
+            #about,
+            #features,
+            #pricing,
+            #why-dorfie,
+            #software-apps,
+            #events,
+            #communities,
+            #book-demo {
+                scroll-margin-top: 76px;
+            }
+        }
+
+        #mobile-nav-drawer,
+        #policy-modal-overlay,
+        #policy-modal-body,
+        #plan-details-modal,
+        #plan-modal-card,
+        #invoice-modal-overlay,
+        #invoice-printable-card {
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* -------------------------------------------------------------
            LUXURY TACTILE CLICK & BUTTON FEEDBACK SYSTEM
-           Eliminates delay, prevents jitter, ensures instant buttery response
+           Instant buttery response for leaf buttons — zero container layout jitter
            ------------------------------------------------------------- */
         .liquid-glass-btn-orange,
-        .liquid-glass-pill,
-        .magnetic-btn,
+        .card-btn,
+        .seeMore-btn,
         .nav-section-link,
         .feature-tab-btn,
         .pricing-audience-btn,
         .policy-tab-btn,
-        .card-btn,
-        .seeMore-btn,
-        .seeMore,
         #mobile-nav-drawer a,
         #mobile-nav-drawer button {
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
             -webkit-user-select: none;
-            will-change: transform;
         }
 
-        /* Instant silky active feedback on mobile press */
+        /* Instant silky active feedback on mobile press — strictly on interactive leaf buttons */
+        .liquid-glass-btn-orange:active,
+        .liquid-glass-btn-orange.is-tactile-pressed,
+        .card-btn:active,
+        .card-btn.is-tactile-pressed,
+        .seeMore-btn:active,
+        .seeMore-btn.is-tactile-pressed,
+        button.is-tactile-pressed:not(.no-tactile),
+        a.is-tactile-pressed:not(#mobile-nav-drawer a) {
+            transform: scale(0.97) translateZ(0);
+            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
         .liquid-glass-btn-orange:active,
         .liquid-glass-btn-orange.is-tactile-pressed {
-            transform: scale(0.96) translateZ(0) !important;
-            box-shadow: 0 4px 14px rgba(255, 94, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
-            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.08s ease !important;
+            box-shadow: 0 4px 14px rgba(255, 94, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.5);
         }
 
         #mobile-nav-drawer a:active,
         #mobile-nav-drawer a.is-tactile-pressed {
-            transform: scale(0.98) translateX(4px) !important;
-            background-color: rgba(255, 94, 0, 0.14) !important;
-            color: #FF5E00 !important;
-            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.08s ease !important;
-        }
-
-        .liquid-glass-pill:active:not(header):not(#main-header-panel),
-        .liquid-glass-pill.is-tactile-pressed:not(header):not(#main-header-panel) {
-            transform: scale(0.96) translateZ(0) !important;
-            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
-        }
-
-        .is-tactile-pressed {
-            transform: scale(0.96) translateZ(0) !important;
-            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+            transform: scale(0.98) translateX(4px);
+            background-color: rgba(255, 94, 0, 0.14);
+            color: #FF5E00;
+            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.08s ease;
         }

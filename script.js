@@ -156,7 +156,7 @@
         }
 
         function init3DCards() {
-            if (isReducedMotion) return;
+            if (isReducedMotion || window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
             const tiltElements = document.querySelectorAll('[data-tilt]');
             tiltElements.forEach(card => {
                 new LuxuryCard3D(card);
@@ -231,7 +231,8 @@
                 if (this.activeView === viewKey) {
                     if (viewKey === 'home') {
                         if (lenisInstance) {
-                            lenisInstance.scrollTo(0, { duration: 1.15 });
+                            const isMobileNav = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
+                            lenisInstance.scrollTo(0, { duration: isMobileNav ? 0.65 : 0.9, easing: (t) => 1 - Math.pow(1 - t, 3.5) });
                         } else {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }
@@ -323,13 +324,25 @@
                 });
             },
 
+            _lastNavTarget: null,
+            _lastNavTime: 0,
+
             navigateLandingSection(sectionId, event) {
                 if (event) {
-                    event.preventDefault();
+                    if (event.preventDefault) event.preventDefault();
                     if (event.stopPropagation) event.stopPropagation();
+                    if (event.stopImmediatePropagation) event.stopImmediatePropagation();
                 }
 
-                // Immediately close mobile navigation drawer cleanly
+                // Prevent duplicate invocation for the same target within 300ms
+                const now = performance.now();
+                if (this._lastNavTarget === sectionId && (now - this._lastNavTime) < 300) {
+                    return;
+                }
+                this._lastNavTarget = sectionId;
+                this._lastNavTime = now;
+
+                // Immediately close mobile navigation drawer cleanly before measuring header dimensions
                 if (typeof closeMobileNav === 'function') {
                     closeMobileNav(true);
                 } else {
@@ -345,14 +358,15 @@
                     if (!target) return;
 
                     const isMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
-                    const header = document.getElementById('main-header');
-                    const headerHeight = header ? header.offsetHeight : (isMobile ? 64 : 80);
-                    // Dynamic offset tailored to header dimensions
-                    const scrollOffset = -(headerHeight + (isMobile ? 12 : 20));
+                    // Measure #main-header-panel instead of #main-header so drawer height never pollutes offset
+                    const headerPanel = document.getElementById('main-header-panel');
+                    const headerHeight = headerPanel ? headerPanel.offsetHeight : (isMobile ? 56 : 72);
+                    const headerTopOffset = isMobile ? 8 : 12;
+                    const scrollOffset = -(headerHeight + headerTopOffset + (isMobile ? 12 : 20));
 
                     if (lenisInstance) {
-                        // Snappy, buttery luxury easing: rapid response with velvet deceleration
-                        const scrollDuration = isMobile ? 0.65 : 0.85;
+                        // Velvet smooth, deliberate deceleration with zero stutter
+                        const scrollDuration = isMobile ? 0.6 : 0.8;
                         lenisInstance.scrollTo(target, {
                             offset: scrollOffset,
                             duration: scrollDuration,
@@ -372,9 +386,9 @@
 
                 if (this.activeView !== 'home') {
                     this.navigate('home');
-                    setTimeout(scrollToTarget, 320);
+                    setTimeout(scrollToTarget, 300);
                 } else {
-                    scrollToTarget();
+                    requestAnimationFrame(scrollToTarget);
                 }
             },
 
@@ -1121,22 +1135,30 @@
 
             const slideTrack = document.getElementById('features-slide-track');
             if (slideTrack) {
+                const prevH = slideTrack.offsetHeight;
+                if (prevH > 0) {
+                    slideTrack.style.minHeight = `${prevH}px`;
+                }
                 if (window.gsap) {
                     gsap.to(slideTrack, {
                         opacity: 0,
-                        duration: 0.18,
+                        duration: 0.15,
                         ease: "power2.in",
                         onComplete: () => {
                             renderRoleFeatureStack(roleKey);
+                            requestAnimationFrame(() => {
+                                slideTrack.style.minHeight = '';
+                            });
                             gsap.to(slideTrack, {
                                 opacity: 1,
-                                duration: 0.35,
-                                ease: "power3.out"
+                                duration: 0.25,
+                                ease: "power2.out"
                             });
                         }
                     });
                 } else {
                     renderRoleFeatureStack(roleKey);
+                    slideTrack.style.minHeight = '';
                 }
             }
         }
@@ -1808,22 +1830,29 @@
 
             const container = document.getElementById('pricing-cards-container');
             if (container) {
+                const prevHeight = container.offsetHeight;
+                if (prevHeight > 0) {
+                    container.style.minHeight = `${prevHeight}px`;
+                }
                 if (window.gsap) {
                     gsap.to(container, {
                         opacity: 0,
-                        y: 10,
-                        duration: 0.16,
+                        duration: 0.14,
                         ease: "power2.in",
                         onComplete: () => {
                             renderPricingCards();
+                            requestAnimationFrame(() => {
+                                container.style.minHeight = '';
+                            });
                             gsap.fromTo(container, 
-                                { opacity: 0, y: -10 },
-                                { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }
+                                { opacity: 0 },
+                                { opacity: 1, duration: 0.25, ease: "power2.out" }
                             );
                         }
                     });
                 } else {
                     renderPricingCards();
+                    container.style.minHeight = '';
                 }
             } else {
                 renderPricingCards();
@@ -1907,8 +1936,8 @@
                 `;
             }).join('');
 
-            // Re-bind Luxury 3D Cards
-            if (typeof LuxuryCard3D !== 'undefined') {
+            // Re-bind Luxury 3D Cards (desktop mouse only)
+            if (typeof LuxuryCard3D !== 'undefined' && !window.matchMedia('(hover: none) and (pointer: coarse)').matches && !isReducedMotion) {
                 container.querySelectorAll('.card').forEach(el => new LuxuryCard3D(el));
             }
         }
@@ -1920,6 +1949,8 @@
 
             const modalOverlay = document.getElementById('plan-details-modal');
             if (!modalOverlay) return;
+            if (lenisInstance) lenisInstance.stop();
+            document.body.style.overflow = 'hidden';
 
             const titleEl = document.getElementById('plan-modal-title');
             const tierEl = document.getElementById('plan-modal-tier');
@@ -1997,6 +2028,8 @@
             if (card) card.classList.add('scale-95');
             setTimeout(() => {
                 modalOverlay.classList.add('hidden');
+                document.body.style.overflow = '';
+                if (lenisInstance) lenisInstance.start();
             }, 300);
         }
 
@@ -2038,6 +2071,8 @@
         function openPolicyModal(policyKey = 'terms') {
             const overlay = document.getElementById('policy-modal-overlay');
             if (!overlay) return;
+            if (lenisInstance) lenisInstance.stop();
+            document.body.style.overflow = 'hidden';
             overlay.classList.remove('hidden');
             requestAnimationFrame(() => {
                 overlay.classList.remove('opacity-0');
@@ -2055,6 +2090,8 @@
             if (card) card.classList.add('scale-95');
             setTimeout(() => {
                 overlay.classList.add('hidden');
+                document.body.style.overflow = '';
+                if (lenisInstance) lenisInstance.start();
             }, 300);
         }
 
@@ -2441,6 +2478,8 @@
 
             safeSetText('invoice-total-amount', `₹${order.finalTotal.toLocaleString()}`);
 
+            if (lenisInstance) lenisInstance.stop();
+            document.body.style.overflow = 'hidden';
             modal.classList.remove('hidden');
             requestAnimationFrame(() => {
                 modal.classList.remove('opacity-0');
@@ -2461,6 +2500,8 @@
             if (card) card.classList.add('scale-95');
             setTimeout(() => {
                 modal.classList.add('hidden');
+                document.body.style.overflow = '';
+                if (lenisInstance) lenisInstance.start();
                 appRouter.pendingPurchase = null;
                 appRouter.navigate('home');
             }, 300);
@@ -3165,6 +3206,9 @@
             document.addEventListener('click', (e) => {
                 const anchor = e.target.closest('a[href^="#"]');
                 if (!anchor) return;
+                // If the anchor already has inline onclick with navigateLandingSection, let inline handler govern
+                if (anchor.getAttribute('onclick')?.includes('navigateLandingSection')) return;
+
                 const href = anchor.getAttribute('href');
                 if (!href || href === '#' || href === '#!') return;
 
@@ -3182,16 +3226,38 @@
                     if (typeof closeMobileNav === 'function') closeMobileNav(true);
                     appRouter.navigateLandingSection(targetId, e);
                 }
-            }, { capture: true });
+            });
 
-            // Instant 0ms tactile feedback on mobile/desktop taps
+            // Instant, buttery tactile feedback on actual button/link taps only
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let activeTactileEl = null;
+
             document.addEventListener('pointerdown', (e) => {
-                const btn = e.target.closest('button, .liquid-glass-btn-orange, .liquid-glass-pill, .seeMore, .seeMore-btn, [role="button"], #mobile-nav-drawer a');
+                touchStartX = e.clientX;
+                touchStartY = e.clientY;
+                const btn = e.target.closest('button, .liquid-glass-btn-orange, .card-btn, .seeMore-btn, #mobile-nav-drawer a, .feature-tab-btn, .pricing-audience-btn, .policy-tab-btn');
                 if (!btn) return;
+                activeTactileEl = btn;
                 btn.classList.add('is-tactile-pressed');
             }, { passive: true });
 
+            // If user moves pointer (scrolling gesture), immediately cancel tactile press
+            document.addEventListener('pointermove', (e) => {
+                if (!activeTactileEl) return;
+                const diffX = Math.abs(e.clientX - touchStartX);
+                const diffY = Math.abs(e.clientY - touchStartY);
+                if (diffX > 8 || diffY > 8) {
+                    activeTactileEl.classList.remove('is-tactile-pressed');
+                    activeTactileEl = null;
+                }
+            }, { passive: true });
+
             const releaseTactile = () => {
+                if (activeTactileEl) {
+                    activeTactileEl.classList.remove('is-tactile-pressed');
+                    activeTactileEl = null;
+                }
                 const pressed = document.querySelectorAll('.is-tactile-pressed');
                 pressed.forEach(el => el.classList.remove('is-tactile-pressed'));
             };
