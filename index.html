@@ -1667,14 +1667,8 @@
                             </p>
                         </div>
 
-                        <!-- Mobile swipe helper -->
-                        <div class="sm:hidden flex items-center justify-center gap-1.5 text-[11px] font-mono text-charcoal/60 dark:text-chalk/60 mb-2.5">
-                            <i class="fa-solid fa-arrows-left-right text-accent-orange animate-pulse"></i>
-                            <span>Swipe left &amp; right to compare</span>
-                        </div>
-
-                        <!-- Responsive Comparison Table -->
-                        <div class="comparison-table-wrapper rounded-3xl liquid-glass-well p-3 sm:p-6 overflow-x-auto border border-charcoal/10 dark:border-white/10">
+                        <!-- Desktop Comparison Table (hidden on mobile, shown on tablet/desktop >= 640px) -->
+                        <div class="hidden sm:block comparison-table-wrapper rounded-3xl liquid-glass-well p-4 sm:p-6 overflow-x-auto border border-charcoal/10 dark:border-white/10">
                             <table class="comparison-table w-full text-left text-xs sm:text-sm border-collapse min-w-[640px]">
                                 <thead>
                                     <tr class="border-b border-charcoal/10 dark:border-white/10 text-charcoal/70 dark:text-chalk/70 font-mono text-[11px] uppercase tracking-wider">
@@ -1746,6 +1740,177 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+
+                        <!-- Mobile Zero-Scroll Comparison Stack (100% Responsive Cards, Zero Horizontal Overflow) -->
+                        <div class="sm:hidden flex flex-col gap-3.5 w-full">
+                            <!-- 1. Purpose -->
+                            <div class="comparison-mobile-card rounded-2xl p-4 liquid-glass-well border border-charcoal/10 dark:border-white/10">
+                                <div class="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10">
+                                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-charcoal dark:text-chalk">1. Purpose</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-accent-orange/15 text-accent-orange font-bold uppercase">Overview</span>
+                                </div>
+                                <div class="space-y-2.5 text-xs">
+                                    <div class="p-3 rounded-xl bg-accent-orange/10 border border-accent-orange/25">
+                                        <div class="flex items-center gap-1.5 font-bold text-accent-orange mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Dorfie Fit</span>
+                                        </div>
+                                        <p class="text-charcoal dark:text-chalk font-medium leading-relaxed">
+                                            Retention, revenue growth, community building, and full gym operations in one ecosystem.
+                                        </p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-charcoal/5 dark:border-white/5">
+                                        <div class="flex items-center gap-1.5 font-semibold text-charcoal/60 dark:text-chalk/60 mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-xmark text-charcoal/40 dark:text-chalk/40"></i>
+                                            <span>Typical Gym Software</span>
+                                        </div>
+                                        <p class="text-charcoal/70 dark:text-chalk/70 leading-relaxed">
+                                            Billing, access control, attendance. Software built solely for the back office.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Member Engagement -->
+                            <div class="comparison-mobile-card rounded-2xl p-4 liquid-glass-well border border-charcoal/10 dark:border-white/10">
+                                <div class="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10">
+                                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-charcoal dark:text-chalk">2. Member Engagement</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-accent-orange/15 text-accent-orange font-bold uppercase">Community</span>
+                                </div>
+                                <div class="space-y-2.5 text-xs">
+                                    <div class="p-3 rounded-xl bg-accent-orange/10 border border-accent-orange/25">
+                                        <div class="flex items-center gap-1.5 font-bold text-accent-orange mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Dorfie Fit</span>
+                                        </div>
+                                        <p class="text-charcoal dark:text-chalk font-medium leading-relaxed">
+                                            Social feeds, gym challenges, live leaderboards, personal records, and direct coach messaging.
+                                        </p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-charcoal/5 dark:border-white/5">
+                                        <div class="flex items-center gap-1.5 font-semibold text-charcoal/60 dark:text-chalk/60 mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-xmark text-charcoal/40 dark:text-chalk/40"></i>
+                                            <span>Typical Gym Software</span>
+                                        </div>
+                                        <p class="text-charcoal/70 dark:text-chalk/70 leading-relaxed">
+                                            None. Members don't download the app (or hate using it). Fragmented login portals.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Churn Prevention -->
+                            <div class="comparison-mobile-card rounded-2xl p-4 liquid-glass-well border border-charcoal/10 dark:border-white/10">
+                                <div class="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10">
+                                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-charcoal dark:text-chalk">3. Churn Prevention</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-accent-orange/15 text-accent-orange font-bold uppercase">Retention</span>
+                                </div>
+                                <div class="space-y-2.5 text-xs">
+                                    <div class="p-3 rounded-xl bg-accent-orange/10 border border-accent-orange/25">
+                                        <div class="flex items-center gap-1.5 font-bold text-accent-orange mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Dorfie Fit</span>
+                                        </div>
+                                        <p class="text-charcoal dark:text-chalk font-medium leading-relaxed">
+                                            Live Tracking Churn Radar: Predictive signals flag disengaged members before they cancel.
+                                        </p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-charcoal/5 dark:border-white/5">
+                                        <div class="flex items-center gap-1.5 font-semibold text-charcoal/60 dark:text-chalk/60 mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-xmark text-charcoal/40 dark:text-chalk/40"></i>
+                                            <span>Typical Gym Software</span>
+                                        </div>
+                                        <p class="text-charcoal/70 dark:text-chalk/70 leading-relaxed">
+                                            Reactive. You only find out a member left when their card declines or they stop showing up.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. PT Revenue & Leakage -->
+                            <div class="comparison-mobile-card rounded-2xl p-4 liquid-glass-well border border-charcoal/10 dark:border-white/10">
+                                <div class="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10">
+                                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-charcoal dark:text-chalk">4. PT Revenue &amp; Leakage</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-accent-orange/15 text-accent-orange font-bold uppercase">Revenue</span>
+                                </div>
+                                <div class="space-y-2.5 text-xs">
+                                    <div class="p-3 rounded-xl bg-accent-orange/10 border border-accent-orange/25">
+                                        <div class="flex items-center gap-1.5 font-bold text-accent-orange mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Dorfie Fit</span>
+                                        </div>
+                                        <p class="text-charcoal dark:text-chalk font-medium leading-relaxed">
+                                            In-app session booking, logging, and Under-The-Table PT Detection to safeguard gym margins.
+                                        </p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-charcoal/5 dark:border-white/5">
+                                        <div class="flex items-center gap-1.5 font-semibold text-charcoal/60 dark:text-chalk/60 mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-xmark text-charcoal/40 dark:text-chalk/40"></i>
+                                            <span>Typical Gym Software</span>
+                                        </div>
+                                        <p class="text-charcoal/70 dark:text-chalk/70 leading-relaxed">
+                                            Trainers and members take sessions offline. The gym loses 30–50% of potential personal training revenue.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 5. Trainer Hiring -->
+                            <div class="comparison-mobile-card rounded-2xl p-4 liquid-glass-well border border-charcoal/10 dark:border-white/10">
+                                <div class="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10">
+                                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-charcoal dark:text-chalk">5. Trainer Hiring</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-accent-orange/15 text-accent-orange font-bold uppercase">Talent</span>
+                                </div>
+                                <div class="space-y-2.5 text-xs">
+                                    <div class="p-3 rounded-xl bg-accent-orange/10 border border-accent-orange/25">
+                                        <div class="flex items-center gap-1.5 font-bold text-accent-orange mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span>Dorfie Fit</span>
+                                        </div>
+                                        <p class="text-charcoal dark:text-chalk font-medium leading-relaxed">
+                                            Built-in talent marketplace with verified coach credentials, client ratings, and direct hiring pipeline.
+                                        </p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-charcoal/5 dark:border-white/5">
+                                        <div class="flex items-center gap-1.5 font-semibold text-charcoal/60 dark:text-chalk/60 mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-xmark text-charcoal/40 dark:text-chalk/40"></i>
+                                            <span>Typical Gym Software</span>
+                                        </div>
+                                        <p class="text-charcoal/70 dark:text-chalk/70 leading-relaxed">
+                                            Disorganized WhatsApp groups, unverified word of mouth, or expensive external job portals.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 6. WhatsApp & Messaging -->
+                            <div class="comparison-mobile-card rounded-2xl p-4 liquid-glass-well border border-charcoal/10 dark:border-white/10">
+                                <div class="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10">
+                                    <span class="font-mono text-xs font-bold uppercase tracking-wider text-charcoal dark:text-chalk">6. WhatsApp &amp; Messaging</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#25D366]/20 text-[#25D366] font-bold uppercase">Included Free</span>
+                                </div>
+                                <div class="space-y-2.5 text-xs">
+                                    <div class="p-3 rounded-xl bg-[#25D366]/10 border border-[#25D366]/30">
+                                        <div class="flex items-center gap-1.5 font-bold text-[#25D366] mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                                            <span>Dorfie Fit</span>
+                                        </div>
+                                        <p class="text-charcoal dark:text-chalk font-semibold leading-relaxed">
+                                            Free WhatsApp Messaging Integration included natively with automated reminders and alerts.
+                                        </p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-black/5 dark:bg-white/5 border border-charcoal/5 dark:border-white/5">
+                                        <div class="flex items-center gap-1.5 font-semibold text-charcoal/60 dark:text-chalk/60 mb-1 font-mono text-[11px] uppercase">
+                                            <i class="fa-solid fa-circle-xmark text-charcoal/40 dark:text-chalk/40"></i>
+                                            <span>Typical Gym Software</span>
+                                        </div>
+                                        <p class="text-charcoal/70 dark:text-chalk/70 leading-relaxed">
+                                            Manual broadcast groups or third-party SMS/WhatsApp tools charging recurring monthly fees.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
