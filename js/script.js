@@ -325,6 +325,14 @@
 
             _lastNavTarget: null,
             _lastNavTime: 0,
+            _isNavigatingSection: false,
+            transitionMode: 'liquid-float', // 'liquid-float' | 'velvet-cut' | 'lateral-swipe'
+
+            setTransitionMode(mode) {
+                if (['liquid-float', 'velvet-cut', 'lateral-swipe'].includes(mode)) {
+                    this.transitionMode = mode;
+                }
+            },
 
             navigateLandingSection(sectionId, event) {
                 if (event) {
@@ -371,10 +379,13 @@
                     setTimeout(() => { target.style.contentVisibility = ''; }, 1200);
                 }
 
+                const currentScrollY = window.scrollY || document.documentElement.scrollTop;
                 const topPos = computeTargetTop(target);
+                const isGoingDown = topPos >= currentScrollY;
+                const scrollDistance = Math.abs(currentScrollY - topPos);
 
-                // If already at or very close to this section (within 60px), trigger arrival pulse
-                if (Math.abs(window.scrollY - topPos) < 60) {
+                // If already at or very close to this section (within 50px), trigger arrival pulse
+                if (scrollDistance < 50) {
                     const panel = target.querySelector('.liquid-glass-panel') || target;
                     panel.classList.remove('section-arrival-pulse');
                     void panel.offsetWidth;
@@ -393,43 +404,106 @@
                     return;
                 }
 
-                const curtain = document.getElementById('section-transition-curtain');
-                const curtainSheet = document.getElementById('curtain-sheet');
+                const portal = document.getElementById('section-transition-portal');
+                const veil = document.getElementById('portal-veil');
+                const laserEdge = document.getElementById('portal-laser-edge');
+                const destPill = document.getElementById('portal-destination-pill');
+                const destIcon = document.getElementById('portal-destination-icon');
+                const destLabel = document.getElementById('portal-destination-label');
                 const mainContainer = document.getElementById('main-view-container') || document.getElementById('view-home') || document.body;
 
-                if (curtain && curtainSheet) {
-                    curtain.style.pointerEvents = 'auto';
-                    gsap.killTweensOf([curtainSheet, mainContainer, target]);
+                // Section metadata dictionary for luxury destination holographic badge
+                const sectionMeta = {
+                    'hero': { label: 'Explore Dorfie Fit', icon: 'fa-bolt' },
+                    'about': { label: 'About Dorfie Fit', icon: 'fa-heart-pulse' },
+                    'features': { label: 'Smart Gym Features', icon: 'fa-layer-group' },
+                    'communities': { label: 'Fitness Communities', icon: 'fa-users' },
+                    'events': { label: 'Leaderboards & Events', icon: 'fa-trophy' },
+                    'pricing': { label: 'Plans & Subscriptions', icon: 'fa-crown' },
+                    'why-dorfie': { label: 'Why Dorfie Fit', icon: 'fa-shield-halved' },
+                    'software-apps': { label: 'Download Mobile App', icon: 'fa-mobile-screen' },
+                    'book-demo': { label: 'Book a Live Demo', icon: 'fa-calendar-check' },
+                    'faq': { label: 'FAQ & Help', icon: 'fa-circle-question' }
+                };
 
-                    const tl = gsap.timeline({
-                        onComplete: () => {
-                            curtain.style.pointerEvents = 'none';
-                            gsap.set(curtain, { opacity: 0 });
-                            gsap.set(curtainSheet, { yPercent: -100 });
-                            gsap.set(mainContainer, { clearProps: 'transform,filter,opacity' });
-                        }
-                    });
+                const meta = sectionMeta[targetKey] || { label: targetKey.replace('-', ' '), icon: 'fa-bolt' };
+                if (destLabel) destLabel.textContent = meta.label;
+                if (destIcon) destIcon.innerHTML = `<i class="fa-solid ${meta.icon}"></i>`;
 
-                    // 1. Initial setup
-                    gsap.set(curtain, { opacity: 1 });
-                    gsap.set(curtainSheet, { yPercent: -100 });
+                this._isNavigatingSection = true;
 
-                    // 2. Wipe Down & Zoom Cut Out (Swift 180ms)
+                // Global failsafe timer to prevent any stuck UI states
+                const failsafe = setTimeout(() => {
+                    this._isNavigatingSection = false;
+                    if (portal) {
+                        portal.style.pointerEvents = 'none';
+                        gsap.set(portal, { opacity: 0 });
+                    }
+                    gsap.set(mainContainer, { clearProps: 'transform,filter,opacity' });
+                }, 900);
+
+                const cleanUpOnComplete = () => {
+                    clearTimeout(failsafe);
+                    this._isNavigatingSection = false;
+                    if (portal) {
+                        portal.style.pointerEvents = 'none';
+                        gsap.set(portal, { opacity: 0 });
+                    }
+                    gsap.set(mainContainer, { clearProps: 'transform,filter,opacity' });
+
+                    // Trigger arrival pulse on destination panel
+                    const arrivalCard = target.querySelector('.liquid-glass-panel') || target;
+                    arrivalCard.classList.remove('section-arrival-pulse');
+                    void arrivalCard.offsetWidth;
+                    arrivalCard.classList.add('section-arrival-pulse');
+                };
+
+                // FLAGSHIP: "LIQUID-FLOAT" (Directional Liquid Glass Sweep & Eased Float Cut)
+                if (portal && veil && this.transitionMode === 'liquid-float') {
+                    portal.style.pointerEvents = 'auto';
+                    gsap.killTweensOf([portal, veil, destPill, mainContainer, target]);
+
+                    // Orient laser edge to leading swipe lip
+                    if (laserEdge) {
+                        laserEdge.className = isGoingDown ? 'edge-bottom' : 'edge-top';
+                    }
+
+                    const startYPercent = isGoingDown ? -100 : 100;
+                    const endYPercent = isGoingDown ? 100 : -100;
+                    const floatDeltaY = isGoingDown ? -28 : 28;
+
+                    gsap.set(portal, { opacity: 1 });
+                    gsap.set(veil, { yPercent: startYPercent, xPercent: 0 });
+                    if (destPill) gsap.set(destPill, { opacity: 0, scale: 0.88 });
+
+                    const tl = gsap.timeline({ onComplete: cleanUpOnComplete });
+
+                    // Phase 1: Outgoing content floats away + Frosted veil sweeps in smoothly
                     tl.to(mainContainer, {
-                        scale: 0.965,
-                        filter: 'blur(3px)',
-                        opacity: 0.5,
-                        duration: 0.18,
-                        ease: 'power2.in'
+                        y: floatDeltaY,
+                        scale: 0.985,
+                        filter: 'blur(4px)',
+                        opacity: 0.35,
+                        duration: 0.22,
+                        ease: 'power2.inOut'
                     }, 0);
 
-                    tl.to(curtainSheet, {
+                    tl.to(veil, {
                         yPercent: 0,
-                        duration: 0.20,
+                        duration: 0.24,
                         ease: 'power3.inOut'
                     }, 0);
 
-                    // 3. Instant Section Jump at peak wipe cover
+                    if (destPill) {
+                        tl.to(destPill, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.18,
+                            ease: 'back.out(1.4)'
+                        }, 0.08);
+                    }
+
+                    // Phase 2: Silent instant jump at peak veil coverage
                     tl.add(() => {
                         const preciseTop = computeTargetTop(target);
                         window.scrollTo({ top: preciseTop, behavior: 'instant' });
@@ -445,40 +519,130 @@
                         updateBackToTop(preciseTop);
                     });
 
-                    // 4. Wipe Down Out & Zoom In to Destination
-                    tl.to(curtainSheet, {
-                        yPercent: 100,
-                        duration: 0.22,
+                    // Phase 3: Veil sweeps away + Destination content floats in with buttery ease
+                    if (destPill) {
+                        tl.to(destPill, {
+                            opacity: 0,
+                            scale: 0.92,
+                            duration: 0.14,
+                            ease: 'power2.in'
+                        });
+                    }
+
+                    tl.to(veil, {
+                        yPercent: endYPercent,
+                        duration: 0.26,
                         ease: 'power3.out'
-                    });
+                    }, '-=0.08');
 
                     tl.fromTo(mainContainer,
-                        { scale: 0.97, filter: 'blur(3px)', opacity: 0.7 },
-                        { scale: 1, filter: 'blur(0px)', opacity: 1, duration: 0.25, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' },
-                        "-=0.18"
+                        { y: -floatDeltaY, scale: 0.985, filter: 'blur(5px)', opacity: 0.35 },
+                        {
+                            y: 0,
+                            scale: 1,
+                            filter: 'blur(0px)',
+                            opacity: 1,
+                            duration: 0.36,
+                            ease: 'cubic-bezier(0.16, 1, 0.3, 1)'
+                        },
+                        '-=0.22'
                     );
 
-                    // 5. Arrival highlight on target
-                    const arrivalCard = target.querySelector('.liquid-glass-panel') || target;
-                    arrivalCard.classList.remove('section-arrival-pulse');
-                    void arrivalCard.offsetWidth;
-                    arrivalCard.classList.add('section-arrival-pulse');
+                } else if (portal && veil && this.transitionMode === 'lateral-swipe') {
+                    // MODE 2: LATERAL VELOCITY SWIPE (Cinematic horizontal magazine sweep)
+                    portal.style.pointerEvents = 'auto';
+                    gsap.killTweensOf([portal, veil, destPill, mainContainer, target]);
+
+                    if (laserEdge) {
+                        laserEdge.className = isGoingDown ? 'edge-right' : 'edge-left';
+                    }
+                    const startXPercent = isGoingDown ? -100 : 100;
+                    const endXPercent = isGoingDown ? 100 : -100;
+
+                    gsap.set(portal, { opacity: 1 });
+                    gsap.set(veil, { xPercent: startXPercent, yPercent: 0 });
+                    if (destPill) gsap.set(destPill, { opacity: 0, scale: 0.9 });
+
+                    const tl = gsap.timeline({ onComplete: cleanUpOnComplete });
+
+                    tl.to(mainContainer, {
+                        x: isGoingDown ? -30 : 30,
+                        scale: 0.985,
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        duration: 0.22,
+                        ease: 'power2.inOut'
+                    }, 0);
+
+                    tl.to(veil, {
+                        xPercent: 0,
+                        duration: 0.24,
+                        ease: 'power3.inOut'
+                    }, 0);
+
+                    if (destPill) {
+                        tl.to(destPill, { opacity: 1, scale: 1, duration: 0.16, ease: 'power2.out' }, 0.08);
+                    }
+
+                    tl.add(() => {
+                        const preciseTop = computeTargetTop(target);
+                        window.scrollTo({ top: preciseTop, behavior: 'instant' });
+                        if (lenisInstance) lenisInstance.scrollTo(preciseTop, { immediate: true });
+                        target.querySelectorAll('.scroll-reveal-item').forEach(el => el.classList.add('scroll-reveal-visible'));
+                        target.classList.add('scroll-reveal-visible');
+                        updateHeaderOnScroll(preciseTop);
+                        updateBackToTop(preciseTop);
+                    });
+
+                    if (destPill) {
+                        tl.to(destPill, { opacity: 0, scale: 0.92, duration: 0.14, ease: 'power2.in' });
+                    }
+
+                    tl.to(veil, {
+                        xPercent: endXPercent,
+                        duration: 0.26,
+                        ease: 'power3.out'
+                    }, '-=0.08');
+
+                    tl.fromTo(mainContainer,
+                        { x: isGoingDown ? 30 : -30, scale: 0.985, filter: 'blur(4px)', opacity: 0.4 },
+                        { x: 0, scale: 1, filter: 'blur(0px)', opacity: 1, duration: 0.34, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+                        '-=0.20'
+                    );
+
                 } else {
-                    // Fallback zoom cut if curtain element is absent
+                    // MODE 3: VELVET DEPTH CUT (Minimalist luxury float & focus dissolve without curtain)
+                    gsap.killTweensOf([mainContainer, target]);
+                    const floatDeltaY = isGoingDown ? -24 : 24;
+
                     gsap.to(mainContainer, {
-                        scale: 0.96,
-                        opacity: 0.3,
-                        duration: 0.15,
+                        y: floatDeltaY,
+                        scale: 0.985,
+                        filter: 'blur(6px)',
+                        opacity: 0.2,
+                        duration: 0.18,
                         ease: 'power2.in',
                         onComplete: () => {
                             const preciseTop = computeTargetTop(target);
                             window.scrollTo({ top: preciseTop, behavior: 'instant' });
-                            gsap.to(mainContainer, {
-                                scale: 1,
-                                opacity: 1,
-                                duration: 0.22,
-                                ease: 'cubic-bezier(0.16, 1, 0.3, 1)'
-                            });
+                            if (lenisInstance) lenisInstance.scrollTo(preciseTop, { immediate: true });
+                            target.querySelectorAll('.scroll-reveal-item').forEach(el => el.classList.add('scroll-reveal-visible'));
+                            target.classList.add('scroll-reveal-visible');
+                            updateHeaderOnScroll(preciseTop);
+                            updateBackToTop(preciseTop);
+
+                            gsap.fromTo(mainContainer,
+                                { y: -floatDeltaY, scale: 0.985, filter: 'blur(6px)', opacity: 0.2 },
+                                {
+                                    y: 0,
+                                    scale: 1,
+                                    filter: 'blur(0px)',
+                                    opacity: 1,
+                                    duration: 0.32,
+                                    ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                                    onComplete: cleanUpOnComplete
+                                }
+                            );
                         }
                     });
                 }
@@ -3301,15 +3465,19 @@
             if (isGlobalClicksBound) return;
             isGlobalClicksBound = true;
             document.addEventListener('click', (e) => {
-                const anchor = e.target.closest('a[href^="#"]');
-                if (!anchor) return;
-                // If the anchor already has inline onclick with navigateLandingSection, let inline handler govern
-                if (anchor.getAttribute('onclick')?.includes('navigateLandingSection')) return;
+                const trigger = e.target.closest('a[href^="#"], [data-section], [data-nav-target]');
+                if (!trigger) return;
+                // If the element already has inline onclick with navigateLandingSection, let inline handler govern
+                if (trigger.getAttribute('onclick')?.includes('navigateLandingSection')) return;
 
-                const href = anchor.getAttribute('href');
-                if (!href || href === '#' || href === '#!') return;
+                const href = trigger.getAttribute('href');
+                const dataTarget = trigger.getAttribute('data-section') || trigger.getAttribute('data-nav-target') || trigger.getAttribute('data-target');
+                let targetId = dataTarget;
+                if (!targetId && href && href.startsWith('#')) {
+                    targetId = href.substring(1);
+                }
+                if (!targetId || targetId === '#' || targetId === '#!') return;
 
-                const targetId = href.substring(1);
                 if (targetId === 'home') {
                     e.preventDefault();
                     if (typeof closeMobileNav === 'function') closeMobileNav(true);

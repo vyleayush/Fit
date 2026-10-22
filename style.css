@@ -2742,51 +2742,99 @@
         }
 
         /* -------------------------------------------------------------
-           CINEMATIC SECTION WIPE & ZOOM CUT ENGINE
-           Directly switches to the destination section with smooth luxury wipe
+           DORFIE LIQUID-GLASS LUXURY SECTION TRANSITION PORTAL
+           Buttery, clean, eased directional float & swipe transition
            ------------------------------------------------------------- */
-        #section-transition-curtain {
+        #section-transition-portal {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 990;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
             opacity: 0;
         }
 
-        #curtain-sheet {
+        #portal-veil {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-            background: #121214;
-            border-bottom: 2px solid rgba(255, 94, 0, 0.65);
-            box-shadow: 0 15px 40px rgba(255, 94, 0, 0.35);
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            transform: translateY(-100%);
-            will-change: transform;
+            align-items: center;
+            justify-content: center;
+            will-change: transform, opacity;
         }
 
-        html.dark #curtain-sheet {
-            background: #0A0A0C;
+        /* Glass backdrop adapts seamlessly to active theme */
+        #portal-glass-backdrop {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(230, 227, 220, 0.94); /* Warm sand liquid glass */
+            backdrop-filter: blur(28px) saturate(160%);
+            -webkit-backdrop-filter: blur(28px) saturate(160%);
         }
 
+        html.dark #portal-glass-backdrop {
+            background: rgba(14, 14, 18, 0.94); /* Obsidian charcoal liquid glass */
+        }
+
+        #portal-laser-edge {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, #FF5E00 20%, #FFB03A 50%, #FF5E00 80%, transparent 100%);
+            box-shadow: 0 0 28px rgba(255, 94, 0, 0.95), 0 0 10px rgba(255, 94, 0, 0.7);
+            z-index: 2;
+        }
+
+        #portal-laser-edge.edge-bottom {
+            bottom: 0;
+            top: auto;
+        }
+
+        #portal-laser-edge.edge-top {
+            top: 0;
+            bottom: auto;
+        }
+
+        #portal-laser-edge.edge-right {
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: auto;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, #FF5E00 20%, #FFB03A 50%, #FF5E00 80%, transparent 100%);
+        }
+
+        #portal-laser-edge.edge-left {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: auto;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, #FF5E00 20%, #FFB03A 50%, #FF5E00 80%, transparent 100%);
+        }
+
+        /* Section Target Arrival Highlight Pulse */
         .section-arrival-pulse {
-            animation: arrivalGlow 0.55s var(--ease-luxury) forwards;
+            animation: sectionArrivalGlow 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
         }
 
-        @keyframes arrivalGlow {
+        @keyframes sectionArrivalGlow {
             0% {
-                box-shadow: 0 0 0 rgba(255, 94, 0, 0);
+                box-shadow: 0 0 0 0 rgba(255, 94, 0, 0);
             }
-            30% {
-                box-shadow: 0 0 35px rgba(255, 94, 0, 0.35);
+            35% {
+                box-shadow: 0 0 45px 6px rgba(255, 94, 0, 0.45);
+                border-color: rgba(255, 94, 0, 0.8) !important;
             }
             100% {
-                box-shadow: 0 0 0 rgba(255, 94, 0, 0);
+                box-shadow: 0 0 0 0 rgba(255, 94, 0, 0);
             }
         }
 

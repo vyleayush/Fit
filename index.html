@@ -361,13 +361,34 @@
     </div>
 
     <!-- MAIN VIEW CONTAINER -->
-    <!-- Cinematic Wipe & Zoom Transition Curtain -->
-    <div id="section-transition-curtain" aria-hidden="true"
-        class="fixed inset-0 pointer-events-none z-[990] opacity-0 overflow-hidden flex flex-col justify-end">
-        <div id="curtain-sheet"
-            class="w-full h-full bg-[#121214] dark:bg-[#0A0A0C] border-b-2 border-accent-orange/60 shadow-[0_15px_40px_rgba(255,94,0,0.4)] flex flex-col justify-end transform -translate-y-full will-change-transform">
-            <!-- Radiant Laser Glow Edge -->
-            <div class="w-full h-[3px] bg-gradient-to-r from-transparent via-[#FF5E00] to-transparent shadow-[0_0_24px_#FF5E00]"></div>
+    <!-- Cinematic Wipe, Float & Swipe Transition Portal -->
+    <div id="section-transition-portal" aria-hidden="true"
+        class="fixed inset-0 pointer-events-none z-[990] opacity-0 overflow-hidden">
+        <!-- Directional Frosted Glass Veil -->
+        <div id="portal-veil"
+            class="absolute inset-0 w-full h-full will-change-transform flex items-center justify-center">
+            <!-- Glass Shimmer Backdrop (Theme-adaptive: warm sand in light mode, obsidian in dark mode) -->
+            <div id="portal-glass-backdrop"
+                class="absolute inset-0 w-full h-full backdrop-blur-2xl transition-colors duration-300"></div>
+
+            <!-- Directional Radiant Laser Glow Edge -->
+            <div id="portal-laser-edge"
+                class="absolute left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#FF5E00] to-transparent shadow-[0_0_28px_#FF5E00,0_0_10px_#FF5E00] edge-bottom">
+            </div>
+
+            <!-- Center Luxury Destination Hologram Pill -->
+            <div id="portal-destination-pill"
+                class="relative z-10 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-full liquid-glass-pill flex items-center gap-3 shadow-2xl border border-white/20 transform scale-90 opacity-0 transition-transform">
+                <span id="portal-destination-icon"
+                    class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-accent-orange text-white flex items-center justify-center text-xs sm:text-sm shadow-[0_0_18px_rgba(255,94,0,0.6)]">
+                    <i class="fa-solid fa-bolt"></i>
+                </span>
+                <span id="portal-destination-label"
+                    class="font-bebas text-base sm:text-xl tracking-wider text-charcoal dark:text-chalk uppercase">
+                    Dorfie Fit
+                </span>
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping ml-1"></span>
+            </div>
         </div>
     </div>
 
