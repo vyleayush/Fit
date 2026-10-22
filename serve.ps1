@@ -6,13 +6,15 @@ $listener.Start()
 Write-Host "Server running at http://localhost:$port/ (Root: $root)"
 
 $mimeTypes = @{
-    ".html" = "text/html"
-    ".css"  = "text/css"
-    ".js"   = "application/javascript"
-    ".png"  = "image/png"
-    ".jpg"  = "image/jpeg"
-    ".svg"  = "image/svg+xml"
-    ".json" = "application/json"
+    ".html"  = "text/html"
+    ".css"   = "text/css"
+    ".js"    = "application/javascript"
+    ".png"   = "image/png"
+    ".jpg"   = "image/jpeg"
+    ".webp"  = "image/webp"
+    ".svg"   = "image/svg+xml"
+    ".woff2" = "font/woff2"
+    ".json"  = "application/json"
 }
 
 try {

@@ -47,9 +47,7 @@
                 this.el.addEventListener('pointermove', this.onMouseMove, { passive: true });
                 this.el.addEventListener('pointerleave', this.onMouseLeave, { passive: true });
                 this.el.addEventListener('pointercancel', this.onMouseLeave, { passive: true });
-                this.el.addEventListener('mouseenter', this.onMouseEnter, { passive: true });
-                this.el.addEventListener('mousemove', this.onMouseMove, { passive: true });
-                this.el.addEventListener('mouseleave', this.onMouseLeave, { passive: true });
+                // Mouse listeners removed in favor of unified pointer listeners
             }
 
             onMouseEnter(e) {
@@ -838,7 +836,7 @@
 
                 // Mascot Reactive Switch
                 if (authImg) {
-                    authImg.src = 'Gymming.png';
+                    authImg.src = 'Gymming.webp';
                 }
                 if (authTag) {
                     authTag.textContent = 'READY TO PUMP';
@@ -1171,21 +1169,21 @@
 
                 this.avatarWrap.classList.remove('capy-anim-idle', 'capy-anim-trot');
 
-                let imgSrc = 'Chilling_Looking_At_Sky.png?v=2';
+                let imgSrc = 'Chilling_Looking_At_Sky.webp';
                 if (posture === 'trot') {
-                    imgSrc = 'Running_Marathon.png?v=2';
+                    imgSrc = 'Running_Marathon.webp';
                     this.avatarWrap.classList.add('capy-anim-trot');
                 } else if (posture === 'accounts') {
-                    imgSrc = 'Accounts.png?v=2';
+                    imgSrc = 'Accounts.webp';
                     this.avatarWrap.classList.add('capy-anim-idle');
                 } else if (posture === 'pharmacy') {
-                    imgSrc = 'Pharmacy.png?v=2';
+                    imgSrc = 'Pharmacy.webp';
                     this.avatarWrap.classList.add('capy-anim-idle');
                 } else if (posture === 'gymming') {
-                    imgSrc = 'Gymming.png?v=2';
+                    imgSrc = 'Gymming.webp';
                     this.avatarWrap.classList.add('capy-anim-idle');
                 } else if (posture === 'coffee') {
-                    imgSrc = 'Coffee.png?v=2';
+                    imgSrc = 'Coffee.webp';
                     this.avatarWrap.classList.add('capy-anim-idle');
                 } else {
                     this.avatarWrap.classList.add('capy-anim-idle');
@@ -1269,7 +1267,7 @@
                     title: "Primary Ecosystem Hub",
                     desc: "Primary profile that connects you to the entire Dorfie Fit ecosystem with unified access.",
                     bg: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Gymming.png"
+                    mascot: "Gymming.webp"
                 },
                 {
                     id: "02 / 06",
@@ -1278,7 +1276,7 @@
                     title: "Hyper-Local Discovery",
                     desc: "Discover fitness centres, gyms, badminton courts, and personal trainers near you.",
                     bg: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Running_Marathon.png"
+                    mascot: "Running_Marathon.webp"
                 },
                 {
                     id: "03 / 06",
@@ -1287,7 +1285,7 @@
                     title: "Fitness & Sport Events",
                     desc: "Explore and participate in community-driven fitness challenges, meets, and sporting events.",
                     bg: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Chilling_Looking_At_Sky.png"
+                    mascot: "Chilling_Looking_At_Sky.webp"
                 },
                 {
                     id: "04 / 06",
@@ -1296,7 +1294,7 @@
                     title: "Unified Member Hub",
                     desc: "Manage memberships, personal training sessions, and classes in one intuitive place.",
                     bg: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Coffee.png"
+                    mascot: "Coffee.webp"
                 },
                 {
                     id: "05 / 06",
@@ -1305,7 +1303,7 @@
                     title: "Direct Coach & Staff Chat",
                     desc: "Chat directly with trainers and fitness centre staff for guidance, form checks, and workout support.",
                     bg: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Accounts.png"
+                    mascot: "Accounts.webp"
                 },
                 {
                     id: "06 / 06",
@@ -1314,7 +1312,7 @@
                     title: "Connected Fitness Life",
                     desc: "Enjoy a seamless, connected fitness experience and workout tracking from a single app.",
                     bg: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Pharmacy.png"
+                    mascot: "Pharmacy.webp"
                 }
             ],
             owner: [
@@ -1325,7 +1323,7 @@
                     title: "Gym Management, Zero Chaos",
                     desc: "Memberships, automated renewals, billing, check-ins, staff permissions, and one command centre instead of six tools.",
                     bg: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Gymming.png"
+                    mascot: "Gymming.webp"
                 },
                 {
                     id: "02 / 06",
@@ -1334,7 +1332,7 @@
                     title: "Free WhatsApp Messaging Integration",
                     desc: "Free WhatsApp Messaging Integration for automated payment receipts, renewal alerts, booking notices, and client communication.",
                     bg: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Running_Marathon.png"
+                    mascot: "Running_Marathon.webp"
                 },
                 {
                     id: "03 / 06",
@@ -1343,7 +1341,7 @@
                     title: "Under-The-Table PT Detection",
                     desc: "Automated floor intelligence to detect uncontracted personal training sessions, protect club revenue, and enforce gym policy.",
                     bg: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Accounts.png"
+                    mascot: "Accounts.webp"
                 },
                 {
                     id: "04 / 06",
@@ -1352,7 +1350,7 @@
                     title: "Live Tracking, Not Rear-View Reporting",
                     desc: "Know who's slipping this week, not who left last quarter. Real-time check-ins, gym occupancy radar, and automatic churn alerts.",
                     bg: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Coffee.png"
+                    mascot: "Coffee.webp"
                 },
                 {
                     id: "05 / 06",
@@ -1361,7 +1359,7 @@
                     title: "Hiring, Your Unfair Advantage",
                     desc: "Reach verified trainers and fitness staff directly. See certifications and experience upfront. Hire, onboard, and schedule in one platform.",
                     bg: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Chilling_Looking_At_Sky.png"
+                    mascot: "Chilling_Looking_At_Sky.webp"
                 },
                 {
                     id: "06 / 06",
@@ -1370,7 +1368,7 @@
                     title: "Community & Member Moat",
                     desc: "Members cancel memberships; they rarely leave communities. Branded app, challenges, leaderboards, and slot bookings for courts and turfs.",
                     bg: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Pharmacy.png"
+                    mascot: "Pharmacy.webp"
                 }
             ],
             trainer: [
@@ -1381,7 +1379,7 @@
                     title: "Dual Client Roster",
                     desc: "Manage personal clients and associated fitness centre clients from one unified profile.",
                     bg: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Running_Marathon.png"
+                    mascot: "Running_Marathon.webp"
                 },
                 {
                     id: "02 / 06",
@@ -1390,7 +1388,7 @@
                     title: "Integrated Session Calendar",
                     desc: "Schedule training sessions for each client with an integrated session planner.",
                     bg: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Gymming.png"
+                    mascot: "Gymming.webp"
                 },
                 {
                     id: "03 / 06",
@@ -1399,7 +1397,7 @@
                     title: "OTP-Verified Sessions",
                     desc: "Conduct secure OTP-verified personal training sessions for reliable attendance and verification.",
                     bg: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Accounts.png"
+                    mascot: "Accounts.webp"
                 },
                 {
                     id: "04 / 06",
@@ -1408,7 +1406,7 @@
                     title: "Public Coach Profile",
                     desc: "Build and customize a public profile to promote your training services and attract new clients.",
                     bg: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Coffee.png"
+                    mascot: "Coffee.webp"
                 },
                 {
                     id: "05 / 06",
@@ -1417,7 +1415,7 @@
                     title: "Direct In-App Client Chat",
                     desc: "Chat directly with clients for seamless communication, diet recommendations, and routine adjustments.",
                     bg: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Chilling_Looking_At_Sky.png"
+                    mascot: "Chilling_Looking_At_Sky.webp"
                 },
                 {
                     id: "06 / 06",
@@ -1426,7 +1424,7 @@
                     title: "Verified Fitness Job Openings",
                     desc: "Explore and apply for verified job opportunities and studio residencies posted by fitness centres.",
                     bg: "https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?q=80&w=1200&auto=format&fit=crop",
-                    mascot: "Pharmacy.png"
+                    mascot: "Pharmacy.webp"
                 }
             ]
         };
@@ -3069,33 +3067,38 @@
                     }, { threshold: 0.1 });
                     mObs.observe(marqueeParent);
                 }
+                let halfWidth = (marqueeTrack.scrollWidth || 1000) / 2;
+                window.addEventListener('resize', () => {
+                    halfWidth = (marqueeTrack.scrollWidth || 1000) / 2;
+                }, { passive: true });
+
                 gsap.ticker.add(() => {
                     if (isMarqueeHovered || !isMarqueeInView) return;
                     marqueeX -= 1.35;
-                    const halfWidth = marqueeTrack.scrollWidth / 2;
                     if (Math.abs(marqueeX) >= halfWidth) marqueeX = 0;
-                    marqueeTrack.style.transform = `translate3d(${marqueeX}px, 0, 0)`;
+                    marqueeTrack.style.transform = `translate3d(${marqueeX.toFixed(1)}px, 0, 0)`;
                 });
             }
         }
 
         function initScrollReveal() {
-            if (isReducedMotion) return;
-            const revealElements = document.querySelectorAll('h1, h2, h3, h4, .crystal-glass-card, .liquid-glass-panel, .feature-grid-item, .bento-item');
+            const isTouchMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
+            if (isReducedMotion || isTouchMobile) {
+                document.querySelectorAll('.crystal-glass-card, .liquid-glass-panel, .feature-grid-item, .bento-item').forEach(el => {
+                    el.classList.add('scroll-reveal-visible');
+                });
+                return;
+            }
+
+            const revealElements = document.querySelectorAll('.crystal-glass-card, .liquid-glass-panel, .feature-grid-item, .bento-item');
             const windowHeight = window.innerHeight;
-
             const targets = [];
-            revealElements.forEach(el => {
-                // Skip if within overlays, follower, or if child inside another card
-                if (el.closest('#preloader-overlay') || el.closest('#cursor-follower') || el.closest('#capy-scroll-companion') || el.classList.contains('split-word')) return;
-                
-                const parentCard = el.parentElement ? el.parentElement.closest('.crystal-glass-card, .liquid-glass-panel') : null;
-                if (parentCard && parentCard !== el) return; // Keep cards cohesive, don't chop up internal content
 
+            revealElements.forEach(el => {
+                if (el.closest('#preloader-overlay') || el.closest('#cursor-follower') || el.closest('#capy-scroll-companion')) return;
                 const rect = el.getBoundingClientRect();
-                // Elements already in the first viewport render instantly without flicker
-                if (rect.top < windowHeight * 0.92 && rect.bottom > 0) {
-                    el.classList.add('scroll-reveal-item', 'scroll-reveal-instant');
+                if (rect.top < windowHeight * 0.95 && rect.bottom > 0) {
+                    el.classList.add('scroll-reveal-visible');
                 } else {
                     el.classList.add('scroll-reveal-item');
                     targets.push(el);
@@ -3104,25 +3107,14 @@
 
             if (!targets.length) return;
 
-            // Early-engagement observer: rootMargin triggers 60px before entering viewport
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        const target = entry.target;
-                        obs.unobserve(target);
-                        
-                        // Fluid sibling stagger calculation (40ms per sibling, capped at 180ms)
-                        const siblings = target.parentElement ? Array.from(target.parentElement.children) : [];
-                        const index = siblings.indexOf(target);
-                        const isTouchMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
-                        const delay = (!isTouchMobile && index >= 0 && index < 6) ? index * 40 : 0;
-
-                        setTimeout(() => {
-                            target.classList.add('scroll-reveal-visible');
-                        }, delay);
+                        obs.unobserve(entry.target);
+                        entry.target.classList.add('scroll-reveal-visible');
                     }
                 });
-            }, { threshold: 0.01, rootMargin: '0px 0px 220px 0px' });
+            }, { threshold: 0.05, rootMargin: '0px 0px 200px 0px' });
 
             targets.forEach(t => observer.observe(t));
         }
@@ -3159,8 +3151,7 @@
             const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
             if (isMobile) {
                 lenisInstance = null;
-                document.documentElement.style.scrollBehavior = 'smooth';
-                document.body.style.scrollBehavior = 'smooth';
+                document.documentElement.style.scrollBehavior = "auto"; document.body.style.scrollBehavior = "auto";
                 initScrollSpy();
                 return;
             }
@@ -3338,9 +3329,13 @@
             });
 
             gsap.ticker.add(() => {
-                mouse.targetX += (mouse.x - mouse.targetX) * 0.15;
-                mouse.targetY += (mouse.y - mouse.targetY) * 0.15;
-                gsap.set(follower, { x: mouse.targetX, y: mouse.targetY });
+                if (!cursorVisible) return;
+                const dx = mouse.x - mouse.targetX;
+                const dy = mouse.y - mouse.targetY;
+                if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) return;
+                mouse.targetX += dx * 0.18;
+                mouse.targetY += dy * 0.18;
+                follower.style.transform = `translate3d(${mouse.targetX.toFixed(1)}px, ${mouse.targetY.toFixed(1)}px, 0)`;
             });
 
             // Magnetic attraction on interactive controls

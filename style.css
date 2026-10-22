@@ -111,8 +111,8 @@
         .liquid-glass-panel {
             position: relative;
             background: var(--glass-bg-light);
-            backdrop-filter: blur(28px) saturate(190%);
-            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            backdrop-filter: blur(14px) saturate(150%);
+            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1.5px solid transparent;
             background-clip: padding-box, border-box;
             background-origin: padding-box, border-box;
@@ -145,8 +145,8 @@
         .liquid-glass-pill {
             position: relative;
             background: rgba(255, 255, 255, 0.68);
-            backdrop-filter: blur(28px) saturate(200%);
-            -webkit-backdrop-filter: blur(28px) saturate(200%);
+            backdrop-filter: blur(14px) saturate(150%);
+            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1.5px solid transparent;
             background-clip: padding-box, border-box;
             background-origin: padding-box, border-box;
@@ -176,7 +176,7 @@
         .liquid-glass-btn-orange {
             position: relative;
             background: linear-gradient(135deg, rgba(255, 94, 0, 0.94) 0%, rgba(255, 115, 21, 0.86) 100%);
-            backdrop-filter: blur(16px);
+            
             border: 1.5px solid rgba(255, 255, 255, 0.45);
             box-shadow: 0 12px 30px rgba(255, 94, 0, 0.38), inset 0 1px 2px rgba(255, 255, 255, 0.75);
             color: #FAF8F5;
@@ -218,8 +218,8 @@
         .crystal-glass-card {
             position: relative;
             background: rgba(255, 255, 255, 0.52);
-            backdrop-filter: blur(32px) saturate(190%);
-            -webkit-backdrop-filter: blur(32px) saturate(190%);
+            backdrop-filter: blur(14px) saturate(150%);
+            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1.2px solid rgba(255, 255, 255, 0.75);
             border-radius: 1.75rem;
             box-shadow: 0 16px 36px -8px rgba(18, 18, 20, 0.04), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
@@ -349,40 +349,40 @@
             position: absolute;
             border-radius: 50%;
             mix-blend-mode: multiply;
+            will-change: transform;
+            pointer-events: none;
+            filter: blur(28px) !important;
+            transform: translateZ(0);
         }
 
         html.dark .ambient-orb {
             mix-blend-mode: screen;
-            opacity: 0.35 !important;
+            opacity: 0.30 !important;
         }
 
         .orb-morph-1 {
-            border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-            animation: orbMorphAnim1 16s ease-in-out infinite alternate;
+            animation: orbFloatAnim1 18s ease-in-out infinite alternate;
         }
 
         .orb-morph-2 {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: orbMorphAnim2 18s ease-in-out infinite alternate;
+            animation: orbFloatAnim2 22s ease-in-out infinite alternate;
         }
 
-        @keyframes orbMorphAnim1 {
+        @keyframes orbFloatAnim1 {
             0% {
-                border-radius: 42% 58% 70% 30%;
+                transform: translate3d(0, 0, 0) scale(1);
             }
-
             100% {
-                border-radius: 38% 62% 60% 40%;
+                transform: translate3d(30px, -22px, 0) scale(1.05);
             }
         }
 
-        @keyframes orbMorphAnim2 {
+        @keyframes orbFloatAnim2 {
             0% {
-                border-radius: 60% 40% 30% 70%;
+                transform: translate3d(0, 0, 0) scale(1);
             }
-
             100% {
-                border-radius: 52% 48% 42% 58%;
+                transform: translate3d(-24px, 28px, 0) scale(1.04);
             }
         }
 
@@ -398,8 +398,10 @@
             inset: 0;
             pointer-events: none;
             z-index: 50;
-            opacity: 0.035;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.038;
+            background-image: url("../noise.png");
+            background-repeat: repeat;
+            transform: translateZ(0);
         }
 
         /* Continuous Fluid Scroll Transition Engine (Eliminates Abrupt Popping) */
@@ -2772,8 +2774,8 @@
             width: 100%;
             height: 100%;
             background: rgba(230, 227, 220, 0.94); /* Warm sand liquid glass */
-            backdrop-filter: blur(28px) saturate(160%);
-            -webkit-backdrop-filter: blur(28px) saturate(160%);
+            backdrop-filter: blur(14px) saturate(150%);
+            -webkit-backdrop-filter: blur(14px) saturate(150%);
         }
 
         html.dark #portal-glass-backdrop {
@@ -2838,3 +2840,53 @@
             }
         }
 
+
+        /* High-Performance Ambient Glow Atmosphere (Zero Layout Thrashing, Hardware Accelerated) */
+        #ambient-canvas-layer {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            transform: translateZ(0);
+        }
+
+        .ambient-glow-mesh {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle 620px at 0% 5%, rgba(255, 94, 0, 0.16) 0%, transparent 70%),
+                radial-gradient(circle 680px at 100% 32%, rgba(187, 166, 234, 0.18) 0%, transparent 70%),
+                radial-gradient(circle 580px at 0% 68%, rgba(255, 160, 80, 0.14) 0%, transparent 70%),
+                radial-gradient(circle 680px at 100% 98%, rgba(255, 94, 0, 0.16) 0%, transparent 70%);
+            transform: translateZ(0);
+        }
+
+        html.dark .ambient-glow-mesh {
+            background: 
+                radial-gradient(circle 620px at 0% 5%, rgba(255, 94, 0, 0.22) 0%, transparent 70%),
+                radial-gradient(circle 680px at 100% 32%, rgba(187, 166, 234, 0.25) 0%, transparent 70%),
+                radial-gradient(circle 580px at 0% 68%, rgba(255, 160, 80, 0.18) 0%, transparent 70%),
+                radial-gradient(circle 680px at 100% 98%, rgba(255, 94, 0, 0.22) 0%, transparent 70%);
+        }
+
+        /* Streamlined Glass Architecture: Remove recursive backdrop-filters on opaque buttons and inner pills */
+        .liquid-glass-btn-orange {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+        .liquid-glass-pill {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* Prevent layer memory explosion */
+        .scroll-reveal-item {
+            will-change: auto;
+        }

@@ -2,3 +2,4 @@
 .gemini/
 .grok/
 scratch/
+.playwright-cli/
