@@ -1,4 +1,7 @@
         gsap.registerPlugin(ScrollTrigger);
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.config({ ignoreMobileResize: true });
+        }
 
         let lenisInstance = null;
         let isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -11,6 +14,7 @@
            ------------------------------------------------------------- */
         class LuxuryCard3D {
             constructor(el) {
+                if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
                 this.el = el;
                 const rawTilt = parseFloat(el.getAttribute('data-tilt-max')) || 12;
                 // Restrain tilt to maximum 3.2 degrees for obsidian luxury feel
@@ -156,7 +160,7 @@
         }
 
         function init3DCards() {
-            if (isReducedMotion || window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+            if (isReducedMotion || window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
             const tiltElements = document.querySelectorAll('[data-tilt]');
             tiltElements.forEach(card => {
                 new LuxuryCard3D(card);
@@ -356,6 +360,11 @@
                 const scrollToTarget = () => {
                     const target = document.getElementById(sectionId);
                     if (!target) return;
+
+                    if (target.classList.contains('section-deferred')) {
+                        target.style.contentVisibility = 'visible';
+                        setTimeout(() => { target.style.contentVisibility = ''; }, 1200);
+                    }
 
                     const isMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
                     // Measure #main-header-panel instead of #main-header so drawer height never pollutes offset
@@ -2516,6 +2525,8 @@
 
         function initKineticRibbon() {
             if (isRibbonInitialized) return;
+            const isTouchMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+            if (isTouchMobile) return;
             const container = document.getElementById('kinetic-ribbon-container');
             const pathAura = document.getElementById('ribbon-path-aura');
             const pathCore = document.getElementById('ribbon-path-core');
@@ -2727,14 +2738,15 @@
                         // Fluid sibling stagger calculation (40ms per sibling, capped at 180ms)
                         const siblings = target.parentElement ? Array.from(target.parentElement.children) : [];
                         const index = siblings.indexOf(target);
-                        const delay = (index >= 0 && index < 6) ? index * 40 : 0;
+                        const isTouchMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
+                        const delay = (!isTouchMobile && index >= 0 && index < 6) ? index * 40 : 0;
 
                         setTimeout(() => {
                             target.classList.add('scroll-reveal-visible');
                         }, delay);
                     }
                 });
-            }, { threshold: 0.04, rootMargin: '0px 0px 60px 0px' });
+            }, { threshold: 0.01, rootMargin: '0px 0px 220px 0px' });
 
             targets.forEach(t => observer.observe(t));
         }
@@ -2769,6 +2781,13 @@
         function initSmoothScroll() {
             if (isReducedMotion) return;
             const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+            if (isMobile) {
+                lenisInstance = null;
+                document.documentElement.style.scrollBehavior = 'smooth';
+                document.body.style.scrollBehavior = 'smooth';
+                initScrollSpy();
+                return;
+            }
 
             // Enforce zero CSS interference
             document.documentElement.style.scrollBehavior = 'auto';
@@ -2914,7 +2933,7 @@
         }
 
         function initMagneticCursor() {
-            if (isReducedMotion || window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+            if (isReducedMotion || window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
             const dot = document.getElementById('cursor-dot');
             const follower = document.getElementById('cursor-follower');
             if (!dot || !follower) return;
@@ -3202,7 +3221,10 @@
            Intercepts internal hash navigation to prevent native browser jumps
            and provides ultra-smooth, buttery, luxury mobile scroll transition
            ------------------------------------------------------------- */
+        let isGlobalClicksBound = false;
         function initGlobalSmoothClicks() {
+            if (isGlobalClicksBound) return;
+            isGlobalClicksBound = true;
             document.addEventListener('click', (e) => {
                 const anchor = e.target.closest('a[href^="#"]');
                 if (!anchor) return;

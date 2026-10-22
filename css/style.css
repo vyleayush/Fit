@@ -2684,3 +2684,60 @@
             color: #FF5E00;
             transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.08s ease;
         }
+
+        /* -------------------------------------------------------------
+           OFF-SCREEN CONTENT VISIBILITY ENGINE
+           Renders only visually visible sections to drastically reduce
+           DOM tree layout, paint, and memory costs on mobile & low-end devices
+           ------------------------------------------------------------- */
+        .section-deferred {
+            content-visibility: auto;
+            contain-intrinsic-size: 1px 750px;
+        }
+
+        /* -------------------------------------------------------------
+           MOBILE & LOW-END DEVICE HARDWARE ACCELERATION OPTIMIZATION
+           Eliminates GPU compositing bottlenecks, reduces blur overhead,
+           disables costly continuous morph animations, and enforces instant tap response
+           ------------------------------------------------------------- */
+        @media (max-width: 768px), (pointer: coarse) {
+            /* 1. Eliminate heavy Gaussian blur re-rasterization on mobile GPUs */
+            #ambient-canvas-layer .ambient-orb {
+                filter: blur(28px) !important;
+                animation: none !important;
+                will-change: auto !important;
+                opacity: 0.18 !important;
+            }
+
+            /* 2. Hide heavy SVG turbulence grain overlay */
+            .grain-overlay {
+                display: none !important;
+            }
+
+            /* 3. Hide heavy full-screen SVG kinetic ribbon on mobile */
+            #kinetic-ribbon-container {
+                display: none !important;
+            }
+
+            /* 4. Streamline backdrop-filter blur across all cards and panels */
+            .liquid-glass-panel,
+            .liquid-glass-card,
+            .card,
+            .liquid-glass-pill,
+            .liquid-glass-well {
+                -webkit-backdrop-filter: blur(8px) !important;
+                backdrop-filter: blur(8px) !important;
+                transform-style: flat !important;
+                will-change: auto !important;
+            }
+
+            /* 5. Force 0ms instant touch feedback with zero tap latency */
+            * {
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            button, a, input, select, textarea, [role="button"], .feature-tab-btn, .pricing-audience-btn, .policy-tab-btn {
+                touch-action: manipulation;
+            }
+        }
+

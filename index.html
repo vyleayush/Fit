@@ -212,7 +212,7 @@
                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); appRouter.navigate('home');}"
                 aria-label="Dorfie Fit Home" data-magnetic
                 class="flex items-center justify-center group py-0.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-orange rounded-xl min-h-[44px] min-w-[44px]">
-                <img src="TEXT LOGO.png" alt="Dorfie Fit"
+                <img src="TEXT LOGO.png" alt="Dorfie Fit" decoding="async" fetchpriority="high"
                     class="h-8 sm:h-10 md:h-12 w-auto max-w-[120px] sm:max-w-none object-contain object-center select-none transition-transform duration-300 group-hover:scale-105 drop-shadow-sm mx-auto" />
             </a>
 
@@ -318,7 +318,7 @@
         <!-- Mascot Avatar -->
         <div id="capy-avatar-wrap"
             class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full overflow-hidden p-1 shadow-2xl border-2 border-accent-orange/70 capy-anim-idle transition-transform duration-300 hover:scale-110 flex items-center justify-center bg-transparent">
-            <img id="capy-mascot-img" src="Chilling_Looking_At_Sky.png?v=2" alt="Dorfie Mascot Capybara"
+            <img id="capy-mascot-img" src="Chilling_Looking_At_Sky.png?v=2" alt="Dorfie Mascot Capybara" decoding="async"
                 class="w-full h-full object-contain object-center rounded-full select-none transition-transform duration-300" />
         </div>
     </div>
@@ -459,7 +459,7 @@
             <!-- ==========================================================================
                  EXPLORE EVENTS SECTION (Whimsical Frame 3)
                  ========================================================================== -->
-            <section id="events" class="py-16 sm:py-24 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+            <section id="events" class="section-deferred py-16 sm:py-24 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
                 <div class="liquid-glass-panel p-5 sm:p-10 lg:p-14 relative w-full flex flex-col justify-between shadow-2xl">
                     <div class="card-glare"></div>
 
@@ -553,7 +553,7 @@
             <!-- ==========================================================================
                  FITNESS COMMUNITIES SECTION (Whimsical Frame 4)
                  ========================================================================== -->
-            <section id="communities" class="py-16 sm:py-24 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+            <section id="communities" class="section-deferred py-16 sm:py-24 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
                 <div class="liquid-glass-panel p-5 sm:p-10 lg:p-14 relative w-full flex flex-col justify-between shadow-2xl">
                     <div class="card-glare"></div>
 
@@ -692,7 +692,7 @@
 
             <!-- About Us -->
             <section id="about"
-                class="min-h-0 lg:min-h-screen w-full py-10 sm:py-16 md:py-24 px-3.5 sm:px-8 lg:px-12 flex items-center justify-center relative z-10 perspective-stage">
+                class="section-deferred min-h-0 lg:min-h-screen w-full py-10 sm:py-16 md:py-24 px-3.5 sm:px-8 lg:px-12 flex items-center justify-center relative z-10 perspective-stage">
                 <div
                     class="liquid-glass-panel w-full max-w-[1580px] p-4 sm:p-8 md:p-12 lg:p-16 relative overflow-hidden flex flex-col justify-between shadow-2xl">
                     <div class="card-glare"></div>
@@ -726,7 +726,7 @@
                                 <!-- Mascot Pace Indicator -->
                                 <div
                                     class="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-3 sm:px-3.5 py-1.5 rounded-full liquid-glass-pill mb-6 sm:mb-8 border border-accent-orange/30 max-w-full">
-                                    <img src="Running_Marathon.png" alt="Capy Marathon"
+                                    <img loading="lazy" decoding="async" src="Running_Marathon.png" alt="Capy Marathon"
                                         class="w-5 h-5 sm:w-6 sm:h-6 object-contain shrink-0">
                                     <span
                                         class="text-[11px] sm:text-xs font-mono font-bold text-accent-orange uppercase tracking-wider">Sub-second
@@ -927,7 +927,7 @@
 
             <!-- Section 2: Features (3D Interactive Cards Grid) -->
             <section id="features"
-                class="py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                class="section-deferred py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
                 <div
                     class="liquid-glass-panel p-5 sm:p-10 lg:p-16 relative w-full flex flex-col justify-between shadow-2xl">
                     <div class="card-glare"></div>
@@ -992,7 +992,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Gymming.png" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Gymming.png" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1022,7 +1022,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Gymming.png" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Gymming.png" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1040,7 +1040,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Running_Marathon.png" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Running_Marathon.png" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1070,7 +1070,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Running_Marathon.png" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Running_Marathon.png" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1088,7 +1088,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Chilling_Looking_At_Sky.png" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Chilling_Looking_At_Sky.png" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1118,7 +1118,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Chilling_Looking_At_Sky.png" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Chilling_Looking_At_Sky.png" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1136,7 +1136,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Coffee.png" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Coffee.png" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1166,7 +1166,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Coffee.png" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Coffee.png" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1184,7 +1184,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Accounts.png" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Accounts.png" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1214,7 +1214,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Accounts.png" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Accounts.png" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1232,7 +1232,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Pharmacy.png" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Pharmacy.png" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1262,7 +1262,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Pharmacy.png" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Pharmacy.png" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1290,7 +1290,7 @@
 
             <!-- Pricing Section (Whimsical Frames 10, 11, 12) -->
             <section id="pricing"
-                class="py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                class="section-deferred py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
                 <div class="text-center max-w-4xl mx-auto mb-10 sm:mb-12">
                     <div class="inline-flex items-center gap-2.5 px-4 py-1.5 liquid-glass-pill text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-4 text-accent-orange font-bold"
                         data-magnetic>
@@ -1432,7 +1432,7 @@
 
             <!-- Section 4: Why Dorfie Fit (3D Interactive Panels) -->
             <section id="why-dorfie"
-                class="py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                class="section-deferred py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
                 <div
                     class="liquid-glass-panel p-5 sm:p-10 lg:p-16 relative w-full flex flex-col justify-between shadow-2xl">
                     <div class="card-glare"></div>
@@ -1467,7 +1467,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Gymming.png?v=2" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Gymming.png?v=2" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1497,7 +1497,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Gymming.png?v=2" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Gymming.png?v=2" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1515,7 +1515,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Accounts.png?v=2" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Accounts.png?v=2" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1545,7 +1545,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Accounts.png?v=2" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Accounts.png?v=2" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1563,7 +1563,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Pharmacy.png?v=2" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Pharmacy.png?v=2" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1593,7 +1593,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Pharmacy.png?v=2" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Pharmacy.png?v=2" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1611,7 +1611,7 @@
                                         <div class="flex items-center gap-3.5 mb-3">
                                             <div
                                                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
-                                                <img src="Coffee.png?v=2" alt="Dorfie Mascot"
+                                                <img loading="lazy" decoding="async" src="Coffee.png?v=2" alt="Dorfie Mascot"
                                                     class="w-full h-full object-contain object-center filter drop-shadow select-none">
                                             </div>
                                             <div class="min-w-0">
@@ -1641,7 +1641,7 @@
                                         <div class="flex items-center gap-2 mb-1">
                                             <div
                                                 class="w-6 h-6 rounded-lg bg-black/40 border border-white/20 p-0.5 flex items-center justify-center shrink-0">
-                                                <img src="Coffee.png?v=2" alt="Mascot"
+                                                <img loading="lazy" decoding="async" src="Coffee.png?v=2" alt="Mascot"
                                                     class="w-full h-full object-contain object-center">
                                             </div>
                                             <span
@@ -1764,7 +1764,7 @@
 
             <!-- Apps & QR Promotion (3D Interactive App Cards) -->
             <section id="software-apps"
-                class="py-20 sm:py-28 px-4 sm:px-8 max-w-[1580px] mx-auto relative z-10 perspective-stage">
+                class="section-deferred py-20 sm:py-28 px-4 sm:px-8 max-w-[1580px] mx-auto relative z-10 perspective-stage">
                 <div class="liquid-glass-panel p-5 sm:p-10 lg:p-16 relative shadow-2xl">
                     <div class="card-glare"></div>
                     <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
@@ -1800,7 +1800,7 @@
                                     <div class="flex items-center gap-3.5 sm:gap-4">
                                         <div
                                             class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-charcoal dark:bg-white/10 p-2 flex items-center justify-center border border-accent-orange/40 shadow-inner shrink-0">
-                                            <img src="Gymming.png" alt="Dorfie Fit Mobile"
+                                            <img loading="lazy" decoding="async" src="Gymming.png" alt="Dorfie Fit Mobile"
                                                 class="w-full h-full object-contain">
                                         </div>
                                         <div>
@@ -1932,7 +1932,7 @@
                                 <!-- Floating Capy helper top tag -->
                                 <div
                                     class="card-layer-lift inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass-pill mb-5 border border-accent-orange/30">
-                                    <img src="Chilling_Looking_At_Sky.png" alt="Capy QR" class="w-5 h-5 object-contain">
+                                    <img loading="lazy" decoding="async" src="Chilling_Looking_At_Sky.png" alt="Capy QR" class="w-5 h-5 object-contain">
                                     <span
                                         class="text-[11px] font-mono font-bold text-accent-orange uppercase tracking-wider">Instant
                                         Phone Install</span>
@@ -2075,7 +2075,7 @@
             <!-- ==========================================================================
                  BOOK A DEMO SECTION (Whimsical Frame 14)
                  ========================================================================== -->
-            <section id="book-demo" class="py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+            <section id="book-demo" class="section-deferred py-20 sm:py-28 px-3.5 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
                 <div class="liquid-glass-panel p-6 sm:p-10 lg:p-16 relative w-full shadow-2xl">
                     <div class="card-glare"></div>
 
@@ -2198,7 +2198,7 @@
 
             <!-- Luxury Footer (Whimsical Frame 15 / Policy References) -->
             <footer
-                class="pt-16 pb-12 px-4 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
+                class="section-deferred pt-16 pb-12 px-4 sm:px-8 lg:px-12 max-w-[1580px] mx-auto w-full relative z-10 perspective-stage">
                 <div
                     class="liquid-glass-panel p-6 sm:p-10 lg:p-14 relative w-full flex flex-col justify-between shadow-2xl">
                     <div class="card-glare"></div>
@@ -2208,7 +2208,7 @@
                         <div class="lg:col-span-5 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-3 mb-4">
-                                    <img src="TEXT LOGO.png" alt="Dorfie Fit"
+                                    <img decoding="async" fetchpriority="high" src="TEXT LOGO.png" alt="Dorfie Fit"
                                         class="h-8 sm:h-11 w-auto max-w-[140px] sm:max-w-none object-contain filter dark:brightness-110 drop-shadow-sm" />
                                 </div>
                                 <p class="font-bebas text-xl text-accent-orange tracking-wider mb-2">
@@ -2340,7 +2340,7 @@
                         <div
                             class="lg:col-span-5 relative rounded-[22px] sm:rounded-[26px] overflow-hidden min-h-[380px] sm:min-h-[480px] lg:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 select-none border border-white/15 shadow-xl group">
                             <!-- Liquid Glass 3D Background Artwork -->
-                            <img src="dorfie_liquid_art.jpg" alt="Liquid Glass Orange Vision"
+                            <img loading="lazy" decoding="async" src="dorfie_liquid_art.jpg" alt="Liquid Glass Orange Vision"
                                 class="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none" />
 
                             <!-- Deep Atmospheric Gradient Overlays -->
@@ -2944,7 +2944,7 @@
                     class="flex flex-wrap items-start justify-between pb-5 sm:pb-6 border-b border-charcoal/10 dark:border-white/10 gap-3">
                     <div class="space-y-1">
                         <div class="flex items-center gap-2">
-                            <img src="TEXT LOGO.png" alt="Dorfie Fit"
+                            <img decoding="async" fetchpriority="high" src="TEXT LOGO.png" alt="Dorfie Fit"
                                 class="h-6 w-auto object-contain filter dark:brightness-110" />
                         </div>
                         <p class="text-[10px] font-mono tracking-widest uppercase text-charcoal/50 dark:text-chalk/50">
@@ -3208,6 +3208,16 @@
     <!-- Dorfie Fit Interaction & Motion Engine -->
     <script src="js/policy-data.js"></script>
     <script src="js/script.js"></script>
+    <!-- Dorfie Fit Offline Caching & Acceleration Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch((err) => {
+                    console.warn('[SW] Registration failed:', err);
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>
