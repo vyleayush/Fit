@@ -94,14 +94,10 @@
         }
 
         /* Lenis Smooth Scroll Core Rules */
-        html.lenis,
-        html.lenis body {
-            height: auto;
-        }
-
-        .lenis.lenis-smooth {
-            scroll-behavior: auto !important;
-        }
+        html, body { scroll-behavior: auto !important; -webkit-overflow-scrolling: touch; }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        button, a, input, select, textarea, [role="button"], .interactive-tap { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 
         .lenis.lenis-smooth [data-lenis-prevent] {
             overscroll-behavior: contain;
@@ -1556,34 +1552,49 @@
             animation: stackTextAnimate 0.85s ease-in-out 0.36s 1 forwards;
         }
 
-        .features-stack-container .content .seeMore {
-            display: inline-block;
-            opacity: 0;
-            animation: stackTextAnimate 0.85s ease-in-out 0.5s 1 forwards;
-        }
-
+        .features-stack-container .content .seeMore,
+        .features-stack-stage .content .seeMore,
+        .seeMore-btn,
         .features-stack-container .content button {
             padding: 12px 26px;
             border-radius: 9999px;
             border: none;
             cursor: pointer;
             background: #FF5E00;
-            color: #FFFFFF;
+            color: #FFFFFF !important;
             font-weight: 800;
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             box-shadow: 0 8px 24px rgba(255, 94, 0, 0.45);
-            transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, box-shadow 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none !important;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            opacity: 0;
+            animation: stackTextAnimate 0.85s ease-in-out 0.5s 1 forwards;
         }
 
+        .features-stack-container .content .seeMore:hover,
+        .features-stack-stage .content .seeMore:hover,
+        .seeMore-btn:hover,
         .features-stack-container .content button:hover {
             background: #FF7315;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 12px 28px rgba(255, 94, 0, 0.6);
+            color: #FFFFFF !important;
+        }
+
+        .features-stack-container .content .seeMore:active,
+        .features-stack-stage .content .seeMore:active,
+        .seeMore-btn:active,
+        .features-stack-container .content button:active {
+            transform: scale(0.95) translateZ(0) !important;
+            box-shadow: 0 4px 14px rgba(255, 94, 0, 0.35) !important;
         }
 
         @keyframes stackTextAnimate {
@@ -2587,3 +2598,53 @@
         }
 
 
+
+        /* -------------------------------------------------------------
+           LUXURY TACTILE CLICK & BUTTON FEEDBACK SYSTEM
+           Eliminates delay, prevents jitter, ensures instant buttery response
+           ------------------------------------------------------------- */
+        .liquid-glass-btn-orange,
+        .liquid-glass-pill,
+        .magnetic-btn,
+        .nav-section-link,
+        .feature-tab-btn,
+        .pricing-audience-btn,
+        .policy-tab-btn,
+        .card-btn,
+        .seeMore-btn,
+        .seeMore,
+        #mobile-nav-drawer a,
+        #mobile-nav-drawer button {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+            will-change: transform;
+        }
+
+        /* Instant silky active feedback on mobile press */
+        .liquid-glass-btn-orange:active,
+        .liquid-glass-btn-orange.is-tactile-pressed {
+            transform: scale(0.96) translateZ(0) !important;
+            box-shadow: 0 4px 14px rgba(255, 94, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.08s ease !important;
+        }
+
+        #mobile-nav-drawer a:active,
+        #mobile-nav-drawer a.is-tactile-pressed {
+            transform: scale(0.98) translateX(4px) !important;
+            background-color: rgba(255, 94, 0, 0.14) !important;
+            color: #FF5E00 !important;
+            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.08s ease !important;
+        }
+
+        .liquid-glass-pill:active:not(header):not(#main-header-panel),
+        .liquid-glass-pill.is-tactile-pressed:not(header):not(#main-header-panel) {
+            transform: scale(0.96) translateZ(0) !important;
+            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        }
+
+        .is-tactile-pressed {
+            transform: scale(0.96) translateZ(0) !important;
+            transition: transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        }

@@ -326,25 +326,55 @@
             navigateLandingSection(sectionId, event) {
                 if (event) {
                     event.preventDefault();
+                    if (event.stopPropagation) event.stopPropagation();
                 }
+
+                // Immediately close mobile navigation drawer cleanly
+                if (typeof closeMobileNav === 'function') {
+                    closeMobileNav(true);
+                } else {
+                    const drawer = document.getElementById('mobile-nav-drawer');
+                    if (drawer && !drawer.classList.contains('hidden')) {
+                        drawer.classList.add('hidden');
+                        drawer.classList.remove('flex');
+                    }
+                }
+
+                const scrollToTarget = () => {
+                    const target = document.getElementById(sectionId);
+                    if (!target) return;
+
+                    const isMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches;
+                    const header = document.getElementById('main-header');
+                    const headerHeight = header ? header.offsetHeight : (isMobile ? 64 : 80);
+                    // Dynamic offset tailored to header dimensions
+                    const scrollOffset = -(headerHeight + (isMobile ? 12 : 20));
+
+                    if (lenisInstance) {
+                        // Snappy, buttery luxury easing: rapid response with velvet deceleration
+                        const scrollDuration = isMobile ? 0.65 : 0.85;
+                        lenisInstance.scrollTo(target, {
+                            offset: scrollOffset,
+                            duration: scrollDuration,
+                            easing: (t) => 1 - Math.pow(1 - t, 3.5),
+                            lock: false,
+                            immediate: false
+                        });
+                    } else {
+                        const rect = target.getBoundingClientRect();
+                        const topPos = rect.top + window.scrollY + scrollOffset;
+                        window.scrollTo({
+                            top: Math.max(0, topPos),
+                            behavior: 'smooth'
+                        });
+                    }
+                };
+
                 if (this.activeView !== 'home') {
                     this.navigate('home');
-                    setTimeout(() => {
-                        const target = document.getElementById(sectionId);
-                        if (target) {
-                            if (lenisInstance) {
-                                lenisInstance.scrollTo(target, { offset: -90, duration: 1.15 });
-                            } else {
-                                target.scrollIntoView({ behavior: 'smooth' });
-                            }
-                        }
-                    }, 480);
+                    setTimeout(scrollToTarget, 320);
                 } else {
-                    const target = document.getElementById(sectionId);
-                    if (target) {
-                        if (lenisInstance) lenisInstance.scrollTo(target, { offset: -90, duration: 1.15 });
-                        else target.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    scrollToTarget();
                 }
             },
 
@@ -1054,8 +1084,8 @@
                         </div>
                         <div class="name">${data.title}</div>
                         <div class="des">${data.desc}</div>
-                        <a class="seeMore" href="#pricing" onclick="appRouter.navigateLandingSection('pricing', event)">
-                            <button type="button"><span>Explore Feature</span> <i class="fa-solid fa-arrow-right"></i></button>
+                        <a class="seeMore seeMore-btn" href="#pricing" onclick="appRouter.navigateLandingSection('pricing', event)">
+                            <span>Explore Feature</span> <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
                     <div class="item-preview-badge">
@@ -2115,6 +2145,26 @@
             }
         }
 
+        function closeMobileNav(immediate = false) {
+            const drawer = document.getElementById('mobile-nav-drawer');
+            if (!drawer || drawer.classList.contains('hidden')) return;
+            if (immediate || isReducedMotion || !window.gsap) {
+                drawer.classList.add('hidden');
+                drawer.classList.remove('flex');
+            } else {
+                gsap.to(drawer, {
+                    opacity: 0,
+                    y: -8,
+                    duration: 0.16,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        drawer.classList.add('hidden');
+                        drawer.classList.remove('flex');
+                    }
+                });
+            }
+        }
+
         function toggleMobileNav() {
             const drawer = document.getElementById('mobile-nav-drawer');
             if (!drawer) return;
@@ -2124,30 +2174,16 @@
                 drawer.classList.add('flex');
                 if (window.gsap && !isReducedMotion) {
                     gsap.fromTo(drawer,
-                        { opacity: 0, y: -12, scale: 0.98 },
-                        { opacity: 1, y: 0, scale: 1, duration: 0.28, ease: "cubic-bezier(0.16, 1, 0.3, 1)" }
+                        { opacity: 0, y: -10, scale: 0.98 },
+                        { opacity: 1, y: 0, scale: 1, duration: 0.24, ease: "cubic-bezier(0.16, 1, 0.3, 1)" }
                     );
                     gsap.fromTo(drawer.children,
-                        { opacity: 0, x: -8 },
-                        { opacity: 1, x: 0, stagger: 0.035, duration: 0.22, ease: "power2.out" }
+                        { opacity: 0, x: -6 },
+                        { opacity: 1, x: 0, stagger: 0.025, duration: 0.2, ease: "power2.out" }
                     );
                 }
             } else {
-                if (window.gsap && !isReducedMotion) {
-                    gsap.to(drawer, {
-                        opacity: 0,
-                        y: -8,
-                        duration: 0.18,
-                        ease: "power2.in",
-                        onComplete: () => {
-                            drawer.classList.add('hidden');
-                            drawer.classList.remove('flex');
-                        }
-                    });
-                } else {
-                    drawer.classList.add('hidden');
-                    drawer.classList.remove('flex');
-                }
+                closeMobileNav(false);
             }
         }
 
@@ -2691,15 +2727,22 @@
 
         function initSmoothScroll() {
             if (isReducedMotion) return;
+            const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+
+            // Enforce zero CSS interference
+            document.documentElement.style.scrollBehavior = 'auto';
+            document.body.style.scrollBehavior = 'auto';
+
             lenisInstance = new Lenis({
-                duration: 1.2,
+                duration: isMobile ? 0.75 : 1.05,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                 orientation: 'vertical',
                 gestureOrientation: 'vertical',
                 smoothWheel: true,
                 wheelMultiplier: 0.95,
-                lerp: 0.085,
-                touchMultiplier: 1.2
+                lerp: isMobile ? 0.12 : 0.085,
+                touchMultiplier: 1.0,
+                syncTouch: false
             });
             lenisInstance.on('scroll', (e) => {
                 ScrollTrigger.update();
@@ -2722,23 +2765,28 @@
                 updateBackToTop(window.scrollY);
             });
             gsap.ticker.add((time) => lenisInstance.raf(time * 1000));
-            gsap.ticker.lagSmoothing(0);
+            gsap.ticker.lagSmoothing(500, 33);
 
             initScrollSpy();
         }
 
+        let isHeaderCondensed = false;
         function updateHeaderOnScroll(scrollY) {
+            const shouldCondense = scrollY > 35;
+            if (shouldCondense === isHeaderCondensed) return;
+            isHeaderCondensed = shouldCondense;
+
             const header = document.getElementById('main-header');
             const headerPanel = document.getElementById('main-header-panel');
             if (header) {
-                if (scrollY > 30) {
+                if (shouldCondense) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
             }
             if (!headerPanel) return;
-            if (scrollY > 40) {
+            if (shouldCondense) {
                 headerPanel.classList.add('shadow-2xl', 'py-2.5', 'sm:py-3');
                 headerPanel.classList.remove('py-3.5', 'sm:py-4');
             } else {
@@ -2789,7 +2837,11 @@
 
         function scrollToTop() {
             if (lenisInstance) {
-                lenisInstance.scrollTo(0, { duration: 1.2 });
+                const isMobile = window.innerWidth < 768;
+                lenisInstance.scrollTo(0, {
+                    duration: isMobile ? 0.65 : 0.85,
+                    easing: (t) => 1 - Math.pow(1 - t, 3.5)
+                });
             } else {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -2897,6 +2949,7 @@
                 if (overlay) overlay.style.display = 'none';
                 initKineticRibbon();
                 initSmoothScroll();
+                initGlobalSmoothClicks();
                 initMagneticCursor();
                 initNumberCounters();
                 initKineticTypography();
@@ -2913,6 +2966,7 @@
                 overlay.style.display = 'none';
                 initKineticRibbon();
                 initSmoothScroll();
+                initGlobalSmoothClicks();
                 initMagneticCursor();
                 initNumberCounters();
                 initKineticTypography();
@@ -2939,6 +2993,7 @@
                     overlay.style.display = 'none';
                     initKineticRibbon();
                     initSmoothScroll();
+                initGlobalSmoothClicks();
                     initMagneticCursor();
                     initNumberCounters();
                     initKineticTypography();
@@ -3084,6 +3139,8 @@
             window.handleNewsletterSubmit = handleNewsletterSubmit;
             window.toggleColorMode = toggleColorMode;
             window.toggleMobileNav = toggleMobileNav;
+            window.closeMobileNav = closeMobileNav;
+            window.initGlobalSmoothClicks = initGlobalSmoothClicks;
             window.togglePasswordVisibility = togglePasswordVisibility;
             window.initFeaturesCarousel = initFeaturesCarousel;
             window.initWhyDorfieCarousel = initWhyDorfieCarousel;
@@ -3098,3 +3155,46 @@
             }
         }
 
+
+        /* -------------------------------------------------------------
+           GLOBAL TACTILE CLICK & SMOOTH ANCHOR DELEGATOR
+           Intercepts internal hash navigation to prevent native browser jumps
+           and provides ultra-smooth, buttery, luxury mobile scroll transition
+           ------------------------------------------------------------- */
+        function initGlobalSmoothClicks() {
+            document.addEventListener('click', (e) => {
+                const anchor = e.target.closest('a[href^="#"]');
+                if (!anchor) return;
+                const href = anchor.getAttribute('href');
+                if (!href || href === '#' || href === '#!') return;
+
+                const targetId = href.substring(1);
+                if (targetId === 'home') {
+                    e.preventDefault();
+                    if (typeof closeMobileNav === 'function') closeMobileNav(true);
+                    appRouter.navigate('home');
+                    return;
+                }
+
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    if (typeof closeMobileNav === 'function') closeMobileNav(true);
+                    appRouter.navigateLandingSection(targetId, e);
+                }
+            }, { capture: true });
+
+            // Instant 0ms tactile feedback on mobile/desktop taps
+            document.addEventListener('pointerdown', (e) => {
+                const btn = e.target.closest('button, .liquid-glass-btn-orange, .liquid-glass-pill, .seeMore, .seeMore-btn, [role="button"], #mobile-nav-drawer a');
+                if (!btn) return;
+                btn.classList.add('is-tactile-pressed');
+            }, { passive: true });
+
+            const releaseTactile = () => {
+                const pressed = document.querySelectorAll('.is-tactile-pressed');
+                pressed.forEach(el => el.classList.remove('is-tactile-pressed'));
+            };
+            document.addEventListener('pointerup', releaseTactile, { passive: true });
+            document.addEventListener('pointercancel', releaseTactile, { passive: true });
+        }
