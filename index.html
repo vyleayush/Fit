@@ -1667,9 +1667,9 @@
                             </p>
                         </div>
 
-                        <!-- Desktop Comparison Table (hidden on mobile, shown on tablet/desktop >= 640px) -->
-                        <div class="hidden sm:block comparison-table-wrapper rounded-3xl liquid-glass-well p-4 sm:p-6 overflow-x-auto border border-charcoal/10 dark:border-white/10">
-                            <table class="comparison-table w-full text-left text-xs sm:text-sm border-collapse min-w-[640px]">
+                        <!-- Desktop Comparison Table (hidden on mobile and tablet, shown on desktop >= 1024px) -->
+                        <div class="hidden lg:block comparison-table-wrapper rounded-3xl liquid-glass-well p-6 overflow-hidden border border-charcoal/10 dark:border-white/10">
+                            <table class="comparison-table w-full text-left text-xs sm:text-sm border-collapse">
                                 <thead>
                                     <tr class="border-b border-charcoal/10 dark:border-white/10 text-charcoal/70 dark:text-chalk/70 font-mono text-[11px] uppercase tracking-wider">
                                         <th class="py-3.5 px-4 w-1/4">Dimension</th>
@@ -1743,7 +1743,7 @@
                         </div>
 
                         <!-- Mobile Zero-Scroll Comparison Stack (100% Responsive Cards, Zero Horizontal Overflow) -->
-                        <div class="sm:hidden flex flex-col gap-3.5 w-full">
+                        <div class="comparison-mobile-card-stack lg:hidden flex flex-col gap-3.5 w-full">
                             <!-- 1. Purpose -->
                             <div class="comparison-mobile-card rounded-2xl p-4 liquid-glass-well border border-charcoal/10 dark:border-white/10">
                                 <div class="flex items-center justify-between mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10">
@@ -3366,7 +3366,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch((err) => {
+                navigator.serviceWorker.register('./sw.js').then((reg) => { if (reg) reg.update(); }).catch((err) => {
                     console.warn('[SW] Registration failed:', err);
                 });
             });

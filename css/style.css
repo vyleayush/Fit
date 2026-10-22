@@ -2340,9 +2340,31 @@
            Comparison Matrix, Plan Details Modal, Problem vs Solution Cards
            ------------------------------------------------------------- */
         .comparison-table-wrapper {
-            overflow-x: auto;
+            overflow: hidden;
             border-radius: 1.5rem;
-            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+        }
+
+        @media (max-width: 1023px) {
+            .comparison-table-wrapper {
+                display: none !important;
+            }
+            .comparison-mobile-card-stack {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-x: hidden !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .comparison-table-wrapper {
+                display: block !important;
+            }
+            .comparison-mobile-card-stack {
+                display: none !important;
+            }
         }
 
         .comparison-table {
@@ -2541,17 +2563,14 @@
                 letter-spacing: 0.02em !important;
             }
 
-            /* Comparison matrix mobile scroll hint and cell paddings */
-            .comparison-table-wrapper {
-                border-radius: 1.25rem !important;
-                padding: 0.75rem !important;
+            /* Comparison matrix mobile card stack */
+            .comparison-mobile-card {
+                padding: 1rem !important;
+                border-radius: 1rem !important;
+                width: 100% !important;
                 max-width: 100% !important;
-            }
-
-            .comparison-table th,
-            .comparison-table td {
-                padding: 0.75rem 0.85rem !important;
-                font-size: 11px !important;
+                box-sizing: border-box !important;
+                overflow-x: hidden !important;
             }
 
             /* Community cards grid touch cards */
