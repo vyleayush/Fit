@@ -72,13 +72,15 @@
             max-width: 100%;
         }
 
-        /* Kinetic Typography Splitting Rules */
+        /* Kinetic Typography Splitting Rules - Visible by default for foolproof rendering */
         .split-kinetic-text {
-            visibility: hidden;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .split-kinetic-text.is-ready {
-            visibility: visible;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
         .split-word-wrap {
@@ -292,6 +294,8 @@
         #cursor-dot {
             width: 8px;
             height: 8px;
+            margin-left: -4px;
+            margin-top: -4px;
             background-color: #FF5E00;
             border-radius: 50%;
             position: fixed;
@@ -299,18 +303,21 @@
             left: 0;
             pointer-events: none;
             z-index: 1000;
-            transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 0.25s ease;
+            will-change: transform;
         }
 
         #cursor-follower {
             width: 44px;
             height: 44px;
+            margin-left: -22px;
+            margin-top: -22px;
             border-radius: 50%;
             border: 1.5px solid rgba(255, 94, 0, 0.5);
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             position: fixed;
             top: 0;
             left: 0;
@@ -319,9 +326,61 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transform: translate(-50%, -50%);
             opacity: 0;
-            transition: opacity 0.25s ease;
+            transition: opacity 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, width 0.25s ease, height 0.25s ease, margin 0.25s ease;
+            will-change: transform;
+        }
+
+        #cursor-follower.is-hovering {
+            width: 58px;
+            height: 58px;
+            margin-left: -29px;
+            margin-top: -29px;
+            border-color: #FF5E00;
+            background: rgba(255, 94, 0, 0.18);
+        }
+
+        #cursor-follower.is-clicking {
+            width: 36px;
+            height: 36px;
+            margin-left: -18px;
+            margin-top: -18px;
+            border-color: #FF5E00;
+            background: rgba(255, 94, 0, 0.35);
+        }
+
+        /* Policy Formatted Modal Content */
+        .policy-formatted-content h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.45rem;
+            color: #FF5E00;
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.03em;
+        }
+        .policy-formatted-content h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.15rem;
+            color: #FF5E00;
+            margin-top: 1rem;
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.03em;
+        }
+        .policy-formatted-content p {
+            margin-bottom: 0.65rem;
+            line-height: 1.65;
+        }
+        .policy-formatted-content ul {
+            list-style-type: disc;
+            padding-left: 1.25rem;
+            margin-bottom: 0.65rem;
+        }
+        .policy-formatted-content li {
+            margin-bottom: 0.3rem;
+            line-height: 1.5;
+        }
+        .policy-formatted-content strong {
+            color: #FF5E00;
         }
 
         #cursor-label {
@@ -869,18 +928,73 @@
             -webkit-backdrop-filter: none !important;
         }
 
+        /* Dedicated container rule for rounded-square capybara icon */
+        .capy-icon-container {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+            position: relative;
+        }
+
+        .capy-icon-container.liquid-glass-well,
+        .features-stack-container .slide .item .liquid-glass-well {
+            padding: 6px !important;
+        }
+
         #capy-avatar-wrap img,
         #auth-capy-container img,
         .liquid-glass-well img,
-        .item-preview-badge img {
+        .item-preview-badge img,
+        .capy-icon-container img {
             max-width: 100% !important;
             max-height: 100% !important;
             width: 100% !important;
             height: 100% !important;
             object-fit: contain !important;
             object-position: center center !important;
-            margin: 0 auto !important;
+            margin: 0 !important;
             display: block !important;
+        }
+
+        /* Optical Centering Compensation:
+           Corrects for uneven transparent canvas margins in source artwork.
+           Gymming artwork is located at minX:357, maxX:1452, minY:603, maxY:1914 on a 2859x2859 canvas,
+           offset by -18.36% X (left-shifted) and -5.98% Y (top-shifted).
+           Translating by +18.36% X and +5.98% Y centers the visible artwork with mathematical symmetry. */
+        .capy-icon-container img[src*="Gymming"],
+        .liquid-glass-well img[src*="Gymming"],
+        .item-preview-badge img[src*="Gymming"] {
+            transform: translate(18.36%, 5.98%) !important;
+            will-change: transform;
+        }
+
+        .capy-icon-container img[src*="Running_Marathon"],
+        .liquid-glass-well img[src*="Running_Marathon"],
+        .item-preview-badge img[src*="Running_Marathon"] {
+            transform: translate(-12.06%, -2.52%) !important;
+            will-change: transform;
+        }
+
+        .capy-icon-container img[src*="Chilling_Looking_At_Sky"],
+        .liquid-glass-well img[src*="Chilling_Looking_At_Sky"],
+        .item-preview-badge img[src*="Chilling_Looking_At_Sky"] {
+            transform: translate(6.45%, -5.20%) !important;
+            will-change: transform;
+        }
+
+        .capy-icon-container img[src*="Coffee"],
+        .liquid-glass-well img[src*="Coffee"],
+        .item-preview-badge img[src*="Coffee"] {
+            transform: translate(15.94%, 9.90%) !important;
+            will-change: transform;
+        }
+
+        .capy-icon-container img[src*="Accounts"],
+        .liquid-glass-well img[src*="Accounts"],
+        .item-preview-badge img[src*="Accounts"] {
+            transform: translate(13.86%, 11.71%) !important;
+            will-change: transform;
         }
 
         /* Apple / Linear Obsidian Standard: Subtle Grounded Micro-Elevation */
@@ -1036,13 +1150,19 @@
 
         /* Interactive Cursor States */
         #cursor-follower.is-hovering {
-            transform: translate(-50%, -50%) scale(1.35) !important;
-            border-color: rgba(255, 94, 0, 0.9) !important;
-            background: rgba(255, 94, 0, 0.12) !important;
+            width: 58px;
+            height: 58px;
+            margin-left: -29px;
+            margin-top: -29px;
+            border-color: rgba(255, 94, 0, 0.9);
+            background: rgba(255, 94, 0, 0.14);
         }
 
         #cursor-follower.is-clicking {
-            transform: translate(-50%, -50%) scale(0.85) !important;
+            width: 38px;
+            height: 38px;
+            margin-left: -19px;
+            margin-top: -19px;
         }
 
         /* Comprehensive WCAG Reduced Motion Enforcement */
@@ -2909,3 +3029,93 @@
         .scroll-reveal-item {
             will-change: auto;
         }
+
+        /* -------------------------------------------------------------
+           FEATURES AUTO-CAROUSEL PROGRESS SLIDER
+           Sleek SaaS progress track showing countdown to next slide move
+           ------------------------------------------------------------- */
+        .features-stack-progress-track {
+            width: 72px;
+            height: 6px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            position: relative;
+            margin-left: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .features-stack-progress-fill {
+            width: 0%;
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #FF5E00, #FFAA00);
+            box-shadow: 0 0 8px rgba(255, 94, 0, 0.8);
+            transition: width 0.1s linear;
+        }
+
+        /* -------------------------------------------------------------
+           REGISTRATION & LOGIN INPUT PLACEHOLDER FIX
+           Ensure +91 prefix has clean gutter and placeholder never overlaps
+           ------------------------------------------------------------- */
+        #auth-phone-input {
+            padding-left: 92px !important;
+            letter-spacing: 0.05em;
+        }
+
+        #auth-phone-input::placeholder {
+            color: rgba(140, 140, 155, 0.55);
+            letter-spacing: 0.08em;
+        }
+
+        /* -------------------------------------------------------------
+           CAPYBARA COMPANION HITBOX PERFECTION
+           Restrict click events exclusively to the mascot avatar circle
+           ------------------------------------------------------------- */
+        #capy-scroll-companion {
+            pointer-events: none !important;
+        }
+
+        #capy-avatar-wrap {
+            pointer-events: auto !important;
+            cursor: pointer;
+        }
+
+        /* -------------------------------------------------------------
+           BALANCED SAAS ANIMATION & TRANSITION SPEEDS
+           Crisp, responsive micro-interactions (cubic-bezier 0.16, 1, 0.3, 1)
+           ------------------------------------------------------------- */
+        .crystal-glass-card,
+        .liquid-glass-well,
+        .liquid-glass-btn-orange,
+        .pricing-audience-btn {
+            transition-duration: 0.22s !important;
+            transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* -------------------------------------------------------------
+           HERO LIVE STATUS TICKER INFINITE MARQUEE
+           GPU-accelerated horizontal motion, pauses on hover
+           ------------------------------------------------------------- */
+        .marquee-inner-wrap {
+            display: inline-flex !important;
+            width: max-content !important;
+            will-change: transform;
+            animation: liveMarqueeSlide 30s linear infinite !important;
+        }
+
+        .marquee-inner-wrap:hover,
+        .liquid-glass-pill:hover .marquee-inner-wrap {
+            animation-play-state: paused !important;
+        }
+
+        @keyframes liveMarqueeSlide {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+

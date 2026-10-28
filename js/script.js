@@ -281,7 +281,7 @@
                     filter: "blur(6px)",
                     y: -14,
                     opacity: 0,
-                    duration: 0.28,
+                    duration: 0.45,
                     ease: "power2.inOut",
                     onComplete: () => {
                         currentEl.classList.add('hidden');
@@ -300,7 +300,7 @@
                                 filter: "blur(0px)",
                                 y: 0,
                                 opacity: 1,
-                                duration: 0.38,
+                                duration: 0.55,
                                 ease: "cubic-bezier(0.16, 1, 0.3, 1)",
                                 onComplete: () => {
                                     clearTimeout(transitionFailsafe);
@@ -314,7 +314,7 @@
                         if (incomingCards.length > 0) {
                             gsap.fromTo(incomingCards,
                                 { y: 12, opacity: 0.85 },
-                                { y: 0, opacity: 1, duration: 0.35, stagger: 0.05, ease: "cubic-bezier(0.16, 1, 0.3, 1)", delay: 0.04 }
+                                { y: 0, opacity: 1, duration: 0.48, stagger: 0.06, ease: "cubic-bezier(0.16, 1, 0.3, 1)", delay: 0.05 }
                             );
                         }
                     }
@@ -1120,10 +1120,7 @@
             },
 
             logout() {
-                localStorage.removeItem('dorfie_user');
-                this.currentUser = null;
-                this.updateNavAuth();
-                openDownloadNotice("Signed out successfully.");
+                openLogoutConfirmModal();
             }
         };
 
@@ -1466,7 +1463,7 @@
                 <div class="item" style="background-image: url('${data.bg}');">
                     <div class="content">
                         <div class="flex items-center gap-3.5 mb-3">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
+                            <div class="capy-icon-container w-14 h-14 sm:w-16 sm:h-16 rounded-2xl liquid-glass-well p-1.5 border border-accent-orange/50 shadow-[0_8px_20px_rgba(255,94,0,0.3)] flex items-center justify-center shrink-0">
                                 <img src="${data.mascot}?v=2" alt="Dorfie Mascot" class="w-full h-full object-contain object-center filter drop-shadow select-none">
                             </div>
                             <div class="min-w-0">
@@ -1537,22 +1534,33 @@
                                 duration: 0.25,
                                 ease: "power2.out"
                             });
+                            if (featuresCarouselInstance && typeof featuresCarouselInstance.restart === 'function') {
+                                featuresCarouselInstance.restart();
+                            }
                         }
                     });
                 } else {
                     renderRoleFeatureStack(roleKey);
                     slideTrack.style.minHeight = '';
+                    if (featuresCarouselInstance && typeof featuresCarouselInstance.restart === 'function') {
+                        featuresCarouselInstance.restart();
+                    }
                 }
             }
         }
 
-        function setupStackSlider({ stageId, slideTrackId, prevBtnId, nextBtnId, counterId }) {
+        function setupStackSlider({ stageId, slideTrackId, prevBtnId, nextBtnId, counterId, progressFillId }) {
             const slideTrack = document.getElementById(slideTrackId);
             const nextBtn = document.getElementById(nextBtnId);
             const prevBtn = document.getElementById(prevBtnId);
             const counterEl = document.getElementById(counterId);
 
             if (!slideTrack || !nextBtn || !prevBtn) return null;
+
+            // Clean up any previously active slider loop on this track to prevent conflicting loops
+            if (slideTrack._stackSliderInstance && typeof slideTrack._stackSliderInstance.stop === 'function') {
+                slideTrack._stackSliderInstance.stop();
+            }
 
             function updateCounter() {
                 const items = slideTrack.querySelectorAll('.item');
@@ -1579,14 +1587,72 @@
                 updateCounter();
             }
 
+            // Auto-Move Carousel Engine with Real-Time Progress Slider
+            const resolvedProgressId = progressFillId || (slideTrackId === 'why-dorfie-slide-track' ? 'why-dorfie-stack-progress-fill' : 'features-stack-progress-fill');
+            const progressFill = document.getElementById(resolvedProgressId);
+            const SLIDE_DURATION = 4200;
+            let autoTimer = null;
+            let progressAnimFrame = null;
+            let slideStartTime = null;
+            let isUserPausing = false;
+
+            function updateProgressSlider(timestamp) {
+                if (!slideStartTime) slideStartTime = timestamp;
+                if (!isUserPausing && document.visibilityState === 'visible') {
+                    const elapsed = timestamp - slideStartTime;
+                    const progress = Math.min(100, (elapsed / SLIDE_DURATION) * 100);
+                    if (progressFill) {
+                        progressFill.style.width = `${progress}%`;
+                    }
+                    if (elapsed >= SLIDE_DURATION) {
+                        handleNext();
+                        slideStartTime = timestamp;
+                        if (progressFill) progressFill.style.width = '0%';
+                    }
+                } else if (isUserPausing) {
+                    slideStartTime = timestamp;
+                }
+                progressAnimFrame = requestAnimationFrame(updateProgressSlider);
+            }
+
+            function resetProgressSlider() {
+                slideStartTime = performance.now();
+                if (progressFill) progressFill.style.width = '0%';
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+                slideStartTime = performance.now();
+                progressAnimFrame = requestAnimationFrame(updateProgressSlider);
+            }
+
+            function stopAutoplay() {
+                if (progressAnimFrame) {
+                    cancelAnimationFrame(progressAnimFrame);
+                    progressAnimFrame = null;
+                }
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            function restartAutoplay() {
+                resetProgressSlider();
+                stopAutoplay();
+                setTimeout(startAutoplay, 400);
+            }
+
             nextBtn.onclick = (e) => {
                 e.preventDefault();
                 handleNext();
+                restartAutoplay();
             };
 
             prevBtn.onclick = (e) => {
                 e.preventDefault();
                 handlePrev();
+                restartAutoplay();
             };
 
             // Clicking any preview card rotates the stack forward
@@ -1606,20 +1672,23 @@
                         slideTrack.appendChild(currentItems[0]);
                     }
                     updateCounter();
+                    restartAutoplay();
                 }
             };
 
             // Touch swipe support
             let touchStartX = 0;
             let touchStartY = 0;
-            slideTrack.addEventListener('touchstart', (e) => {
+            slideTrack.ontouchstart = (e) => {
+                isUserPausing = true;
                 if (e.touches && e.touches[0]) {
                     touchStartX = e.touches[0].clientX;
                     touchStartY = e.touches[0].clientY;
                 }
-            }, { passive: true });
+            };
 
-            slideTrack.addEventListener('touchend', (e) => {
+            slideTrack.ontouchend = (e) => {
+                setTimeout(() => { isUserPausing = false; }, 1800);
                 if (e.changedTouches && e.changedTouches[0]) {
                     const diffX = e.changedTouches[0].clientX - touchStartX;
                     const diffY = e.changedTouches[0].clientY - touchStartY;
@@ -1629,42 +1698,62 @@
                         } else {
                             handlePrev();
                         }
+                        restartAutoplay();
                     }
                 }
-            }, { passive: true });
+            };
 
-            // Keyboard navigation when stage is in focus or hovered
+            // Keyboard navigation & hover pause when stage is in focus or hovered
             const stage = document.getElementById(stageId);
             if (stage) {
                 stage.setAttribute('tabindex', '0');
-                stage.addEventListener('keydown', (e) => {
+                stage.onmouseenter = () => { isUserPausing = true; };
+                stage.onmouseleave = () => {
+                    isUserPausing = false;
+                    resetProgressSlider();
+                };
+                stage.onkeydown = (e) => {
                     if (e.key === 'ArrowRight') {
                         e.preventDefault();
                         handleNext();
+                        restartAutoplay();
                     } else if (e.key === 'ArrowLeft') {
                         e.preventDefault();
                         handlePrev();
+                        restartAutoplay();
                     }
-                });
+                };
             }
 
             updateCounter();
+            startAutoplay();
 
-            return {
+            const instance = {
                 next: handleNext,
                 prev: handlePrev,
-                updateCounter: updateCounter
+                updateCounter: updateCounter,
+                start: startAutoplay,
+                stop: stopAutoplay,
+                restart: restartAutoplay,
+                resetProgress: resetProgressSlider
             };
+            slideTrack._stackSliderInstance = instance;
+            return instance;
         }
 
         function initFeaturesStackSlider() {
-            return setupStackSlider({
+            if (featuresCarouselInstance && typeof featuresCarouselInstance.stop === 'function') {
+                featuresCarouselInstance.stop();
+            }
+            featuresCarouselInstance = setupStackSlider({
                 stageId: 'features-stack-stage',
                 slideTrackId: 'features-slide-track',
                 prevBtnId: 'features-stack-prev',
                 nextBtnId: 'features-stack-next',
-                counterId: 'features-stack-counter'
+                counterId: 'features-stack-counter',
+                progressFillId: 'features-stack-progress-fill'
             });
+            return featuresCarouselInstance;
         }
 
         function setupCarouselController({
@@ -1969,25 +2058,36 @@
         function initFeaturesCarousel() {
             initFeaturesStackSlider();
             window.featuresCarousel = {
+                next: () => { if (featuresCarouselInstance) featuresCarouselInstance.next(); },
+                prev: () => { if (featuresCarouselInstance) featuresCarouselInstance.prev(); },
+                start: () => { if (featuresCarouselInstance) featuresCarouselInstance.start(); },
+                stop: () => { if (featuresCarouselInstance) featuresCarouselInstance.stop(); },
+                restart: () => { if (featuresCarouselInstance) featuresCarouselInstance.restart(); },
                 reset: () => {
                     const activeRoleBtn = document.querySelector('.feature-tab-btn.active');
                     if (activeRoleBtn) {
                         const roleKey = activeRoleBtn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1] || 'member';
                         renderRoleFeatureStack(roleKey);
                     }
+                    if (featuresCarouselInstance) featuresCarouselInstance.restart();
                 }
             };
         }
 
         function initWhyDorfieCarousel() {
+            if (whyDorfieCarouselInstance && typeof whyDorfieCarouselInstance.stop === 'function') {
+                whyDorfieCarouselInstance.stop();
+            }
             whyDorfieCarouselInstance = setupStackSlider({
                 stageId: 'why-dorfie-stack-stage',
                 slideTrackId: 'why-dorfie-slide-track',
                 prevBtnId: 'why-dorfie-stack-prev',
                 nextBtnId: 'why-dorfie-stack-next',
-                counterId: 'why-dorfie-stack-counter'
+                counterId: 'why-dorfie-stack-counter',
+                progressFillId: 'why-dorfie-stack-progress-fill'
             });
             window.whyDorfieCarousel = whyDorfieCarouselInstance;
+            return whyDorfieCarouselInstance;
         }
 
         let currentPricingAudience = 'centres';
@@ -2281,7 +2381,7 @@
 
                             <div class="card-tags">
                                 <span class="card-tag">${plan.tag}</span>
-                                ${plan.features.some(f => f.includes('WhatsApp')) ? '<span class="card-tag bg-[#25D366]/20 text-[#25D366] border-[#25D366]/40">FREE WHATSAPP</span>' : ''}
+                                ${currentPricingAudience === 'centres' && plan.features.some(f => f.includes('WhatsApp')) ? '<span class="card-tag bg-[#25D366]/20 text-[#25D366] border-[#25D366]/40">FREE WHATSAPP</span>' : ''}
                             </div>
 
                             <h3 class="card-title font-bebas text-3xl sm:text-4xl tracking-wide ${plan.isPopular ? 'text-accent-orange' : ''}">${plan.name}</h3>
@@ -2499,12 +2599,12 @@
             if (policy) {
                 if (titleEl) titleEl.textContent = policy.title.toUpperCase();
                 bodyEl.innerHTML = `
-                    <div class="mb-3 pb-2 border-b border-charcoal/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-accent-orange font-bold">
-                        <span>LAST UPDATED: ${policy.lastUpdated}</span>
+                    <div class="mb-4 pb-2.5 border-b border-charcoal/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-accent-orange font-bold">
+                        <span>LAST UPDATED: ${policy.lastUpdated || 'October 2026'}</span>
                         <span>OFFICIAL DORFIE FIT POLICY</span>
                     </div>
-                    <div class="policy-raw-content whitespace-pre-line font-sans text-xs sm:text-sm text-charcoal/85 dark:text-chalk/85 leading-relaxed">
-                        ${escapePolicyHtml(policy.content)}
+                    <div class="policy-formatted-content font-sans text-xs sm:text-sm text-charcoal/85 dark:text-chalk/85 leading-relaxed space-y-3">
+                        ${policy.content}
                     </div>
                 `;
             } else {
@@ -2745,86 +2845,257 @@
             }
         }
 
-        async function handleAuthSubmit(e) {
-            e.preventDefault();
+        /* -------------------------------------------------------------
+           MOBILE OTP AUTHENTICATION CONTROLLER (Passwordless & Instant)
+           ------------------------------------------------------------- */
+        let activeOtpPhone = '';
+        let generatedOtp = '123456';
+        let otpCountdownTimer = null;
+        let otpSecondsRemaining = 30;
+
+        function initOtpDigitInputs() {
+            const inputs = document.querySelectorAll('.otp-digit-input');
+            inputs.forEach((input, index) => {
+                input.value = '';
+                input.oninput = (e) => {
+                    const val = e.target.value.replace(/[^0-9]/g, '');
+                    e.target.value = val ? val[0] : '';
+                    if (val && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                };
+                input.onkeydown = (e) => {
+                    if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                        inputs[index - 1].focus();
+                    } else if (e.key === 'Enter') {
+                        e.preventDefault();
+                        verifyMobileOtp();
+                    }
+                };
+                input.onpaste = (e) => {
+                    e.preventDefault();
+                    const clip = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '').slice(0, 6);
+                    if (clip) {
+                        inputs.forEach((inp, idx) => {
+                            inp.value = clip[idx] || '';
+                        });
+                        const focusIdx = Math.min(clip.length, inputs.length - 1);
+                        inputs[focusIdx].focus();
+                    }
+                };
+            });
+        }
+
+        function startOtpTimer() {
+            clearInterval(otpCountdownTimer);
+            otpSecondsRemaining = 30;
+            const countEl = document.getElementById('otp-timer-count');
+            const countdownWrap = document.getElementById('auth-resend-countdown');
+            const resendBtn = document.getElementById('auth-resend-btn');
+
+            if (countdownWrap) countdownWrap.classList.remove('hidden');
+            if (resendBtn) resendBtn.classList.add('hidden');
+            if (countEl) countEl.textContent = `${otpSecondsRemaining}s`;
+
+            otpCountdownTimer = setInterval(() => {
+                otpSecondsRemaining--;
+                if (countEl) countEl.textContent = `${otpSecondsRemaining}s`;
+                if (otpSecondsRemaining <= 0) {
+                    clearInterval(otpCountdownTimer);
+                    if (countdownWrap) countdownWrap.classList.add('hidden');
+                    if (resendBtn) resendBtn.classList.remove('hidden');
+                }
+            }, 1000);
+        }
+
+        async function requestMobileOtp(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const phoneInput = document.getElementById('auth-phone-input');
             const alertBanner = document.getElementById('auth-alert-banner');
             const alertText = document.getElementById('auth-alert-text');
-            const spinner = document.getElementById('auth-submit-spinner');
-            const submitBtn = document.getElementById('auth-submit-btn');
+            const spinner = document.getElementById('auth-phone-spinner');
+            const btn = document.getElementById('auth-send-otp-btn');
 
             if (alertBanner) alertBanner.classList.add('hidden');
+
+            const rawVal = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
+            if (rawVal.length !== 10) {
+                if (alertBanner && alertText) {
+                    alertText.textContent = "Please enter a valid 10-digit mobile number.";
+                    alertBanner.classList.remove('hidden');
+                }
+                if (phoneInput) phoneInput.focus();
+                return;
+            }
+
+            activeOtpPhone = rawVal;
             if (spinner) spinner.classList.remove('hidden');
-            if (submitBtn) submitBtn.disabled = true;
+            if (btn) btn.disabled = true;
 
-            const isRegister = appRouter.activeAuthMode === 'register';
+            setTimeout(() => {
+                if (spinner) spinner.classList.add('hidden');
+                if (btn) btn.disabled = false;
 
-            try {
-                let authResult;
-                if (isRegister) {
-                    const name = document.getElementById('auth-name-input')?.value || '';
-                    const email = document.getElementById('auth-identity-input')?.value || '';
-                    const phone = document.getElementById('auth-phone-input')?.value || '';
-                    const role = document.querySelector('input[name="auth-role"]:checked')?.value || 'member';
-                    const password = document.getElementById('auth-password-input')?.value || '';
+                const stepPhone = document.getElementById('auth-step-phone');
+                const stepOtp = document.getElementById('auth-step-otp');
+                const displayPhone = document.getElementById('auth-display-phone');
 
-                    authResult = await dorfieAuth.register({ name, email, phone, role, password });
-                } else {
-                    let identity = document.getElementById('auth-identity-input')?.value || '';
-                    let password = document.getElementById('auth-password-input')?.value || '';
-
-                    if (!identity.trim()) {
-                        identity = 'alex@dorfiefit.com';
-                        const idEl = document.getElementById('auth-identity-input');
-                        if (idEl) idEl.value = identity;
-                    }
-                    if (!password || password.length < 4) {
-                        password = 'dorfie2026';
-                        const pwEl = document.getElementById('auth-password-input');
-                        if (pwEl) pwEl.value = '••••••••';
-                    }
-
-                    authResult = await dorfieAuth.login({ identity, password });
+                if (displayPhone) {
+                    const masked = activeOtpPhone.slice(0, 2) + '•••• •' + activeOtpPhone.slice(-3);
+                    displayPhone.textContent = `+91 ${masked}`;
                 }
 
-                appRouter.currentUser = authResult.user;
+                if (stepPhone) stepPhone.classList.add('hidden');
+                if (stepOtp) {
+                    stepOtp.classList.remove('hidden');
+                    const firstInput = stepOtp.querySelector('.otp-digit-input');
+                    if (firstInput) {
+                        firstInput.focus();
+                    }
+                }
+
+                initOtpDigitInputs();
+                startOtpTimer();
+                openDownloadNotice(`Verification OTP dispatched to +91 ${activeOtpPhone}! (Demo code: 123456)`, 'fa-sms');
+            }, 500);
+        }
+
+        function changeMobileNumber() {
+            clearInterval(otpCountdownTimer);
+            const stepPhone = document.getElementById('auth-step-phone');
+            const stepOtp = document.getElementById('auth-step-otp');
+            const alertBanner = document.getElementById('auth-alert-banner');
+
+            if (alertBanner) alertBanner.classList.add('hidden');
+            if (stepOtp) stepOtp.classList.add('hidden');
+            if (stepPhone) {
+                stepPhone.classList.remove('hidden');
+                const input = document.getElementById('auth-phone-input');
+                if (input) input.focus();
+            }
+        }
+
+        function resendMobileOtp() {
+            startOtpTimer();
+            initOtpDigitInputs();
+            openDownloadNotice(`Fresh 6-digit OTP sent to +91 ${activeOtpPhone}! (Demo code: 123456)`, 'fa-sms');
+        }
+
+        async function verifyMobileOtp(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const alertBanner = document.getElementById('auth-alert-banner');
+            const alertText = document.getElementById('auth-alert-text');
+            const spinner = document.getElementById('auth-verify-spinner');
+            const btn = document.getElementById('auth-verify-otp-btn');
+
+            if (alertBanner) alertBanner.classList.add('hidden');
+
+            const inputs = document.querySelectorAll('.otp-digit-input');
+            let enteredCode = '';
+            inputs.forEach(inp => enteredCode += (inp.value || ''));
+
+            if (enteredCode.length < 6) {
+                if (alertBanner && alertText) {
+                    alertText.textContent = "Please enter all 6 digits of your verification code.";
+                    alertBanner.classList.remove('hidden');
+                }
+                return;
+            }
+
+            if (spinner) spinner.classList.remove('hidden');
+            if (btn) btn.disabled = true;
+
+            setTimeout(() => {
+                if (spinner) spinner.classList.add('hidden');
+                if (btn) btn.disabled = false;
+
+                const formattedPhone = `+91 ${activeOtpPhone.slice(0, 5)} ${activeOtpPhone.slice(5)}`;
+                const user = {
+                    name: 'Athlete ' + activeOtpPhone.slice(-4),
+                    phone: formattedPhone,
+                    role: 'member',
+                    authenticatedAt: Date.now()
+                };
+
+                const mockToken = 'df_otp_' + Math.random().toString(36).substring(2, 12) + '_' + Date.now();
+                localStorage.setItem('dorfie_auth_token', mockToken);
+                localStorage.setItem('dorfie_user', JSON.stringify(user));
+
+                appRouter.currentUser = user;
                 appRouter.updateNavAuth();
 
                 if (appRouter.pendingPurchase) {
-                    openDownloadNotice(`Authenticated as ${authResult.user.name}! Resuming checkout...`, "fa-shield-halved");
+                    openDownloadNotice(`Authenticated as ${user.phone}! Resuming checkout...`, "fa-shield-halved");
                     setTimeout(() => {
                         appRouter.renderCheckout();
                         appRouter.navigate('checkout');
                     }, 400);
                 } else {
-                    openDownloadNotice(`Welcome, ${authResult.user.name}! Access unlocked.`, "fa-id-badge");
+                    openDownloadNotice(`Welcome! Verified as ${user.phone}`, "fa-circle-check");
                     setTimeout(() => {
                         appRouter.navigate('home');
                     }, 400);
                 }
-            } catch (err) {
-                if (alertBanner && alertText) {
-                    alertText.textContent = err.message || "Authentication failed. Please check your credentials.";
-                    alertBanner.classList.remove('hidden');
+            }, 600);
+        }
+
+        /* -------------------------------------------------------------
+           LOGOUT CONFIRMATION CONTROLLERS
+           ------------------------------------------------------------- */
+        function openLogoutConfirmModal() {
+            const modal = document.getElementById('logout-confirm-modal');
+            const card = document.getElementById('logout-confirm-card');
+            if (!modal) return;
+            if (lenisInstance) lenisInstance.stop();
+            document.body.style.overflow = 'hidden';
+            modal.style.display = 'flex';
+            modal.classList.remove('hidden');
+            void modal.offsetWidth;
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                if (card) {
+                    card.classList.remove('scale-95');
+                    card.classList.add('scale-100');
                 }
-            } finally {
-                if (spinner) spinner.classList.add('hidden');
-                if (submitBtn) submitBtn.disabled = false;
+            });
+        }
+
+        function cancelLogout() {
+            const modal = document.getElementById('logout-confirm-modal');
+            const card = document.getElementById('logout-confirm-card');
+            if (!modal) return;
+            modal.classList.add('opacity-0');
+            if (card) {
+                card.classList.remove('scale-100');
+                card.classList.add('scale-95');
+            }
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+                if (lenisInstance) lenisInstance.start();
+            }, 300);
+        }
+
+        function confirmLogout() {
+            cancelLogout();
+            dorfieAuth.logout();
+            appRouter.currentUser = null;
+            appRouter.updateNavAuth();
+            openDownloadNotice("Signed out successfully. See you soon!", "fa-right-from-bracket");
+            if (appRouter.activeView === 'checkout') {
+                appRouter.navigate('home');
             }
         }
 
-        async function dorfieQuickAuth(provider) {
-            const idInput = document.getElementById('auth-identity-input');
-            const pwInput = document.getElementById('auth-password-input');
-            if (idInput) idInput.value = `alex.${provider.toLowerCase()}@dorfiefit.com`;
-            if (pwInput) pwInput.value = 'dorfie2026';
-            openDownloadNotice(`Authenticating via ${provider} SSO...`, "fa-bolt");
-            const form = document.querySelector('#view-auth form');
-            if (form) {
-                setTimeout(() => {
-                    form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-                }, 250);
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const logoutModal = document.getElementById('logout-confirm-modal');
+                if (logoutModal && !logoutModal.classList.contains('hidden')) {
+                    cancelLogout();
+                }
             }
-        }
+        });
 
         /* -------------------------------------------------------------
            DIGITAL INVOICE & RECEIPT MODAL CONTROLLERS
@@ -2899,8 +3170,6 @@
 
         function initKineticRibbon() {
             if (isRibbonInitialized) return;
-            const isTouchMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-            if (isTouchMobile) return;
             const container = document.getElementById('kinetic-ribbon-container');
             const pathAura = document.getElementById('ribbon-path-aura');
             const pathCore = document.getElementById('ribbon-path-core');
@@ -2910,27 +3179,28 @@
             isRibbonInitialized = true;
 
             function updateRibbonPaths(time) {
-                const t = (time || 0) * 0.0011;
+                const now = time || performance.now();
+                const t = now * 0.00095;
                 const sp = ribbonScrollProgress; // 0 (top) to 1 (bottom)
 
                 // Coordinate bounding space: 1440 x 900
-                const p0x = -40 + Math.sin(t * 0.7) * 30;
-                const p0y = 160 + Math.cos(t * 0.8) * 40 + sp * 180;
+                const p0x = -40 + Math.sin(t * 0.7) * 45;
+                const p0y = 160 + Math.cos(t * 0.8) * 55 + sp * 180;
 
-                const cp1x = 380 + Math.sin(t * 1.0) * 60 + sp * 140;
-                const cp1y = 70 + Math.cos(t * 1.2) * 60 - sp * 60;
+                const cp1x = 380 + Math.sin(t * 1.0) * 85 + sp * 140;
+                const cp1y = 70 + Math.cos(t * 1.2) * 75 - sp * 60;
 
-                const cp2x = 960 + Math.cos(t * 0.8) * 70 - sp * 160;
-                const cp2y = 820 + Math.sin(t * 1.1) * 60 - sp * 280;
+                const cp2x = 960 + Math.cos(t * 0.8) * 85 - sp * 160;
+                const cp2y = 820 + Math.sin(t * 1.1) * 75 - sp * 280;
 
-                const p1x = 1480 + Math.cos(t * 0.6) * 35;
-                const p1y = 380 + Math.sin(t * 0.9) * 55 + sp * 240;
+                const p1x = 1480 + Math.cos(t * 0.6) * 45;
+                const p1y = 380 + Math.sin(t * 0.9) * 65 + sp * 240;
 
                 // Core luminous bezier path
                 const dCore = `M ${p0x.toFixed(1)} ${p0y.toFixed(1)} C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${p1x.toFixed(1)} ${p1y.toFixed(1)}`;
 
                 // Parallel secondary telemetry line (offset by 24px vertically)
-                const t0y = p0y + 24 + Math.sin(t * 1.4) * 8;
+                const t0y = p0y + 24 + Math.sin(t * 1.4) * 10;
                 const tcp1y = cp1y + 26;
                 const tcp2y = cp2y + 26;
                 const t1y = p1y + 24;
@@ -2941,10 +3211,18 @@
                 if (pathTelemetry) pathTelemetry.setAttribute('d', dTelemetry);
             }
 
-            // Hook onto GSAP ticker for 60fps silky smooth rendering
-            gsap.ticker.add((time) => {
-                updateRibbonPaths(time * 1000);
-            });
+            // Hook onto GSAP ticker for 60fps silky smooth rendering with rAF fallback
+            if (window.gsap && gsap.ticker) {
+                gsap.ticker.add((time) => {
+                    updateRibbonPaths(time * 1000);
+                });
+            } else {
+                function loopRibbon(now) {
+                    updateRibbonPaths(now);
+                    requestAnimationFrame(loopRibbon);
+                }
+                requestAnimationFrame(loopRibbon);
+            }
 
             // Fallback passive scroll listener to keep ribbon synced under all circumstances
             window.addEventListener('scroll', () => {
@@ -2952,7 +3230,7 @@
                 ribbonScrollProgress = maxScroll > 0 ? (window.scrollY / maxScroll) : 0;
             }, { passive: true });
 
-            updateRibbonPaths(0);
+            updateRibbonPaths(performance.now());
         }
 
         function openDownloadNotice(text, iconClass = 'fa-check') {
@@ -3018,67 +3296,45 @@
 
             document.fonts.ready.then(() => {
                 headlines.forEach(headline => {
-                    if (window.SplitType) {
+                    headline.style.visibility = 'visible';
+                    headline.style.opacity = '1';
+
+                    if (window.SplitType && window.gsap && window.ScrollTrigger) {
                         try {
                             const split = new SplitType(headline, { types: 'lines,words' });
-                            split.words.forEach(w => {
-                                const wrapper = document.createElement('span');
-                                wrapper.className = 'split-word-wrap';
-                                w.parentNode.insertBefore(wrapper, w);
-                                wrapper.appendChild(w);
-                                w.classList.add('split-word');
-                            });
+                            if (split.words && split.words.length) {
+                                split.words.forEach(w => {
+                                    const wrapper = document.createElement('span');
+                                    wrapper.className = 'split-word-wrap';
+                                    w.parentNode.insertBefore(wrapper, w);
+                                    wrapper.appendChild(w);
+                                    w.classList.add('split-word');
+                                });
 
-                            gsap.fromTo(split.words,
-                                { yPercent: 110, rotateZ: 3, opacity: 0 },
-                                {
-                                    scrollTrigger: {
-                                        trigger: headline,
-                                        start: "top 88%",
-                                        toggleActions: "play none none none"
-                                    },
-                                    yPercent: 0,
-                                    rotateZ: 0,
-                                    opacity: 1,
-                                    stagger: 0.025,
-                                    duration: 0.85,
-                                    ease: "power3.out"
-                                }
-                            );
+                                gsap.fromTo(split.words,
+                                    { yPercent: 110, rotateZ: 3, opacity: 0 },
+                                    {
+                                        scrollTrigger: {
+                                            trigger: headline,
+                                            start: "top 90%",
+                                            toggleActions: "play none none none"
+                                        },
+                                        yPercent: 0,
+                                        rotateZ: 0,
+                                        opacity: 1,
+                                        stagger: 0.02,
+                                        duration: 0.65,
+                                        ease: "power2.out"
+                                    }
+                                );
+                            }
                         } catch (err) {
                             headline.style.visibility = 'visible';
+                            headline.style.opacity = '1';
                         }
                     }
                 });
             });
-
-            // Smooth Infinite Marquee loop on GSAP ticker with offscreen pause
-            const marqueeTrack = document.querySelector('.marquee-inner-wrap');
-            if (marqueeTrack && !isReducedMotion) {
-                let marqueeX = 0;
-                let isMarqueeHovered = false;
-                let isMarqueeInView = true;
-                const marqueeParent = marqueeTrack.parentElement;
-                if (marqueeParent) {
-                    marqueeParent.addEventListener('mouseenter', () => { isMarqueeHovered = true; });
-                    marqueeParent.addEventListener('mouseleave', () => { isMarqueeHovered = false; });
-                    const mObs = new IntersectionObserver(([entry]) => {
-                        isMarqueeInView = entry.isIntersecting;
-                    }, { threshold: 0.1 });
-                    mObs.observe(marqueeParent);
-                }
-                let halfWidth = (marqueeTrack.scrollWidth || 1000) / 2;
-                window.addEventListener('resize', () => {
-                    halfWidth = (marqueeTrack.scrollWidth || 1000) / 2;
-                }, { passive: true });
-
-                gsap.ticker.add(() => {
-                    if (isMarqueeHovered || !isMarqueeInView) return;
-                    marqueeX -= 1.35;
-                    if (Math.abs(marqueeX) >= halfWidth) marqueeX = 0;
-                    marqueeTrack.style.transform = `translate3d(${marqueeX.toFixed(1)}px, 0, 0)`;
-                });
-            }
         }
 
         function initScrollReveal() {
@@ -3161,15 +3417,14 @@
             document.body.style.scrollBehavior = 'auto';
 
             lenisInstance = new Lenis({
-                duration: isMobile ? 0.75 : 1.05,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                duration: 1.25,
+                easing: (t) => 1 - Math.pow(1 - t, 3.5),
                 orientation: 'vertical',
                 gestureOrientation: 'vertical',
                 smoothWheel: true,
-                wheelMultiplier: 0.95,
-                lerp: isMobile ? 0.12 : 0.085,
+                wheelMultiplier: 0.92,
                 touchMultiplier: 1.0,
-                syncTouch: false
+                infinite: false
             });
             lenisInstance.on('scroll', (e) => {
                 ScrollTrigger.update();
@@ -3303,6 +3558,8 @@
                     cursorVisible = true;
                     dot.style.opacity = '1';
                     follower.style.opacity = '1';
+                    mouse.targetX = e.clientX;
+                    mouse.targetY = e.clientY;
                 }
                 mouse.x = e.clientX;
                 mouse.y = e.clientY;
@@ -3382,7 +3639,7 @@
                 initFeaturesCarousel();
                 initWhyDorfieCarousel();
                 capyCompanion.init();
-            }, 2600);
+            }, 4800);
 
             if (isReducedMotion) {
                 clearTimeout(failsafe);
@@ -3433,12 +3690,12 @@
                 }
             });
 
-            preloaderTl.to(boltIcon, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.7)" });
+            preloaderTl.to(boltIcon, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" });
 
             const counterState = { val: 0 };
             preloaderTl.to(counterState, {
                 val: 100,
-                duration: 1.1,
+                duration: 2.4,
                 ease: "power2.inOut",
                 onUpdate: () => {
                     const currentVal = Math.round(counterState.val);
@@ -3451,26 +3708,26 @@
             preloaderTl.to(['.loader-logo-svg', '#loader-wordmark', '#loader-tagline', '#loader-line-fill'], {
                 scale: 0.92,
                 opacity: 0,
-                duration: 0.25,
-                stagger: 0.03
+                duration: 0.38,
+                stagger: 0.05
             });
 
             preloaderTl.to(shutterPath, {
                 attr: { d: "M 0 100 V 50 Q 50 0 100 50 V 100 z" },
-                duration: 0.3,
+                duration: 0.45,
                 ease: "power2.in"
             });
             preloaderTl.to(shutterPath, {
                 attr: { d: "M 0 0 V 0 Q 50 0 100 0 V 0 z" },
-                duration: 0.35,
+                duration: 0.55,
                 ease: "power4.out"
             });
 
             preloaderTl.to(overlay, {
                 yPercent: -100,
-                duration: 0.5,
+                duration: 0.7,
                 ease: "power3.inOut"
-            }, "-=0.5");
+            }, "-=0.6");
         }
 
         function initSubscriptionCards() {
@@ -3562,9 +3819,14 @@
             window.handleNewsletterSubmit = handleNewsletterSubmit;
             window.toggleColorMode = toggleColorMode;
             window.toggleMobileNav = toggleMobileNav;
-            window.closeMobileNav = closeMobileNav;
-            window.initGlobalSmoothClicks = initGlobalSmoothClicks;
-            window.togglePasswordVisibility = togglePasswordVisibility;
+            window.requestMobileOtp = requestMobileOtp;
+            window.verifyMobileOtp = verifyMobileOtp;
+            window.changeMobileNumber = changeMobileNumber;
+            window.resendMobileOtp = resendMobileOtp;
+            window.openLogoutConfirmModal = openLogoutConfirmModal;
+            window.cancelLogout = cancelLogout;
+            window.confirmLogout = confirmLogout;
+            window.logout = openLogoutConfirmModal;
             window.initFeaturesCarousel = initFeaturesCarousel;
             window.initWhyDorfieCarousel = initWhyDorfieCarousel;
             try {
